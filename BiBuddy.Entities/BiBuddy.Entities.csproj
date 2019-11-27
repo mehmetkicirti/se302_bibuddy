@@ -43,7 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IEntity.cs" />
+    <Compile Include="Concrete\article.cs" />
+    <Compile Include="Concrete\BaseEntity.cs" />
     <Compile Include="Concrete\book.cs" />
+    <Compile Include="Concrete\booklet.cs" />
+    <Compile Include="Concrete\conference.cs" />
+    <Compile Include="Concrete\inbook.cs" />
+    <Compile Include="Concrete\incollection.cs" />
+    <Compile Include="Concrete\manual.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
