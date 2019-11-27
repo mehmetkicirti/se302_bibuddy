@@ -8,14 +8,14 @@
         Title="MainWindow" Height="400" Width="600">
     <Grid>
         <Menu Height="20" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <MenuItem Header="File">
+            <MenuItem Header="File" Click="MenuItem_Click">
                 <MenuItem Header="New BibTeX"/>
                 <MenuItem Header="Open"/>
                 <Separator/>
                 <MenuItem Header="Import"/>
                 <MenuItem Header="Export"/>
                 <Separator/>
-                <MenuItem Header="Exit"/>
+                <MenuItem Click="Exit" Header="Exit"/>
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Undo"/>

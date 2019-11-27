@@ -88,5 +88,18 @@ namespace BiBuddy.UI
             addP.sPanelBookTxB.Visibility = Visibility.Visible;
             addP.sPanelBookTBx.Visibility = Visibility.Visible;
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure to Exit ?", "BiBuddy Exit", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                System.Windows.Application.Current.Shutdown();
+            }
+        }
     }
 }
