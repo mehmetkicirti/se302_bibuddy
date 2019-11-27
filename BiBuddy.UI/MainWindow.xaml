@@ -68,6 +68,9 @@
                         <MenuItem Header="Conference" Click="ConferenceClick"></MenuItem>
                         <MenuItem Header="Booklet" Click="BookletClick"></MenuItem>
                         <MenuItem Header="Book" Click="BookClick"></MenuItem>
+                        <MenuItem Header="Inbook" Click="InbookClick"></MenuItem>
+                        <MenuItem Header="Incollection" Click="IncollectionClick"></MenuItem>
+                        <MenuItem Header="Manuel" Click="ManuelClick"></MenuItem>
                     </MenuItem>
                 </Menu>
                 <ToolBar>

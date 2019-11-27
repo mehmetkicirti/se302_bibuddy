@@ -59,8 +59,52 @@
             <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
             <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
         </StackPanel>
+        <StackPanel Visibility="Collapsed" Name="sPanelInbookTxB" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5">
+            <TextBlock Height="20" Margin="0,10,0,0">Chapter:</TextBlock>
+            <TextBlock Height="20" Margin="0,10,0,0">Pages:</TextBlock>
+            <TextBlock Height="20" Margin="0,10,0,0">Title:</TextBlock>
+            <TextBlock Height="20" Margin="0,10,0,0">Publisher:</TextBlock>
+            <TextBlock Height="20" Margin="0,10,0,0">Year:</TextBlock>
+            <TextBlock Height="20" Margin="0,10,0,0">Author:</TextBlock>
+            <TextBlock Height="20" Margin="0,10,0,0">Editor:</TextBlock>
+            <TextBlock Height="20" Margin="0,10,0,0">Bibtextkey:</TextBlock>
+        </StackPanel>
+        <StackPanel Visibility="Collapsed" x:Name="sPanelInbookTBx" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100,5,0,0">
+            <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
+            <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
+            <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
+            <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
+            <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
+            <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
+            <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
+            <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
+        </StackPanel>
+        <StackPanel Visibility="Collapsed" Name="sPanelIncollentionTxB" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5">
+            <TextBlock Height="20" Margin="0,10,0,0">Author:</TextBlock>
+            <TextBlock Height="20" Margin="0,10,0,0">Title:</TextBlock>
+            <TextBlock Height="20" Margin="0,10,0,0">Booktitle:</TextBlock>
+            <TextBlock Height="20" Margin="0,10,0,0">Publisher:</TextBlock>
+            <TextBlock Height="20" Margin="0,10,0,0">Year:</TextBlock>
+            <TextBlock Height="20" Margin="0,10,0,0">Bibtextkey:</TextBlock>
+        </StackPanel>
+        <StackPanel Visibility="Collapsed" x:Name="sPanelIncollectionTBx" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100,5,0,0">
+            <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
+            <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
+            <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
+            <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
+            <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
+            <TextBox Height="20" Width="650" Margin="0,10,0,0"></TextBox>
+        </StackPanel>
+        <StackPanel Visibility="Collapsed" Name="sPanelManuelTxB" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5">
+            <TextBlock Height="20" Margin="0,10,0,0">Title:</TextBlock>
+            <TextBlock Height="20" Margin="0,50,0,0">Bibtextkey:</TextBlock>
+        </StackPanel>
+        <StackPanel Visibility="Collapsed" x:Name="sPanelManuelTBx" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100,5,0,0">
+            <TextBox Height="60" Width="650" Margin="0,10,0,0"></TextBox>
+            <TextBox Height="60" Width="650" Margin="0,10,0,0"></TextBox>
+        </StackPanel>
         <DockPanel>
-            <Button Width="100" Height="25" Content="Add" Background="Transparent" BorderThickness="2" Click="addClickP"></Button>
+            <Button Width="100" Height="25" Content="Add" Background="Transparent" BorderThickness="2" Click="addClickP" Margin="0,200,0,0"></Button>
         </DockPanel>
     </Grid>
 </Window>

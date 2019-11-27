@@ -101,5 +101,29 @@ namespace BiBuddy.UI
                 System.Windows.Application.Current.Shutdown();
             }
         }
+
+        private void IncollectionClick(object sender, RoutedEventArgs e)
+        {
+            AddPanels addP = new AddPanels();
+            addP.Show();
+            addP.sPanelIncollentionTxB.Visibility = Visibility.Visible;
+            addP.sPanelIncollectionTBx.Visibility = Visibility.Visible;
+        }
+
+        private void InbookClick(object sender, RoutedEventArgs e)
+        {
+            AddPanels addP = new AddPanels();
+            addP.Show();
+            addP.sPanelInbookTxB.Visibility = Visibility.Visible;
+            addP.sPanelInbookTBx.Visibility = Visibility.Visible;
+        }
+
+        private void ManuelClick(object sender, RoutedEventArgs e)
+        {
+            AddPanels addP = new AddPanels();
+            addP.Show();
+            addP.sPanelManuelTxB.Visibility = Visibility.Visible;
+            addP.sPanelManuelTBx.Visibility = Visibility.Visible;
+        }
     }
 }
