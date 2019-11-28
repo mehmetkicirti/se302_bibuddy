@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BiBuddy.Entities.Utility;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +13,7 @@ namespace BiBuddy.Entities.Concrete
     {
         [Key]
         public int ID { get; set; }
-        [DisplayName("Note"), MinLength(2, ErrorMessage = "Note text length greater than 2"), MaxLength(250, ErrorMessage = "Note text length less than 250")]
+        [DisplayName(FieldNames.Note), MinLength(2, ErrorMessage =ErrorMessages.NoteMinLength ), MaxLength(250, ErrorMessage =ErrorMessages.NoteMaxLength )]
         public string note { get; set; }
     }
 }

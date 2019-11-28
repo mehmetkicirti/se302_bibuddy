@@ -1,4 +1,5 @@
 ﻿using BiBuddy.Entities.Abstract;
+using BiBuddy.Entities.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,16 +12,30 @@ namespace BiBuddy.Entities.Concrete
 {
     public class booklet :BaseEntity,IEntity
     {
-        [MinLength(2, ErrorMessage = "Title text length greater than 2"), MaxLength(50, ErrorMessage = "Title text length less than 50"), Required, DisplayName("Başlık")]
+        [MinLength(2, ErrorMessage = ErrorMessages.TitleMinLength), MaxLength(50, ErrorMessage = ErrorMessages.TitleMaxLength), Required, DisplayName(FieldNames.Title)]
         public string title { get; set; }
-        [MinLength(2, ErrorMessage = "Author text length greater than 2"), MaxLength(50, ErrorMessage = "Author text length less than 50"), Required, DisplayName("Yazar")]
+        [MinLength(2, ErrorMessage = ErrorMessages.AuthorMinLength), MaxLength(75, ErrorMessage = ErrorMessages.AuthorMaxLength), Required, DisplayName(FieldNames.Author)]
         public string author { get; set; }
-        [DisplayName("NasılYayınlandı"),MinLength(2, ErrorMessage = "HowPublished text length greater than 2"), MaxLength(50, ErrorMessage = "HowPublished text length less than 50")]
+        [DisplayName(FieldNames.HowPublished),MinLength(2, ErrorMessage =  ErrorMessages.HowPublishedMinLength), MaxLength(50, ErrorMessage = ErrorMessages.HowPublishedMaxLength)]
         public string howpublished { get; set; }
-        [DisplayName("Adres"), MinLength(2, ErrorMessage = "Address text length greater than 2"), MaxLength(250, ErrorMessage = "Address text length less than 250")]
+        [DisplayName(FieldNames.Address), MinLength(2, ErrorMessage = ErrorMessages.AddressMinLength), MaxLength(250, ErrorMessage = ErrorMessages.AddressMaxLength)]
         public string address { get; set; }
-        public int month{ get; set; }
-        [DisplayName("Yıl")]
+        [DisplayName(FieldNames.Month)]
+        public int month
+        {
+            get
+            {
+                return month;
+            }
+            set
+            {
+                if (month >= 0 && month < 12)
+                    this.month = month;
+                else
+                    throw new ArgumentOutOfRangeException(ErrorMessages.MonthRange);
+            }
+        }
+        [DisplayName(FieldNames.Year)]
         public int? year
         {
             get
@@ -30,14 +45,9 @@ namespace BiBuddy.Entities.Concrete
             set
             {
                 if (year >= 1800 && year <= DateTime.Now.Year)
-                {
                     this.year = year;
-                }
                 else
-                {
-                    var message = String.Format("Year is not valid. It should be between {0} and {1}", 1800, DateTime.Now.Year);
-                    throw new ArgumentOutOfRangeException(message);
-                }
+                    throw new ArgumentOutOfRangeException(ErrorMessages.YearRange);
             }
         }
     }

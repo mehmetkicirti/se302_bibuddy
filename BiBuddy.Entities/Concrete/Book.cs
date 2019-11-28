@@ -1,4 +1,5 @@
 ﻿using BiBuddy.Entities.Abstract;
+using BiBuddy.Entities.Utility;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -7,13 +8,13 @@ namespace BiBuddy.Entities.Concrete
 {
     public class book : BaseEntity,IEntity
     {
-        [MinLength(2, ErrorMessage = "Author text length greater than 2"), MaxLength(75, ErrorMessage = "Author text length less than 50"), Required, DisplayName("Yazar")]
+        [MinLength(2, ErrorMessage = ErrorMessages.AuthorMinLength), MaxLength(75, ErrorMessage = ErrorMessages.AuthorMaxLength), Required, DisplayName(FieldNames.Author)]
         public string author { get; set; }
-        [MinLength(2, ErrorMessage = "Title text length greater than 2"), MaxLength(250, ErrorMessage = "Title text length less than 250"), Required, DisplayName("Başlık")]
+        [MinLength(2, ErrorMessage = ErrorMessages.TitleMinLength), MaxLength(250, ErrorMessage = ErrorMessages.TitleMaxLength), Required, DisplayName(FieldNames.Title)]
         public string title { get; set; }
-        [MinLength(2, ErrorMessage = "Journal text length greater than 2"), MaxLength(50, ErrorMessage = "Journal text length less than 50"), Required, DisplayName("Dergi")]
+        [MinLength(2, ErrorMessage = ErrorMessages.JournalMinLength), MaxLength(50, ErrorMessage = ErrorMessages.JournalMaxLength), Required, DisplayName(FieldNames.Journal)]
         public string journal { get; set; }
-        [Required, DisplayName("Yıl")]
+        [Required, DisplayName(FieldNames.Year)]
         public int year
         {
             get
@@ -23,25 +24,20 @@ namespace BiBuddy.Entities.Concrete
             set
             {
                 if (year >= 1800 && year <= DateTime.Now.Year)
-                {
                     this.year = year;
-                }
                 else
-                {
-                    var message = String.Format("Year is not valid. It should be between {0} and {1}", 1800, DateTime.Now.Year);
-                    throw new ArgumentOutOfRangeException(message);
-                }
+                    throw new ArgumentOutOfRangeException(ErrorMessages.YearRange);
             }
         }
-        [DisplayName("Cilt")]
+        [DisplayName(FieldNames.Volume)]
         public int? volume { get; set; }
-        [DisplayName("Grup")]
+        [DisplayName(FieldNames.Series)]
         public int? series { get; set; }
-        [DisplayName("Adres"), MinLength(2, ErrorMessage = "Address text length greater than 2"), MaxLength(250, ErrorMessage = "Address text length less than 250")]
+        [DisplayName(FieldNames.Address), MinLength(2, ErrorMessage = ErrorMessages.AddressMinLength), MaxLength(250, ErrorMessage = ErrorMessages.AddressMaxLength)]
         public string address { get; set; }
-        [DisplayName("Baskı")]
+        [DisplayName(FieldNames.Edition)]
         public int? edition { get; set; }
-        [DisplayName("Ay")]
+        [DisplayName(FieldNames.Month)]
         public int? month
         {
             get
@@ -51,17 +47,12 @@ namespace BiBuddy.Entities.Concrete
             set
             {
                 if (month >= 0 && month < 12)
-                {
                     this.month = month;
-                }
                 else
-                {
-                    var message = String.Format("Month is not valid. It should be between {0} and {1}", 0, 11);
-                    throw new ArgumentOutOfRangeException(message);
-                }
+                    throw new ArgumentOutOfRangeException(ErrorMessages.MonthRange);
             }
         }
-        [DisplayName("ISBN"), MinLength(2, ErrorMessage = "ISBN text length greater than 2"), MaxLength(50, ErrorMessage = "ISBN text length less than 50")]
+        [DisplayName(FieldNames.ISBN), MinLength(2, ErrorMessage = ErrorMessages.ISBNMinLength), MaxLength(50, ErrorMessage = ErrorMessages.ISBNMaxLength)]
         public string isbn { get; set; }
     }
 }

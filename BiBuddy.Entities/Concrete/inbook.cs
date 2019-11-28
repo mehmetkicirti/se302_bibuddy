@@ -1,26 +1,24 @@
 ﻿using BiBuddy.Entities.Abstract;
+using BiBuddy.Entities.Utility;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BiBuddy.Entities.Concrete
 {
     public class inbook:BaseEntity,IEntity
     {
-        [MinLength(2, ErrorMessage = "Author text length greater than 2"), MaxLength(75, ErrorMessage = "Author text length less than 75"), Required, DisplayName("Yazar")]
+        [MinLength(2, ErrorMessage = ErrorMessages.AuthorMinLength), MaxLength(75, ErrorMessage = ErrorMessages.AuthorMaxLength), Required, DisplayName(FieldNames.Author)]
         public string author { get; set; }
-        [MinLength(2, ErrorMessage = "Title text length greater than 2"), MaxLength(75, ErrorMessage = "Title text length less than 75"), Required, DisplayName("Başlık")]
+        [MinLength(2, ErrorMessage = ErrorMessages.TitleMinLength), MaxLength(75, ErrorMessage =ErrorMessages.TitleMaxLength), Required, DisplayName(FieldNames.Title)]
         public string title { get; set; }
+        [DisplayName(FieldNames.Chapter)]
         public int chapter{ get; set; }
-        [DisplayName("Sayfalar"), MinLength(2, ErrorMessage = "Pages text length greater than 2"),Required, MaxLength(50, ErrorMessage = "Pages text length less than 50")]
+        [DisplayName(FieldNames.Pages), MinLength(2, ErrorMessage = ErrorMessages.PagesMinLength),Required, MaxLength(50, ErrorMessage = ErrorMessages.PagesMaxLength)]
         public string pages { get; set; }
-        [DisplayName("Yayımcı"), MinLength(2, ErrorMessage = "Publisher text length greater than 2"),Required, MaxLength(150, ErrorMessage = "Publisher text length less than 150")]
+        [DisplayName(FieldNames.Publisher), MinLength(2, ErrorMessage = ErrorMessages.PublisherMinLength),Required, MaxLength(150, ErrorMessage = ErrorMessages.PublisherMaxLength)]
         public string publisher { get; set; }
-        [Required, DisplayName("Yıl")]
+        [Required, DisplayName(FieldNames.Year)]
         public int year
         {
             get
@@ -30,25 +28,20 @@ namespace BiBuddy.Entities.Concrete
             set
             {
                 if (year >= 1800 && year <= DateTime.Now.Year)
-                {
                     this.year = year;
-                }
                 else
-                {
-                    var message = String.Format("Year is not valid. It should be between {0} and {1}", 1800, DateTime.Now.Year);
-                    throw new ArgumentOutOfRangeException(message);
-                }
+                    throw new ArgumentOutOfRangeException(ErrorMessages.YearRange);
             }
         }
-        [DisplayName("Cilt")]
+        [DisplayName(FieldNames.Volume)]
         public int? volume { get; set; }
-        [DisplayName("Grup")]
+        [DisplayName(FieldNames.Series)]
         public int? series { get; set; }
-        [DisplayName("Adres"), MinLength(2, ErrorMessage = "Address text length greater than 2"), MaxLength(250, ErrorMessage = "Address text length less than 250")]
+        [DisplayName(FieldNames.Address), MinLength(2, ErrorMessage = ErrorMessages.AddressMinLength), MaxLength(250, ErrorMessage = ErrorMessages.AddressMaxLength)]
         public string address { get; set; }
-        [DisplayName("Baskı")]
+        [DisplayName(FieldNames.Edition)]
         public int? edition { get; set; }
-        [DisplayName("Ay")]
+        [DisplayName(FieldNames.Month)]
         public int? month
         {
             get
@@ -58,14 +51,9 @@ namespace BiBuddy.Entities.Concrete
             set
             {
                 if (month >= 0 && month < 12)
-                {
                     this.month = month;
-                }
                 else
-                {
-                    var message = String.Format("Month is not valid. It should be between {0} and {1}", 0, 11);
-                    throw new ArgumentOutOfRangeException(message);
-                }
+                    throw new ArgumentOutOfRangeException(ErrorMessages.MonthRange);
             }
         }
     }

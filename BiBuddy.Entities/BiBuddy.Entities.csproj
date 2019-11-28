@@ -51,6 +51,8 @@
     <Compile Include="Concrete\inbook.cs" />
     <Compile Include="Concrete\incollection.cs" />
     <Compile Include="Concrete\manual.cs" />
+    <Compile Include="Utility\FieldNames.cs" />
+    <Compile Include="Utility\ErrorMessages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
