@@ -7,12 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="600">
     <Grid>
-        <Menu Height="20" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <MenuItem Header="File" Click="MenuItem_Click">
+        <Menu Height="20" DockPanel.Dock="Top" VerticalAlignment="Top" Background="white" >
+            <MenuItem Header="File" Click="MenuItem_Click" >
                 <MenuItem Header="New BibTeX"/>
                 <MenuItem Header="Open"/>
+                
                 <Separator/>
-                <MenuItem Header="Import"/>
+                <MenuItem Header="Import" Click="btn_Import_Click"/>
                 <MenuItem Header="Export"/>
                 <Separator/>
                 <MenuItem Click="Exit" Header="Exit"/>
@@ -49,21 +50,11 @@
         <DockPanel Margin="0,20,0,0" Name="d1" Visibility="Visible">
             <!--File, Edit, Search, and Help-->
             <!--This part of code for showing all existing publication type-->
-            <ListView Width="125" DockPanel.Dock="Left">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="120" Header="Publications">
-
-                        </GridViewColumn>
-
-                    </GridView>
-                </ListView.View>
-
-            </ListView>
+            
             <!--Toolbar feature. It may include icons-->
             <ToolBar DockPanel.Dock="Top">
                 <Menu Background="AliceBlue">
-                    <MenuItem Background="AliceBlue" Header="New">
+                    <MenuItem Header="New Entry" Margin="5" Background="AliceBlue">
                         <MenuItem Header="Article" Click="ArticleClick"></MenuItem>
                         <MenuItem Header="Conference" Click="ConferenceClick"></MenuItem>
                         <MenuItem Header="Booklet" Click="BookletClick"></MenuItem>
@@ -73,22 +64,23 @@
                         <MenuItem Header="Manuel" Click="ManuelClick"></MenuItem>
                     </MenuItem>
                 </Menu>
-                <ToolBar>
-                    <Button Command="Open" Content="Open" />
-                    <Button Command="Save" Content="Save" />
-                    <Separator/>
-                    <Button Command="Cut" Content="Cut" />
-                    <Button Command="Copy" Content="Copy" />
-                    <Button Command="Paste" Content="Paste" />
-                    <Separator/>
-                    <Button Command="Undo" Content="Undo" />
-                    <Button Command="Redo" Content="Redo" />
 
-                    <Separator/>
-                    <Button Command="Help" Content="Help"/>
+                <Button Command="Open" Content="Open" Margin="5" />
+                <Button Command="Save" Content="Save" Margin="5"/>
+                <Separator/>
+                <Button Command="Cut" Content="Cut" Margin="5"/>
+                <Button Command="Copy" Content="Copy" Margin="5"/>
+                <Button Command="Paste" Content="Paste" Margin="5"/>
+                <Separator/>
+                <Button Command="Undo" Content="Undo" Margin="5"/>
+                <Button Command="Redo" Content="Redo" Margin="5" />
+
+                <Separator/>
+                <!--How to use robohelp-->
+                <Button Content="Help" Click="HelpClick" Margin="5"/>
 
 
-                </ToolBar>
+                
             </ToolBar>
             <StatusBar DockPanel.Dock="Bottom">
                 <StatusBarItem>

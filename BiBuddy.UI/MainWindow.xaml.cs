@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -124,6 +125,18 @@ namespace BiBuddy.UI
             addP.Show();
             addP.sPanelManuelTxB.Visibility = Visibility.Visible;
             addP.sPanelManuelTBx.Visibility = Visibility.Visible;
+        }
+
+        void btn_Import_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true) ;
+
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
