@@ -1,60 +1,23 @@
 ﻿using BiBuddy.Entities.Abstract;
-using BiBuddy.Entities.Utility;
-using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace BiBuddy.Entities.Concrete
 {
     public class inbook:BaseEntity,IEntity
     {
-        [MinLength(2, ErrorMessage = ErrorMessages.AuthorMinLength), MaxLength(75, ErrorMessage = ErrorMessages.AuthorMaxLength), Required, DisplayName(FieldNames.Author)]
+        [Required]
         public string author { get; set; }
-        [MinLength(2, ErrorMessage = ErrorMessages.TitleMinLength), MaxLength(75, ErrorMessage =ErrorMessages.TitleMaxLength), Required, DisplayName(FieldNames.Title)]
+        [Required]
         public string title { get; set; }
-        [DisplayName(FieldNames.Chapter)]
+        [Required]
         public int chapter{ get; set; }
-        [DisplayName(FieldNames.Pages), MinLength(2, ErrorMessage = ErrorMessages.PagesMinLength),Required, MaxLength(50, ErrorMessage = ErrorMessages.PagesMaxLength)]
+        [Required]
         public string pages { get; set; }
-        [DisplayName(FieldNames.Publisher), MinLength(2, ErrorMessage = ErrorMessages.PublisherMinLength),Required, MaxLength(150, ErrorMessage = ErrorMessages.PublisherMaxLength)]
+        [Required]
         public string publisher { get; set; }
-        [Required, DisplayName(FieldNames.Year)]
-        public int year
-        {
-            get
-            {
-                return year;
-            }
-            set
-            {
-                if (year >= 1800 && year <= DateTime.Now.Year)
-                    this.year = year;
-                else
-                    throw new ArgumentOutOfRangeException(ErrorMessages.YearRange);
-            }
-        }
-        [DisplayName(FieldNames.Volume)]
         public int? volume { get; set; }
-        [DisplayName(FieldNames.Series)]
         public int? series { get; set; }
-        [DisplayName(FieldNames.Address), MinLength(2, ErrorMessage = ErrorMessages.AddressMinLength), MaxLength(250, ErrorMessage = ErrorMessages.AddressMaxLength)]
         public string address { get; set; }
-        [DisplayName(FieldNames.Edition)]
         public int? edition { get; set; }
-        [DisplayName(FieldNames.Month)]
-        public int? month
-        {
-            get
-            {
-                return month;
-            }
-            set
-            {
-                if (month >= 0 && month < 12)
-                    this.month = month;
-                else
-                    throw new ArgumentOutOfRangeException(ErrorMessages.MonthRange);
-            }
-        }
     }
 }
