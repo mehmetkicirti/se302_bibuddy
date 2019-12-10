@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BiBuddy.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="600">
+        Title="MainWindow" MinHeight="600" Width="900">
     <Grid>
         <Menu Height="20" DockPanel.Dock="Top" VerticalAlignment="Top" Background="white" >
             <MenuItem Header="File" Click="MenuItem_Click" >
