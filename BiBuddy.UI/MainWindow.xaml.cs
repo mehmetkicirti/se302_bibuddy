@@ -38,24 +38,28 @@ namespace BiBuddy.UI
         private void searchBib(object sender, RoutedEventArgs e)
         {
             d1.Visibility = Visibility.Collapsed;
+            s3.Visibility = Visibility.Collapsed;
             s1.Visibility = Visibility.Visible;
         }
 
         private void BackClickAN(object sender, RoutedEventArgs e)
         {
             d1.Visibility = Visibility.Visible;
+            s3.Visibility = Visibility.Visible;
             s1.Visibility = Visibility.Collapsed;
         }
 
         private void HelpClick(object sender, RoutedEventArgs e)
         {
             d1.Visibility = Visibility.Collapsed;
+            s3.Visibility = Visibility.Collapsed;
             s2.Visibility = Visibility.Visible;
         }
 
         private void BackClickH(object sender, RoutedEventArgs e)
         {
             d1.Visibility = Visibility.Visible;
+            s3.Visibility = Visibility.Visible;
             s2.Visibility = Visibility.Collapsed;
         }
 

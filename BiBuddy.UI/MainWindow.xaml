@@ -7,28 +7,32 @@
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="600" Width="900">
     <Grid>
-        <Menu HorizontalAlignment="Center" Height="20" DockPanel.Dock="Top" VerticalAlignment="Top" Background="white" >
-            <MenuItem Margin="0,0,50,0" Header="Create New Bib" Click="MenuItem_Click">
-                <MenuItem Header="Article" Click="ArticleClick"></MenuItem>
-                <MenuItem Header="Conference" Click="ConferenceClick"></MenuItem>
-                <MenuItem Header="Booklet" Click="BookletClick"></MenuItem>
-                <MenuItem Header="Book" Click="BookClick"></MenuItem>
-                <MenuItem Header="Inbook" Click="InbookClick"></MenuItem>
-                <MenuItem Header="Incollection" Click="IncollectionClick"></MenuItem>
-                <MenuItem Header="Manuel" Click="ManuelClick"></MenuItem>
-            </MenuItem>
-            <MenuItem Margin="0,0,50,0" Header="Export">
-            </MenuItem>
-            <MenuItem Margin="0,0,50,0" Header="Import">
-            </MenuItem>
-            <MenuItem Margin="0,0,50,0" Header="Search" Click="searchBib">
-            </MenuItem>
-            <MenuItem Margin="0,0,50,0" Header="Help">
-                <MenuItem Header="Help"  Click="HelpClick"/>
-                <MenuItem Header="About BiBuddy"/>
-            </MenuItem>
-
-        </Menu>
+        <StackPanel x:Name="s3">
+            <Menu HorizontalAlignment="Center" Height="20" DockPanel.Dock="Top" VerticalAlignment="Top" Background="white" >
+                <MenuItem Margin="0,0,50,0" Header="Create New Bib" Click="MenuItem_Click">
+                    <MenuItem Header="Article" Click="ArticleClick"></MenuItem>
+                    <MenuItem Header="Conference" Click="ConferenceClick"></MenuItem>
+                    <MenuItem Header="Booklet" Click="BookletClick"></MenuItem>
+                    <MenuItem Header="Book" Click="BookClick"></MenuItem>
+                    <MenuItem Header="Inbook" Click="InbookClick"></MenuItem>
+                    <MenuItem Header="Incollection" Click="IncollectionClick"></MenuItem>
+                    <MenuItem Header="Manuel" Click="ManuelClick"></MenuItem>
+                </MenuItem>
+                <MenuItem Margin="0,0,50,0" Header="Delete">
+                </MenuItem>
+                <MenuItem Margin="0,0,50,0" Header="Export">
+                </MenuItem>
+                <MenuItem Margin="0,0,50,0" Header="Import">
+                </MenuItem>
+                <MenuItem Margin="0,0,50,0" Header="Search" Click="searchBib">
+                </MenuItem>
+                <MenuItem Margin="0,0,50,0" Header="Help">
+                    <MenuItem Header="Help"  Click="HelpClick"/>
+                    <MenuItem Header="About BiBuddy"/>
+                </MenuItem>
+            </Menu>
+            <DataGrid></DataGrid>
+        </StackPanel>
         <StackPanel x:Name="s1" Margin="0,20,0,0" Visibility="Collapsed">
             <Button Content="Back" Width="100" HorizontalAlignment="Right" Margin="0,0,25,0" Click="BackClickAN"></Button>
             <TextBlock Margin="0,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Center"> Search</TextBlock>
