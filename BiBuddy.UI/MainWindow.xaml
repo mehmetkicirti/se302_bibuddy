@@ -7,31 +7,23 @@
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="600" Width="900">
     <Grid>
-        <Menu Height="20" DockPanel.Dock="Top" VerticalAlignment="Top" Background="white" >
-            <MenuItem Header="File" Click="MenuItem_Click" >
-                <MenuItem Header="New BibTeX"/>
-                <MenuItem Header="Open"/>
-                
-                <Separator/>
-                <MenuItem Header="Import" Click="btn_Import_Click"/>
-                <MenuItem Header="Export"/>
-                <Separator/>
-                <MenuItem Click="Exit" Header="Exit"/>
+        <Menu HorizontalAlignment="Center" Height="20" DockPanel.Dock="Top" VerticalAlignment="Top" Background="white" >
+            <MenuItem Margin="0,0,50,0" Header="Create New Bib" Click="MenuItem_Click">
+                <MenuItem Header="Article" Click="ArticleClick"></MenuItem>
+                <MenuItem Header="Conference" Click="ConferenceClick"></MenuItem>
+                <MenuItem Header="Booklet" Click="BookletClick"></MenuItem>
+                <MenuItem Header="Book" Click="BookClick"></MenuItem>
+                <MenuItem Header="Inbook" Click="InbookClick"></MenuItem>
+                <MenuItem Header="Incollection" Click="IncollectionClick"></MenuItem>
+                <MenuItem Header="Manuel" Click="ManuelClick"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Edit">
-                <MenuItem Header="Undo"/>
-                <MenuItem Header="Redo"/>
-                <Separator/>
-                <MenuItem Header="Copy"/>
-                <MenuItem Header="Paste"/>
-                <MenuItem Header="Cut"/>
-                <Separator/>
-                <MenuItem Header="Select all"/>
+            <MenuItem Margin="0,0,50,0" Header="Export">
             </MenuItem>
-            <MenuItem Header="Search" Click="searchBib">
-                <MenuItem Header="Search"/>
+            <MenuItem Margin="0,0,50,0" Header="Import">
             </MenuItem>
-            <MenuItem Header="Help">
+            <MenuItem Margin="0,0,50,0" Header="Search" Click="searchBib">
+            </MenuItem>
+            <MenuItem Margin="0,0,50,0" Header="Help">
                 <MenuItem Header="Help"  Click="HelpClick"/>
                 <MenuItem Header="About BiBuddy"/>
             </MenuItem>
@@ -48,43 +40,7 @@
             <Button Click="BackClickH" Content="Back" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
         </StackPanel>
         <DockPanel Margin="0,20,0,0" Name="d1" Visibility="Visible">
-            <!--File, Edit, Search, and Help-->
-            <!--This part of code for showing all existing publication type-->
-            
-            <!--Toolbar feature. It may include icons-->
-            <ToolBar DockPanel.Dock="Top">
-                <Menu Background="AliceBlue">
-                    <MenuItem Header="New Entry" Margin="5" Background="AliceBlue">
-                        <MenuItem Header="Article" Click="ArticleClick"></MenuItem>
-                        <MenuItem Header="Conference" Click="ConferenceClick"></MenuItem>
-                        <MenuItem Header="Booklet" Click="BookletClick"></MenuItem>
-                        <MenuItem Header="Book" Click="BookClick"></MenuItem>
-                        <MenuItem Header="Inbook" Click="InbookClick"></MenuItem>
-                        <MenuItem Header="Incollection" Click="IncollectionClick"></MenuItem>
-                        <MenuItem Header="Manuel" Click="ManuelClick"></MenuItem>
-                    </MenuItem>
-                </Menu>
-
-                <Button Command="Open" Content="Open" Margin="5" />
-                <Button Command="Save" Content="Save" Margin="5"/>
-                <Separator/>
-                <Button Command="Cut" Content="Cut" Margin="5"/>
-                <Button Command="Copy" Content="Copy" Margin="5"/>
-                <Button Command="Paste" Content="Paste" Margin="5"/>
-                <Separator/>
-                <Button Command="Undo" Content="Undo" Margin="5"/>
-                <Button Command="Redo" Content="Redo" Margin="5" />
-
-                <Separator/>
-                <!--How to use robohelp-->
-                <Button Content="Help" Click="HelpClick" Margin="5"/>
-
-
-                
-            </ToolBar>
             <StatusBar DockPanel.Dock="Bottom">
-                <StatusBarItem>
-                </StatusBarItem>
             </StatusBar>
         </DockPanel>
     </Grid>
