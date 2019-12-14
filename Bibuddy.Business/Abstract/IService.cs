@@ -11,5 +11,7 @@ namespace Bibuddy.Business.Abstract
         void Add(TEntity entity);
         void Update(TEntity entity);
         void Delete(int ID);
+
+        void importBibTextFile(TEntity entity);
     }
 }

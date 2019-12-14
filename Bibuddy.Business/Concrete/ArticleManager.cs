@@ -61,5 +61,10 @@ namespace Bibuddy.Business.Concrete
                 ? _dal.GetAll(a => a.author.ToLower().Contains(name.ToLower())).ToList()
                 : _dal.GetAll();
         }
+
+        public void importBibTextFile(article entity)
+        {
+            
+        }
     }
 }

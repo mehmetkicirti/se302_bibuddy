@@ -14,6 +14,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BibTeXLibrary;
+using Bibuddy.Business.Abstract;
+using Bibuddy.Business.DI.Ninject;
+using Bibuddy.Business.Concrete;
+using BiBuddy.Entities.Concrete;
 
 namespace BiBuddy.UI
 {
@@ -22,6 +27,8 @@ namespace BiBuddy.UI
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private readonly IBookService bookService = InstanceFactory.GetInstance<BookManager>();
         public MainWindow()
         {
             InitializeComponent();
@@ -139,15 +146,28 @@ namespace BiBuddy.UI
             string fileContent = string.Empty;
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = "c:\\";
+            openFileDialog.InitialDirectory = @"c:\Users\ont_9\Desktop\ReadBibTex\ReadBibTex";
             openFileDialog.Filter = "BibTeX files (*.bib)|*.bib";
             openFileDialog.FilterIndex = 2;
             openFileDialog.RestoreDirectory = true;
 
+            
             if (openFileDialog.ShowDialog() == true)
             {
-               
+                string path = openFileDialog.FileName;
+                var parser = new BibParser(new StreamReader(path, Encoding.Default));
+                var entries = parser.GetAllResult();
 
+                book _book = new book();
+
+                foreach( var entry in entries)
+                {
+                    _book.author = entry.Author;
+                    bookService.Add(_book);
+                }
+
+                
+                
                 //Read the contents of the file into a stream
                 var fileStream = openFileDialog.OpenFile();
 
