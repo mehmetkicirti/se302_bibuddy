@@ -1,6 +1,7 @@
 ﻿
 using Bibuddy.Business.Abstract;
 using Bibuddy.Business.Concrete;
+using Bibuddy.Business.Concrete.Dapper;
 using Bibuddy.DataAccess.Abstract;
 using Bibuddy.DataAccess.Concrete;
 using Bibuddy.DataAccess.DatabaseContext.Sqlite;
@@ -13,7 +14,7 @@ namespace Bibuddy.Business.DI.Ninject
         public override void Load()
         {
             #region DAL
-            Bind<IArticleDal>().To<ArticleDal>().InSingletonScope();
+            Bind<IArticleDal>().To<DArticleDal>().InSingletonScope();
             Bind<IBookDal>().To<BookDal>().InSingletonScope();
             Bind<IBookletDal>().To<BookletDal>().InSingletonScope();
             Bind<IConferenceDal>().To<ConferenceDal>().InSingletonScope();
@@ -25,7 +26,7 @@ namespace Bibuddy.Business.DI.Ninject
             #region Manager
 
             Bind<IUnitOfWork>().To<UnitOfWork<SqliteContext>>();
-            Bind<IArticleService>().To<ArticleManager>();
+            Bind<IArticleService>().To<DapperArticleManager>();
 
             #endregion
         }

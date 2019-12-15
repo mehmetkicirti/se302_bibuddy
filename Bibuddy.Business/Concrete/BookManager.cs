@@ -23,12 +23,27 @@ namespace Bibuddy.Business.Concrete
 
         }
 
-        public void Delete(int ID)
+		public int Count()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Delete(int ID)
         {
             throw new NotImplementedException();
         }
 
-        public book GetById(int ID)
+		public List<book> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public List<book> GetAllByYear(int? year)
+		{
+			throw new NotImplementedException();
+		}
+
+		public book GetById(int ID)
         {
             throw new NotImplementedException();
         }

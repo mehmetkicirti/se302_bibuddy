@@ -66,5 +66,20 @@ namespace Bibuddy.Business.Concrete
         {
             
         }
-    }
+
+		public int Count()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public List<article> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public List<article> GetAllByYear(int? year)
+		{
+			throw new System.NotImplementedException();
+		}
+	}
 }
