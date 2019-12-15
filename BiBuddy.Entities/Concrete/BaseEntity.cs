@@ -9,5 +9,6 @@ namespace BiBuddy.Entities.Concrete
         public string note { get; set; }
         public int? year { get; set; }
         public int? month { get; set; }
+        public string bibtexkey { get; set; }
     }
 }

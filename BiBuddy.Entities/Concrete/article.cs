@@ -12,5 +12,6 @@ namespace BiBuddy.Entities.Concrete
         public int? number { get; set; }
         public int? volume { get; set; }
         public string pages { get; set; }
+        public string address { get; set; }
     }
 }

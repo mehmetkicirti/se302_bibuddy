@@ -6,11 +6,11 @@ namespace BiBuddy.Entities.Concrete
 {
     public class book : BaseEntity,IEntity
     {
-        [Required]
+        //[Required]
         public string author { get; set; }
-        [Required]
+        //[Required]
         public string title { get; set; }
-        [Required]
+        //[Required]
         public string journal { get; set; }
         public int? volume { get; set; }
         public int? series { get; set; }
