@@ -19,6 +19,7 @@ using Bibuddy.Business.Abstract;
 using Bibuddy.Business.DI.Ninject;
 using Bibuddy.Business.Concrete;
 using BiBuddy.Entities.Concrete;
+using Bibuddy.Business.Concrete.Dapper;
 
 namespace BiBuddy.UI
 {
@@ -28,8 +29,8 @@ namespace BiBuddy.UI
     public partial class MainWindow : Window
     {
 
-       // private readonly IBookService bookService = InstanceFactory.GetInstance<BookManager>();
-        public MainWindow()
+		private readonly IArticleService articleService = InstanceFactory.GetInstance<DapperArticleManager>();
+		public MainWindow()
         {
             InitializeComponent();
             help.Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus fermentum eros ut lorem dapibus pharetra. Etiam sit amet lectus dapibus, " +
@@ -158,15 +159,21 @@ namespace BiBuddy.UI
                 var parser = new BibParser(new StreamReader(path, Encoding.Default));
                 var entries = parser.GetAllResult();
 
-                book _book = new book();
+				article _article = new article();
 
                 foreach( var entry in entries)
                 {
-                    _book.author = entry.Author;
-                    //bookService.Add(_book);
+					if (entry.Type == "Article") {
+						_article.author = entry.Author;
+						_article.title = entry.Title;
+						_article.journal = entry.Journal;
+						_article.year = Convert.ToInt32(entry.Year);
+						_article.pages = entry.Pages;
+						articleService.Add(_article);
+					}
                 }
 
-                
+				Console.WriteLine(articleService.Count());
                 
                 //Read the contents of the file into a stream
                 var fileStream = openFileDialog.OpenFile();
