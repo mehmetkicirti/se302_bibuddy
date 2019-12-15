@@ -12,11 +12,11 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
     public class DapperDbContext
     {
         private static IDbConnection _dbConnection;
+        private static string relativePath = @"BiBuddyDB.db";
         private static string con = Path.GetFullPath("se302_bibuddy");
         private static string[] path = con.Split(new string[] { "bin" }, StringSplitOptions.None);
         private static string fullPath = String.Format(@"Data Source={0}BiBuddyDB.db", path[0]);
-
-        private static string relativePath = @"BiBuddyDB.db";
+        private static string oldDbFile = Path.Combine(path[0], relativePath);
         private static string currentPath = Directory.GetCurrentDirectory();
         private static string absolutePath = System.IO.Path.Combine(currentPath, relativePath);
         private static string fileNotExist = absolutePath;
@@ -161,21 +161,35 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
         {
             if (_dbConnection == null)
             {
-                if (File.Exists(fullPath))
+                if (File.Exists(""))
                 {
                     _dbConnection = new SQLiteConnection(fullPath);
                     return _dbConnection;
                 }
+                else if (File.Exists(fileNotExist))
+                {
+                    _dbConnection = new SQLiteConnection(connectionString);
+                    return _dbConnection;
+                }
                 else
                 {
-                    FileStream fs = File.Create(fileNotExist);
-                    fs.Close();
-                    using (var con = new SQLiteConnection(connectionString))
-                    {
-                        con.Open();
-                        using (var cmd = new SQLiteCommand(con))
-                        {
-                            cmd.CommandText = @"CREATE TABLE article(
+                    CreateNewDbFile(fileNotExist);
+                    _dbConnection = new SQLiteConnection(connectionString);
+                    return _dbConnection;
+                }
+            }
+            return _dbConnection;
+        }
+        private static void CreateNewDbFile(string folder)
+        {
+            FileStream fs = File.Create(folder);
+            fs.Close();
+            using (var con = new SQLiteConnection(connectionString))
+            {
+                con.Open();
+                using (var cmd = new SQLiteCommand(con))
+                {
+                    cmd.CommandText = @"CREATE TABLE article(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	                    author TEXT,
 	                    title TEXT,
@@ -189,9 +203,9 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
                         bibtexKey TEXT,
                         address TEXT
                         )";
-                            cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                            cmd.CommandText = @"CREATE TABLE book(
+                    cmd.CommandText = @"CREATE TABLE book(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	                    author TEXT,
 	                    title TEXT,
@@ -206,9 +220,9 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
                         bibtexKey TEXT,
                         address TEXT
                         )";
-                            cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                            cmd.CommandText = @"CREATE TABLE booklet(
+                    cmd.CommandText = @"CREATE TABLE booklet(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	                    author TEXT NOT NULL,
 	                    title TEXT NOT NULL,
@@ -219,9 +233,9 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
                         bibtexKey TEXT,
                         address TEXT
                         )";
-                            cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                            cmd.CommandText = @"CREATE TABLE conference(
+                    cmd.CommandText = @"CREATE TABLE conference(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	                    author TEXT NOT NULL,
 	                    title TEXT NOT NULL,
@@ -238,9 +252,9 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
                         publisher TEXT,
                         bibtexKey TEXT
                         )";
-                            cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                            cmd.CommandText = @"CREATE TABLE inbook(
+                    cmd.CommandText = @"CREATE TABLE inbook(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	                    author TEXT NOT NULL,
 	                    title TEXT NOT NULL,
@@ -257,9 +271,9 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
                         series INTEGER,
                         publisher TEXT
                         )";
-                            cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                            cmd.CommandText = @"CREATE TABLE incollection(
+                    cmd.CommandText = @"CREATE TABLE incollection(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	                    author TEXT NOT NULL,
 	                    title TEXT NOT NULL,
@@ -274,9 +288,9 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
                         chapter INTEGER,
                         address TEXT
                         )";
-                            cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                            cmd.CommandText = @"CREATE TABLE manual(
+                    cmd.CommandText = @"CREATE TABLE manual(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	                    author TEXT,
 	                    title TEXT,
@@ -288,16 +302,12 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
                         bibtexKey TEXT,
                         address TEXT
                         )";
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        con.Close();
-                    }
-                    _dbConnection = new SQLiteConnection(connectionString);
-                    return _dbConnection;
+                    cmd.ExecuteNonQuery();
                 }
+
+                con.Close();
             }
-            return _dbConnection;
         }
     }
+    
 }
