@@ -28,7 +28,7 @@ namespace BiBuddy.UI
     public partial class MainWindow : Window
     {
 
-        private readonly IBookService bookService = InstanceFactory.GetInstance<BookManager>();
+       // private readonly IBookService bookService = InstanceFactory.GetInstance<BookManager>();
         public MainWindow()
         {
             InitializeComponent();
@@ -119,7 +119,7 @@ namespace BiBuddy.UI
         {
             AddPanels addP = new AddPanels();
             addP.Show();
-            addP.sPanelIncollentionTxB.Visibility = Visibility.Visible;
+            addP.sPanelIncollectionTxB.Visibility = Visibility.Visible;
             addP.sPanelIncollectionTBx.Visibility = Visibility.Visible;
         }
 
@@ -135,8 +135,8 @@ namespace BiBuddy.UI
         {
             AddPanels addP = new AddPanels();
             addP.Show();
-            addP.sPanelManuelTxB.Visibility = Visibility.Visible;
-            addP.sPanelManuelTBx.Visibility = Visibility.Visible;
+            addP.sPanelManualTxB.Visibility = Visibility.Visible;
+            addP.sPanelManualTBx.Visibility = Visibility.Visible;
         }
 
         void btn_Import_Click(object sender, RoutedEventArgs e)
@@ -163,7 +163,7 @@ namespace BiBuddy.UI
                 foreach( var entry in entries)
                 {
                     _book.author = entry.Author;
-                    bookService.Add(_book);
+                    //bookService.Add(_book);
                 }
 
                 
