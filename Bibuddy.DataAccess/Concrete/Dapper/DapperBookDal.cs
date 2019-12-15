@@ -1,7 +1,10 @@
 ﻿using Bibuddy.DataAccess.Abstract;
+using Bibuddy.DataAccess.DatabaseContext.Dapper;
 using BiBuddy.Entities.Concrete;
+using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -11,14 +14,36 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 {
     public class DapperBookDal : IBookDal
     {
+        private IDbConnection _iConnection;
+        public DapperBookDal()
+        {
+            _iConnection = DapperDbContext.GetDbConnection();
+        }
         public void Add(book entity)
         {
-            throw new NotImplementedException();
+            _iConnection.ExecuteScalar<book>(
+                 "INSERT INTO book (author, journal, month, note, address, edition, isbn, series, title, volume, year, bibtexkey) VALUES( @author, @journal, @month, @note, @address, @edition, @isbn, @series, @title, @volume, @year, @bibtexkey)", new
+                 {
+                     entity.author,
+                     entity.journal,
+                     entity.month,
+                     entity.note,
+                     entity.address,
+                     entity.edition,
+                     entity.isbn,
+                     entity.series,
+                     entity.title,
+                     entity.volume,
+                     entity.year,
+                     entity.bibtexkey
+                 });
         }
 
         public int Count()
         {
-            throw new NotImplementedException();
+            string query = @"SELECT COUNT(ID) FROM book";
+            int count = _iConnection.ExecuteScalar<int>(query);
+            return count;
         }
 
         public void Delete(int ID)

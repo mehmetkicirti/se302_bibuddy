@@ -161,7 +161,7 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
         {
             if (_dbConnection == null)
             {
-                if (File.Exists(""))
+                if (File.Exists(oldDbFile))
                 {
                     _dbConnection = new SQLiteConnection(fullPath);
                     return _dbConnection;
