@@ -16,7 +16,7 @@ namespace Bibuddy.Business.DI.Ninject
         {
             #region DAL
             Bind<IArticleDal>().To<DapperArticleDal>().InSingletonScope();
-            Bind<IBookDal>().To<BookDal>().InSingletonScope();
+            Bind<IBookDal>().To<DapperBookDal>().InSingletonScope();
             Bind<IBookletDal>().To<BookletDal>().InSingletonScope();
             Bind<IConferenceDal>().To<ConferenceDal>().InSingletonScope();
             Bind<IInbookDal>().To<InBookDal>().InSingletonScope();
@@ -28,6 +28,7 @@ namespace Bibuddy.Business.DI.Ninject
 
             Bind<IUnitOfWork>().To<UnitOfWork<SqliteContext>>();
             Bind<IArticleService>().To<DapperArticleManager>();
+            Bind<IBookService>().To<DapperBookManager>();
 
             #endregion
         }

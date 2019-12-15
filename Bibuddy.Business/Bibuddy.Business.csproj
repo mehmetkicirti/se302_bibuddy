@@ -72,6 +72,7 @@
     <Compile Include="Concrete\BaseService.cs" />
     <Compile Include="Concrete\BookManager.cs" />
     <Compile Include="Concrete\Dapper\DapperArticleManager.cs" />
+    <Compile Include="Concrete\Dapper\DapperBookManager.cs" />
     <Compile Include="Concrete\UnitOfWork.cs" />
     <Compile Include="DI\Ninject\BusinessModule.cs" />
     <Compile Include="DI\Ninject\InstanceFactory.cs" />

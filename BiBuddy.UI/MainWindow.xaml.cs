@@ -30,7 +30,8 @@ namespace BiBuddy.UI
     {
 
 		private readonly IArticleService articleService = InstanceFactory.GetInstance<DapperArticleManager>();
-		public MainWindow()
+		private readonly IBookService bookService = InstanceFactory.GetInstance<DapperBookManager>();
+        public MainWindow()
         {
             InitializeComponent();
             help.Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus fermentum eros ut lorem dapibus pharetra. Etiam sit amet lectus dapibus, " +
@@ -159,22 +160,57 @@ namespace BiBuddy.UI
                 var parser = new BibParser(new StreamReader(path, Encoding.Default));
                 var entries = parser.GetAllResult();
 
-				article _article = new article();
+				
 
                 foreach( var entry in entries)
                 {
-					if (entry.Type == "Article") {
-						_article.author = entry.Author;
-						_article.title = entry.Title;
-						_article.journal = entry.Journal;
-						_article.year = Convert.ToInt32(entry.Year);
-						_article.pages = entry.Pages;
-						articleService.Add(_article);
-					}
+                    switch (entry.Type)
+                    {
+                        case "Article":
+                            article _article = new article();
+                            _article.author = entry.Author;
+                            _article.title = entry.Title;
+                            _article.journal = entry.Journal;
+                            _article.year = Convert.ToInt32(entry.Year);
+                            _article.pages = entry.Pages;
+                            _article.bibtexkey = entry.Key;
+                            articleService.Add(_article);
+                            break;
+                        case "Book":
+                            book _book = new book();
+                            _book.author = entry.Author;
+                            _book.title = entry.Title;
+                            _book.address = entry.Address;
+                            _book.bibtexkey = entry.Key;
+                            bookService.Add(_book);
+                            break;
+                        default:
+                            break;
+                            //if (entry.Type == "Article")
+                            //{
+                            //    article _article = new article();
+                            //    _article.author = entry.Author;
+                            //    _article.title = entry.Title;
+                            //    _article.journal = entry.Journal;
+                            //    _article.year = Convert.ToInt32(entry.Year);
+                            //    _article.pages = entry.Pages;
+                            //    articleService.Add(_article);
+                            //}
+                            //if (entry.Type == "Book")
+                            //{
+                            //    book _book = new book();
+                            //    _book.author = entry.Author;
+                            //    _book.title = entry.Title;
+                            //    _book.journal = entry.Journal;
+                            //    _book.year = Convert.ToInt32(entry.Year);
+                            //    _book.address = entry.Address;
+                            //}
+
+                    }
                 }
 
-				Console.WriteLine(articleService.Count());
-                
+				Console.WriteLine("Articles : "+articleService.Count());
+                Console.WriteLine("Books :"+bookService.Count());
                 //Read the contents of the file into a stream
                 var fileStream = openFileDialog.OpenFile();
 
