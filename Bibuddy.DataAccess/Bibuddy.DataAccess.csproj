@@ -86,6 +86,12 @@
     <Compile Include="Concrete\BookletDal.cs" />
     <Compile Include="Concrete\ConferenceDal.cs" />
     <Compile Include="Concrete\Dapper\DapperArticleDal.cs" />
+    <Compile Include="Concrete\Dapper\DapperBookDal.cs" />
+    <Compile Include="Concrete\Dapper\DapperBookletDal.cs" />
+    <Compile Include="Concrete\Dapper\DapperInbookDal.cs" />
+    <Compile Include="Concrete\Dapper\DapperIncollectionDal.cs" />
+    <Compile Include="Concrete\Dapper\DapperConferenceDal.cs" />
+    <Compile Include="Concrete\Dapper\DapperManualDal.cs" />
     <Compile Include="Concrete\InBookDal.cs" />
     <Compile Include="Concrete\InCollectionDal.cs" />
     <Compile Include="Concrete\ManualDal.cs" />
