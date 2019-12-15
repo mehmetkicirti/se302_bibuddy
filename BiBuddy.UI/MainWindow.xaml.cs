@@ -183,7 +183,6 @@ namespace BiBuddy.UI
                     fileContent = reader.ReadToEnd();
                 }
             }
-           
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
