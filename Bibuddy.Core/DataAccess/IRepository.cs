@@ -21,5 +21,8 @@ namespace BiBuddy.Core.DataAccess
         TEntity GetByID(int ID);
         TEntity Get(Expression<Func<TEntity,bool>> filter);
         List<TEntity> GetAll(Expression<Func<TEntity,bool>> filter = null);
+        List<TEntity> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null);
+        List<TEntity> GetAllByYear(int? year);
+        int Count();
     }
 }
