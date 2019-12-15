@@ -22,6 +22,14 @@ namespace Bibuddy.DataAccess.Concrete
             _dbContext.Entry(entity).State = EntityState.Added;
         }
 
+        public int Count()
+        {
+            using (_dbContext = new TContext())
+            {
+                return _dbContext.Set<TEntity>().ToList().Count;
+            }
+        }
+
         public void Delete(int ID)
         {
             var entity = _dbContext.Set<TEntity>().Find(ID);
@@ -39,6 +47,16 @@ namespace Bibuddy.DataAccess.Concrete
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             return filter == null ? _dbContext.Set<TEntity>().ToList() : _dbContext.Set<TEntity>().Where(filter).ToList();
+        }
+
+        public List<TEntity> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<TEntity> GetAllByYear(int? year)
+        {
+            throw new NotImplementedException();
         }
 
         public TEntity GetByID(int ID)
