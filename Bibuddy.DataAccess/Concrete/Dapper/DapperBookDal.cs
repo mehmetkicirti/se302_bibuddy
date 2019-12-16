@@ -22,15 +22,15 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
         public void Add(book entity)
         {
             _iConnection.ExecuteScalar<book>(
-                 "INSERT INTO book (author, journal, month, note, address, edition, isbn, series, title, volume, year, bibtexkey) VALUES( @author, @journal, @month, @note, @address, @edition, @isbn, @series, @title, @volume, @year, @bibtexkey)", new
+                 "INSERT INTO book (author, entrytype, month, note, address, edition, url, series, title, volume, year, bibtexkey) VALUES( @author, @entrytype, @month, @note, @address, @edition, @url, @series, @title, @volume, @year, @bibtexkey)", new
                  {
                      entity.author,
-                     entity.journal,
+                     entity.entrytype,
                      entity.month,
                      entity.note,
                      entity.address,
                      entity.edition,
-                     entity.isbn,
+                     entity.url,
                      entity.series,
                      entity.title,
                      entity.volume,
