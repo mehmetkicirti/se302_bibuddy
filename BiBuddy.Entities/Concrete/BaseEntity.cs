@@ -10,5 +10,6 @@ namespace BiBuddy.Entities.Concrete
         public int? year { get; set; }
         public int? month { get; set; }
         public string bibtexkey { get; set; }
+        public string entrytype{ get; set; }
     }
 }

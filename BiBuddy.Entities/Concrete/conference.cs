@@ -4,11 +4,11 @@ namespace BiBuddy.Entities.Concrete
 {
     public class conference:BaseEntity,IEntity
     {
-        [ Required]
+        //[ Required]
         public string author { get; set; }
-        [Required]
+        //[Required]
         public string title { get; set; }
-        [Required]
+        //[Required]
         public string booktitle { get; set; }
         public string editor { get; set; }
         public int? volume { get; set; }
