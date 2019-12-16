@@ -191,9 +191,9 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
                 {
                     cmd.CommandText = @"CREATE TABLE article(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-	                    author TEXT,
-	                    title TEXT,
-	                    journal TEXT,
+	                    author TEXT NOT NULL ,
+	                    title TEXT NOT NULL ,
+	                    journal TEXT NOT NULL ,
 	                    year INTEGER,
 	                    number INTEGER,
 	                    volume INTEGER,
@@ -201,37 +201,40 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
 	                    note  TEXT,
 	                    month INTEGER,
                         bibtexKey TEXT,
-                        address TEXT
+                        entrytype TEXT,
+                        doi TEXT
                         )";
                     cmd.ExecuteNonQuery();
 
                     cmd.CommandText = @"CREATE TABLE book(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-	                    author TEXT,
-	                    title TEXT,
-	                    journal TEXT,
+	                    author TEXT NOT NULL,
+	                    title TEXT NOT NULL,
+	                    publisher TEXT NOT NULL,
 	                    year INTEGER,
 	                    volume INTEGER,
                         series INTEGER,
 	                    note  TEXT,
 	                    edition INTEGER,
                         month INTEGER,
-                        isbn TEXT,
+                        url TEXT,
                         bibtexKey TEXT,
+                        entrytype TEXT,
                         address TEXT
                         )";
                     cmd.ExecuteNonQuery();
 
                     cmd.CommandText = @"CREATE TABLE booklet(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-	                    author TEXT NOT NULL,
+	                    author TEXT,
 	                    title TEXT NOT NULL,
                         howpublished TEXT,
 	                    year INTEGER,
 	                    note  TEXT,
 	                    month INTEGER,
                         bibtexKey TEXT,
-                        address TEXT
+                        address TEXT,
+                        entrytype TEXT
                         )";
                     cmd.ExecuteNonQuery();
 
@@ -250,7 +253,8 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
                         address TEXT,
                         organization TEXT,
                         publisher TEXT,
-                        bibtexKey TEXT
+                        bibtexKey TEXT,
+                        entrytype TEXT
                         )";
                     cmd.ExecuteNonQuery();
 
@@ -260,7 +264,7 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
 	                    title TEXT NOT NULL,
                         chapter INTEGER NOT NULL,
 	                    year INTEGER,
-	                    editor TEXT,
+	                    type TEXT,
 	                    edition TEXT,
 	                    volume INTEGER,
                         address TEXT,
@@ -269,7 +273,8 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
 	                    month INTEGER,
                         bibtexKey TEXT,
                         series INTEGER,
-                        publisher TEXT
+                        publisher TEXT NOT NULL,
+                        entrytype TEXT
                         )";
                     cmd.ExecuteNonQuery();
 
@@ -277,30 +282,36 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	                    author TEXT NOT NULL,
 	                    title TEXT NOT NULL,
-	                    journal TEXT,
+                        booktitle TEXT NOT NULL,
+                        publisher TEXT NOT NULL,
 	                    year INTEGER,
-	                    number INTEGER,
+                        editor TEXT,
+                        series INTEGER,
+	                    edition INTEGER,
 	                    volume INTEGER,
 	                    pages TEXT,
 	                    note  TEXT,
 	                    month INTEGER,
                         bibtexKey TEXT,
                         chapter INTEGER,
-                        address TEXT
+                        address TEXT,
+                        entrytype TEXT,
+                        type TEXT
                         )";
                     cmd.ExecuteNonQuery();
 
                     cmd.CommandText = @"CREATE TABLE manual(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	                    author TEXT,
-	                    title TEXT,
+	                    title TEXT NOT NULL,
 	                    year INTEGER,
 	                    note  TEXT,
 	                    month INTEGER,
                         organization TEXT,
                         edition INTEGER,
                         bibtexKey TEXT,
-                        address TEXT
+                        address TEXT,
+                        entrytype TEXT
                         )";
                     cmd.ExecuteNonQuery();
                 }
