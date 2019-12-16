@@ -47,5 +47,8 @@
             <StatusBar DockPanel.Dock="Bottom">
             </StatusBar>
         </DockPanel>
+        <Grid VerticalAlignment="Top">
+            <DataGrid x:Name="Datagrid1" AutoGenerateColumns="True" IsReadOnly="True" Height="275" Margin="15,15,15,15" />
+        </Grid>
     </Grid>
 </Window>

@@ -34,6 +34,7 @@ namespace BiBuddy.UI
         public MainWindow()
         {
             InitializeComponent();
+            GetAllTable();
             help.Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus fermentum eros ut lorem dapibus pharetra. Etiam sit amet lectus dapibus, " +
                 "congue augue sed, scelerisque diam. Aliquam pharetra risus mauris, non convallis orci placerat sodales. Cras quis urna vitae magna varius ornare. Praesent " +
                 "aliquet luctus magna, id aliquam purus pretium ut. Etiam laoreet orci quis risus varius, non volutpat quam gravida. Vestibulum sed ultricies ex, at gravida " +
@@ -43,7 +44,14 @@ namespace BiBuddy.UI
                 "Pellentesque non risus ligula. Quisque faucibus urna sed eros pulvinar, hendrerit finibus elit tempus. Morbi dignissim, urna et iaculis rhoncus, ipsum mi " +
                 "laoreet neque, posuere bibendum arcu augue sit amet arcu.";
         }
-
+        public void GetAllTable()
+        {
+            var result = articleService.GetAllByAuthorOrTitleIfNotExist();
+            if (result!=null)
+            {
+                Datagrid1.ItemsSource = result;
+            }
+        }
         private void searchBib(object sender, RoutedEventArgs e)
         {
             d1.Visibility = Visibility.Collapsed;
@@ -175,6 +183,7 @@ namespace BiBuddy.UI
                             _article.pages = entry.Pages;
                             _article.bibtexkey = entry.Key;
                             articleService.Add(_article);
+                            MessageBox.Show("Added To Db Article");
                             break;
                         case "Book":
                             book _book = new book();
@@ -183,6 +192,7 @@ namespace BiBuddy.UI
                             _book.address = entry.Address;
                             _book.bibtexkey = entry.Key;
                             bookService.Add(_book);
+                            MessageBox.Show("Added To Db Book");
                             break;
                         default:
                             break;
@@ -219,11 +229,14 @@ namespace BiBuddy.UI
                     fileContent = reader.ReadToEnd();
                 }
             }
+
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
+        
     }
 }
