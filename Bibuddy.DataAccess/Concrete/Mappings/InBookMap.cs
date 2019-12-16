@@ -15,7 +15,7 @@ namespace BiBuddy.DataAccess.Concrete.Mapping
             Property(i => i.chapter).HasColumnName("chapter");
             Property(i => i.edition).HasColumnName("edition");
             Property(i => i.month).HasColumnName("month");
-            Property(i => i.pages).HasColumnName("pages");
+            Property(i => i.entrytype).HasColumnName("entrytype");
             Property(i => i.publisher).HasColumnName("publisher");
             Property(i => i.series).HasColumnName("series");
             Property(i => i.title).HasColumnName("title");
