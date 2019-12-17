@@ -21,10 +21,10 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public void Add(article entity)
         {
-            iConnection.ExecuteScalar<article>(
+            _iConnection.ExecuteScalar<article>(
                 "INSERT INTO article (author, doi, journal, month, note, number, pages, title, volume, year, address," +
                 " bibtexkey,entrytype) VALUES( @author, @doi, @journal, @month, @note, @number, @pages, @title," +
-                " @volume, @year, @bibtexkey, @entrytype)", new
+                " @volume, @year, @address, @bibtexkey, @entrytype)", new
                 {
                     entity.doi,
                     entity.entrytype,

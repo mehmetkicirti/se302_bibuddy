@@ -25,12 +25,14 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
         public void Add(conference entity)
         {
             _iConnection.ExecuteScalar<conference>(
-                "INSERT INTO article (author, month, note, pages, title, volume, year, address," +
-                " bibtexkey, entrytype, series, organization, publisher) VALUES( @author, @month, @note, @pages, @title," +
+                "INSERT INTO conference (editor, booktitle, author, month, note, pages, title, volume, year, address," +
+                " bibtexkey, entrytype, series, organization, publisher) VALUES( @editor, @booktitle, @author, @month, @note, @pages, @title," +
                 " @volume, @year, @address, @bibtexkey, @entrytype, @series, @organization, @publisher)", new
                 {
                     entity.entrytype,
                     entity.bibtexkey,
+                    entity.editor,
+                    entity.booktitle,
                     entity.author,
                     entity.month,
                     entity.note,
