@@ -47,6 +47,9 @@
     <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.8.6.0\lib\net45\FluentValidation.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -68,9 +71,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Z.EntityFramework.Extensions, Version=4.0.29.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Z.EntityFramework.Extensions.4.0.29\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IArticleDal.cs" />
@@ -80,11 +80,6 @@
     <Compile Include="Abstract\IInbookDal.cs" />
     <Compile Include="Abstract\IIncollectionDal.cs" />
     <Compile Include="Abstract\IManualDal.cs" />
-    <Compile Include="Concrete\ArticleDal.cs" />
-    <Compile Include="Concrete\BaseRepository.cs" />
-    <Compile Include="Concrete\BookDal.cs" />
-    <Compile Include="Concrete\BookletDal.cs" />
-    <Compile Include="Concrete\ConferenceDal.cs" />
     <Compile Include="Concrete\Dapper\DapperArticleDal.cs" />
     <Compile Include="Concrete\Dapper\DapperBookDal.cs" />
     <Compile Include="Concrete\Dapper\DapperBookletDal.cs" />
@@ -92,18 +87,15 @@
     <Compile Include="Concrete\Dapper\DapperIncollectionDal.cs" />
     <Compile Include="Concrete\Dapper\DapperConferenceDal.cs" />
     <Compile Include="Concrete\Dapper\DapperManualDal.cs" />
-    <Compile Include="Concrete\InBookDal.cs" />
-    <Compile Include="Concrete\InCollectionDal.cs" />
-    <Compile Include="Concrete\ManualDal.cs" />
-    <Compile Include="Concrete\Mappings\ArticleMap.cs" />
-    <Compile Include="Concrete\Mappings\BookletMap.cs" />
-    <Compile Include="Concrete\Mappings\BookMap.cs" />
-    <Compile Include="Concrete\Mappings\ConferenceMap.cs" />
-    <Compile Include="Concrete\Mappings\InBookMap.cs" />
-    <Compile Include="Concrete\Mappings\IncollectionMap.cs" />
-    <Compile Include="Concrete\Mappings\ManualMap.cs" />
+    <Compile Include="Core\AOP\Validations\FluentValidation\ToolValidator.cs" />
+    <Compile Include="Core\DataAccess\IRepository.cs" />
+    <Compile Include="Core\DI\Ninject\BusinessModule.cs" />
+    <Compile Include="Core\DI\Ninject\InstanceFactory.cs" />
+    <Compile Include="Core\Utility\ErrorMessages.cs" />
+    <Compile Include="Core\Utility\ExportOperations.cs" />
+    <Compile Include="Core\Utility\GetEntryType.cs" />
+    <Compile Include="Core\ValidationRules\FluentValidation\ArticleValidate.cs" />
     <Compile Include="DatabaseContext\Dapper\DapperDbContext.cs" />
-    <Compile Include="DatabaseContext\Sqlite\SqliteContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
@@ -112,10 +104,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bibuddy.Core\Bibuddy.Core.csproj">
-      <Project>{A342D096-2B3E-4146-B31A-B7A1A4AD7F8D}</Project>
-      <Name>Bibuddy.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BiBuddy.Entities\BiBuddy.Entities.csproj">
       <Project>{14FBC345-948C-4AC7-8063-87D1D545FB9D}</Project>
       <Name>BiBuddy.Entities</Name>
