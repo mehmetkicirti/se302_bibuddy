@@ -1,6 +1,7 @@
-﻿using Bibuddy.Business.Abstract;
-using Bibuddy.Business.Concrete.Dapper;
-using Bibuddy.Business.DI.Ninject;
+﻿
+using Bibuddy.DataAccess.Abstract;
+using Bibuddy.DataAccess.Concrete.Dapper;
+using Bibuddy.DataAccess.Core.DI.Ninject;
 using BiBuddy.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -23,14 +24,14 @@ namespace BiBuddy.UI
     /// </summary>
     public partial class AddPanels : Window
     {
-        private readonly IArticleService _iArticleService;
-        private readonly IBookService _iBookService;
+        private readonly IArticleDal _iArticleService;
+        private readonly IBookDal _iBookService;
 
         public AddPanels()
         {
-            _iArticleService = InstanceFactory.GetInstance<DapperArticleManager>();
+            _iArticleService = InstanceFactory.GetInstance<DapperArticleDal>();
             _iBookService =
-                InstanceFactory.GetInstance<DapperBookManager>();
+                InstanceFactory.GetInstance<DapperBookDal>();
             InitializeComponent();
         }
 
