@@ -13,6 +13,7 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
     public class DapperArticleDal:IArticleDal
     {
         private IDbConnection _iConnection;
+
         public DapperArticleDal()
         {
             _iConnection = DapperDbContext.GetDbConnection();
@@ -20,8 +21,10 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public void Add(article entity)
         {
-            _iConnection.ExecuteScalar<article>(
-                "INSERT INTO article (author, doi, journal, month, note, number, pages, title, volume, year, address, bibtexkey,entrytype) VALUES( @author, @doi, @journal, @month, @note, @number, @pages, @title, @volume, @year, @bibtexkey, @entrytype)", new
+            iConnection.ExecuteScalar<article>(
+                "INSERT INTO article (author, doi, journal, month, note, number, pages, title, volume, year, address," +
+                " bibtexkey,entrytype) VALUES( @author, @doi, @journal, @month, @note, @number, @pages, @title," +
+                " @volume, @year, @bibtexkey, @entrytype)", new
                 {
                     entity.doi,
                     entity.entrytype,
@@ -112,7 +115,9 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
         public void Update(article entity)
         {
             _iConnection.ExecuteScalar<article>(
-               "UPDATE article SET author=@author, doi=@doi, entrytype=@entrytype, bibtexkey=@bibtexkey journal=@journal, month=@month, note=@note, number=@number, pages=@pages, title=@title, volume=@volume, year=@year where ID = @ID", new
+               "UPDATE article SET author=@author, doi=@doi, entrytype=@entrytype, bibtexkey=@bibtexkey," +
+               " journal=@journal, month=@month, note=@note, number=@number, pages=@pages, " +
+               "title=@title, volume=@volume, year=@year where ID = @ID", new
                {
                    entity.doi,
                    entity.entrytype,
