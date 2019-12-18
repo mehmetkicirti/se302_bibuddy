@@ -9,13 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiBuddy.Entities", "BiBuddy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibuddy.DataAccess", "Bibuddy.DataAccess\Bibuddy.DataAccess.csproj", "{FE4F1F7B-3B51-4F46-B05A-8B674D414228}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibuddy.Core", "Bibuddy.Core\Bibuddy.Core.csproj", "{A342D096-2B3E-4146-B31A-B7A1A4AD7F8D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibuddy.Business", "Bibuddy.Business\Bibuddy.Business.csproj", "{2408E461-BB85-4053-A98B-992029C600E5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibuddy.DataAccess.Test", "Bibuddy.DataAccess.Test\Bibuddy.DataAccess.Test.csproj", "{C34E7B68-6872-4B74-AD1A-1C8F241D558A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiBuddy.Business.Tests", "BiBuddy.Business.Tests\BiBuddy.Business.Tests.csproj", "{C63313E7-E3E4-4FEC-8F9E-62D6907B618F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,22 +29,10 @@ Global
 		{FE4F1F7B-3B51-4F46-B05A-8B674D414228}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE4F1F7B-3B51-4F46-B05A-8B674D414228}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE4F1F7B-3B51-4F46-B05A-8B674D414228}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A342D096-2B3E-4146-B31A-B7A1A4AD7F8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A342D096-2B3E-4146-B31A-B7A1A4AD7F8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A342D096-2B3E-4146-B31A-B7A1A4AD7F8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A342D096-2B3E-4146-B31A-B7A1A4AD7F8D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2408E461-BB85-4053-A98B-992029C600E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2408E461-BB85-4053-A98B-992029C600E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2408E461-BB85-4053-A98B-992029C600E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2408E461-BB85-4053-A98B-992029C600E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C34E7B68-6872-4B74-AD1A-1C8F241D558A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C34E7B68-6872-4B74-AD1A-1C8F241D558A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C34E7B68-6872-4B74-AD1A-1C8F241D558A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C34E7B68-6872-4B74-AD1A-1C8F241D558A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C63313E7-E3E4-4FEC-8F9E-62D6907B618F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C63313E7-E3E4-4FEC-8F9E-62D6907B618F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C63313E7-E3E4-4FEC-8F9E-62D6907B618F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C63313E7-E3E4-4FEC-8F9E-62D6907B618F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

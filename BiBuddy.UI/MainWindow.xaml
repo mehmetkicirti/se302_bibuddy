@@ -3,52 +3,111 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:BiBuddy.UI"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="600" Width="900">
-    <Grid>
-        <StackPanel x:Name="s3">
-            <Menu HorizontalAlignment="Center" Height="20" DockPanel.Dock="Top" VerticalAlignment="Top" Background="white" >
-                <MenuItem Margin="0,0,50,0" Header="Create New Bib" Click="MenuItem_Click">
-                    <MenuItem Header="Article" Click="ArticleClick"></MenuItem>
-                    <MenuItem Header="Conference" Click="ConferenceClick"></MenuItem>
-                    <MenuItem Header="Booklet" Click="BookletClick"></MenuItem>
-                    <MenuItem Header="Book" Click="BookClick"></MenuItem>
-                    <MenuItem Header="Inbook" Click="InbookClick"></MenuItem>
-                    <MenuItem Header="Incollection" Click="IncollectionClick"></MenuItem>
-                    <MenuItem Header="Manuel" Click="ManuelClick"></MenuItem>
-                </MenuItem>
-                <MenuItem Margin="0,0,50,0" Header="Delete">
-                </MenuItem>
-                <MenuItem Margin="0,0,50,0" Header="Export">
-                </MenuItem>
-                <MenuItem Margin="0,0,50,0" Header="Import" Click="btn_Import_Click">
-                </MenuItem>
-                <MenuItem Margin="0,0,50,0" Header="Search" Click="searchBib">
-                </MenuItem>
-                <MenuItem Margin="0,0,50,0" Header="Help">
-                    <MenuItem Header="Help"  Click="HelpClick"/>
-                    <MenuItem Header="About BiBuddy"/>
-                </MenuItem>
-            </Menu>
-            <DataGrid></DataGrid>
-        </StackPanel>
-        <StackPanel x:Name="s1" Margin="0,20,0,0" Visibility="Collapsed">
-            <Button Content="Back" Width="100" HorizontalAlignment="Right" Margin="0,0,25,0" Click="BackClickAN"></Button>
-            <TextBlock Margin="0,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Center"> Search</TextBlock>
-            <TextBox Width="200"></TextBox>
-            <DataGrid Height="auto" Margin="5"></DataGrid>
-        </StackPanel>
-        <StackPanel x:Name="s2" Margin="0,20,0,0" Visibility="Collapsed" Width="auto">
-            <TextBlock x:Name="help" FontSize="14" Width="auto" TextWrapping="Wrap" Margin="15"></TextBlock>
-            <Button Click="BackClickH" Content="Back" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
-        </StackPanel>
-        <DockPanel Margin="0,20,0,0" Name="d1" Visibility="Visible">
-            <StatusBar DockPanel.Dock="Bottom">
-            </StatusBar>
-        </DockPanel>
-        <Grid VerticalAlignment="Top">
-            <DataGrid x:Name="Datagrid1" AutoGenerateColumns="True" IsReadOnly="True" Height="275" Margin="15,15,15,15" />
+        Height="600" Width="1000" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" Foreground="AliceBlue">
+    <Window.Resources>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="70"></EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"></EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"></EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"></EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"></BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource CloseMenu}"></BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid Background="LightGray">
+        <Grid Height="75" VerticalAlignment="Top" Background="#FF117C87">
+            <TextBlock Text="BibBuddy" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontWeight="Bold" FontSize="25" Margin="92,21,802,20"></TextBlock>
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Fundamentals" VerticalAlignment="Center" FontSize="18"></TextBlock>
+                <materialDesign:PopupBox  Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                    <StackPanel Width="150">
+                        <Button Content="Help"></Button>
+                        <Button Content="About"></Button>
+                        <Separator></Separator>
+                        <Button x:Name="BtnPopupExit" Content="Exit" Click="BtnPopupExit_Click"></Button>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
+            <StackPanel Margin="21,-3,-21,3">
+                <TextBox x:Name="search_textbox" FontFamily="Arial" Foreground="Black" HorizontalAlignment="Left" Height="34" Margin="328,21,0,0" TextWrapping="Wrap" FontSize="20" Background="White" VerticalAlignment="Top" Width="298"/>
+
+            </StackPanel>
+            <Button x:Name="btn_search" Click="btn_search_Click" Foreground="Black" Content="Search" Background="White"  Margin="672,20,238,23"/>
+        </Grid>
+        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF49238B">
+            <StackPanel>
+                <Grid Height="150" Background="White">
+                    <DockPanel>
+                        <Image Width="100" Visibility="Hidden" VerticalAlignment="Top" x:Name="logo_school" Source="/images/logoschool.png">
+                        </Image>
+                    </DockPanel>
+                    <Button Click="ButtonCloseMenu_Click" x:Name="ButtonCloseMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed">
+                        <materialDesign:PackIcon Width="25" Height="25" Foreground="#FF49238B" Kind="ArrowLeft"></materialDesign:PackIcon>
+                    </Button>
+                    <Button x:Name="ButtonOpenMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ButtonOpenMenu_Click">
+                        <materialDesign:PackIcon Width="25" Height="25" Foreground="#FF49238B" Kind="Menu"></materialDesign:PackIcon>
+                    </Button>
+
+                </Grid>
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="White" Background="#FF49238B">
+                    <ListViewItem  Height="60" PreviewMouseLeftButtonUp="ListViewClickAddMenu">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ViewDashboard" Width="25" Margin="10" Height="25" VerticalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock VerticalAlignment="Center" Margin="20 10" Text="Add Menu"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem Height="60">
+                        <StackPanel  Orientation="Horizontal">
+                            <materialDesign:PackIcon Margin="10" Kind="Delete" Width="25" Height="25" VerticalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock VerticalAlignment="Center" Margin="20 10" Text="Delete"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem PreviewMouseLeftButtonUp="btn_Import_Click" Height="60">
+                        <StackPanel  Orientation="Horizontal">
+                            <materialDesign:PackIcon Margin="10" Kind="FileImport" Width="25" Height="25" VerticalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock VerticalAlignment="Center" Margin="20 10" Text="Import"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem Height="60">
+                        <StackPanel  Orientation="Horizontal">
+                            <materialDesign:PackIcon Margin="10" Kind="ExportVariant" Width="25" Height="25" VerticalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock VerticalAlignment="Center" Margin="20 10" Text="Export"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem PreviewMouseLeftButtonUp="github_page_click" Height="60">
+                        <StackPanel  Orientation="Horizontal">
+                            <materialDesign:PackIcon Margin="10" Kind="GithubBox" Width="25" Height="25" VerticalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock VerticalAlignment="Center" Margin="20 10" Text="Project Github Page"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <Separator></Separator>
+                    <ListViewItem PreviewMouseLeftButtonUp="Exit_Btn_Click" Height="60">
+                        <StackPanel  Orientation="Horizontal">
+                            <materialDesign:PackIcon Margin="10" Kind="ExitToApp" Width="25" Height="25" VerticalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock VerticalAlignment="Center" Margin="20 10" Text="Exit"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

@@ -1,7 +1,10 @@
 ﻿using Bibuddy.DataAccess.Abstract;
+using Bibuddy.DataAccess.DatabaseContext.Dapper;
 using BiBuddy.Entities.Concrete;
+using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -11,19 +14,50 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 {
     public class DapperBookletDal : IBookletDal
     {
+
+        private IDbConnection _iConnection;
+
+        public DapperBookletDal()
+        {
+            _iConnection = DapperDbContext.GetDbConnection();
+        }
+
         public void Add(booklet entity)
         {
-            throw new NotImplementedException();
+            _iConnection.ExecuteScalar<booklet>(
+                "INSERT INTO booklet (author, month, note, title, howpublished" +
+                "year, address, bibtexkey,entrytype) VALUES( @author, @month, @note," +
+                " @pages, @title, @howpublished, @year, @bibtexkey, @entrytype)", new
+                {
+                    entity.title,
+                    entity.author,
+                    entity.howpublished,
+                    entity.address,
+                    entity.month,
+                    entity.note,
+                    entity.year,
+                    entity.bibtexkey,
+                    entity.entrytype
+                });
         }
+    
+
 
         public int Count()
         {
-            throw new NotImplementedException();
+            string query = @"SELECT COUNT(ID) FROM booklet";
+            int count = _iConnection.ExecuteScalar<int>(query);
+            return count;
         }
 
         public void Delete(int ID)
         {
-            throw new NotImplementedException();
+            string q = $"Delete from booklet where ID = @ID";
+            _iConnection.Execute(q,
+                new
+                {
+                    ID
+                });
         }
 
         public booklet Get(Expression<Func<booklet, bool>> filter)
@@ -38,22 +72,64 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public List<booklet> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null)
         {
-            throw new NotImplementedException();
+            string query = @"Select * from booklet";
+            if (!String.IsNullOrEmpty(author) || !String.IsNullOrEmpty(title))
+            {
+                query += " Where ";
+                if (!String.IsNullOrEmpty(author) && !String.IsNullOrEmpty(title))
+                {
+                    query += "author LIKE @value and title LIKE @value2";
+                    return _iConnection.Query<booklet>(query, new { value = "%" + author + "%", value2 = "%" + title + "%" }).ToList();
+                }
+                else if (!String.IsNullOrEmpty(author))
+                {
+                    query += "author LIKE @value";
+                    return _iConnection.Query<booklet>(query, new { value = "%" + author + "%" }).ToList();
+                }
+                else
+                {
+                    query += "title LIKE @value";
+                    return _iConnection.Query<booklet>(query, new { value = "%" + title + "%" }).ToList();
+                }
+            }
+            else
+            {
+                return _iConnection.Query<booklet>(query).ToList();
+            }
         }
 
         public List<booklet> GetAllByYear(int? year)
         {
-            throw new NotImplementedException();
+            string query = @"Select * from booklet";
+            if (year.HasValue)
+            {
+                query += "Where year = @year";
+            }
+            return _iConnection.Query<booklet>(query, new { year }).ToList();
         }
 
         public booklet GetByID(int ID)
         {
-            throw new NotImplementedException();
+            return _iConnection.Query<booklet>(
+                $"Select * from booklet where ID = {ID}").FirstOrDefault();
         }
 
         public void Update(booklet entity)
         {
-            throw new NotImplementedException();
+            _iConnection.ExecuteScalar<booklet>(
+              "UPDATE booklet SET author=@author, entrytype=@entrytype, bibtexkey=@bibtexkey, month=@month, " +
+              "note=@note, title=@title, year=@year, howpublished=@howpublished, address=@address where ID = @ID", new
+              {
+                  entity.title,
+                  entity.author,
+                  entity.howpublished,
+                  entity.address,
+                  entity.month,
+                  entity.note,
+                  entity.year,
+                  entity.bibtexkey,
+                  entity.entrytype
+              });
         }
     }
 }
