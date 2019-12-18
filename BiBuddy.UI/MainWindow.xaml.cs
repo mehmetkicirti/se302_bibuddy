@@ -21,6 +21,7 @@ using Bibuddy.DataAccess.Core.DI.Ninject;
 using Bibuddy.DataAccess.Concrete.Dapper;
 using Bibuddy.DataAccess.Core.Utility;
 
+
 namespace BiBuddy.UI
 {
     /// <summary>
@@ -28,6 +29,8 @@ namespace BiBuddy.UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+
 
         private readonly IArticleDal _articleService;
         private readonly IBookDal _bookService;
@@ -121,6 +124,8 @@ namespace BiBuddy.UI
                             //}
 
                     }
+                    
+                    
                 }
 
                 Console.WriteLine("Articles : " + _articleService.Count());
@@ -132,6 +137,8 @@ namespace BiBuddy.UI
                 {
                     fileContent = reader.ReadToEnd();
                 }
+
+                DataGridMain.ItemsSource = _articleService.GetAllByAuthorOrTitleIfNotExist();
             }
 
         }
