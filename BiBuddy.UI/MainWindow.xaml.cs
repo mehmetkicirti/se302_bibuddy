@@ -38,7 +38,6 @@ namespace BiBuddy.UI
         {
             _articleService = InstanceFactory.GetInstance<DapperArticleDal>();
             _bookService = InstanceFactory.GetInstance<DapperBookDal>();
-            DataGridMain.ItemsSource = _articleService.GetAllByAuthorOrTitleIfNotExist();
             InitializeComponent();
             
         }

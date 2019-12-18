@@ -6,7 +6,7 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:BiBuddy.UI"
         mc:Ignorable="d"
-        Height="600" Width="1000" ResizeMode="NoResize"  WindowStyle="ToolWindow"  WindowStartupLocation="CenterScreen"  Foreground="AliceBlue">
+        Height="600" Width="1050" ResizeMode="NoResize"  WindowStyle="ToolWindow"  WindowStartupLocation="CenterScreen"  Foreground="AliceBlue">
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
@@ -110,7 +110,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid x:Name="Data" HorizontalAlignment="Center" Margin="65,80,5,5" Width="920">
+        <Grid x:Name="Data" HorizontalAlignment="Center" Margin="65,80,5,5" Width="970">
             <DataGrid x:Name="DataGridMain" AutoGenerateColumns="False" ItemsSource="{Binding}" IsReadOnly="True">
                 <DataGrid.Columns>
 
