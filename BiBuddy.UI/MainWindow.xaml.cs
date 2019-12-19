@@ -75,7 +75,7 @@ namespace BiBuddy.UI
             string fileContent = string.Empty;
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = @"c:\Users\ont_9\Desktop\ReadBibTex\ReadBibTex";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             openFileDialog.Filter = "BibTeX files (*.bib)|*.bib";
             openFileDialog.FilterIndex = 2;
             openFileDialog.RestoreDirectory = true;
