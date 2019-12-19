@@ -21,6 +21,7 @@ using Bibuddy.DataAccess.Core.DI.Ninject;
 using Bibuddy.DataAccess.Concrete.Dapper;
 using Bibuddy.DataAccess.Core.Utility;
 using Bibuddy.DataAccess.Core.Parser;
+using BiBuddy.UI.ViewModel;
 
 namespace BiBuddy.UI
 {
