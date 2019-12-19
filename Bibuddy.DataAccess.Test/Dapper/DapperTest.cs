@@ -72,7 +72,7 @@ namespace Bibuddy.DataAccess.Test.Dapper
             List<object> list=new List<object>();
             list.Add(_article);
             list.Add(_book_);
-            ExportOperations.GetImportFile(list,"Article");
+            //ExportOperations.GetImportFile(list,"Article");
             //var result = articleDal.GetAll();
             ////expected=> beklenen 
             //Assert.(1, result.Count);

@@ -65,8 +65,10 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public List<article> GetAll(string filter = null)
         {
-            filter = filter.ToLower();
-
+            if (filter != null)
+            {
+                filter = filter.ToLower();
+            }
             string query = "Select * from article";
             List<article> listvalues = _iConnection.Query<article>(query).ToList();
 
