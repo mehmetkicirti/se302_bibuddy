@@ -20,6 +20,7 @@ using Bibuddy.DataAccess.Abstract;
 using Bibuddy.DataAccess.Core.DI.Ninject;
 using Bibuddy.DataAccess.Concrete.Dapper;
 using Bibuddy.DataAccess.Core.Utility;
+using Bibuddy.DataAccess.Core.Parser;
 
 
 namespace BiBuddy.UI
@@ -34,10 +35,22 @@ namespace BiBuddy.UI
 
         private readonly IArticleDal _articleService;
         private readonly IBookDal _bookService;
+        private readonly IBookletDal _bookletService;
+        private readonly IConferenceDal _conferenceService;
+        private readonly IInbookDal _inbookService;
+        private readonly IIncollectionDal _incollectionService;
+        private readonly IManualDal _manualService;
+
         public MainWindow()
         {
             _articleService = InstanceFactory.GetInstance<DapperArticleDal>();
             _bookService = InstanceFactory.GetInstance<DapperBookDal>();
+            _bookletService = InstanceFactory.GetInstance<DapperBookletDal>();
+            _conferenceService = InstanceFactory.GetInstance<DapperConferenceDal>();
+            _inbookService = InstanceFactory.GetInstance<DapperInbookDal>();
+            _incollectionService = InstanceFactory.GetInstance<DapperIncollectionDal>();
+            _manualService = InstanceFactory.GetInstance<DapperManualDal>();
+
             InitializeComponent();
             
         }
@@ -70,7 +83,8 @@ namespace BiBuddy.UI
             if (openFileDialog.ShowDialog() == true)
             {
                 string path = openFileDialog.FileName;
-                var parser = new BibParser(new StreamReader(path, Encoding.Default));
+                //var parser = new BibParser(new StreamReader(path, Encoding.Default));
+                var parser = new BetterBibtexParser(new StreamReader(path, Encoding.Default));
                 var entries = parser.GetAllResult();
 
 
@@ -80,49 +94,150 @@ namespace BiBuddy.UI
                     switch (entry.Type)
                     {
                         case "Article":
-                            article _article = new article();
-                            _article.author = entry.Author;
-                            _article.title = entry.Title;
-                            _article.journal = entry.Journal;
-                            _article.year = Convert.ToInt32(entry.Year);
-                            _article.pages = entry.Pages;
-                            _article.bibtexkey = entry.Key;
-                            _article.entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Article);
+                            article _article = new article
+                            {
+                                author = entry.Author,
+                                title = entry.Title,
+                                journal = entry.Journal,
+                                year = Convert.ToInt32(entry.Year),
+                                pages = entry.Pages,
+                                bibtexkey = entry.Key,
+                                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Article),
+                                volume = Convert.ToInt32(entry.Volume),
+                                number = Convert.ToInt32(entry.Number),
+                                month = Convert.ToInt32(entry.Mouth),
+                                note = entry.Note,
+                                
+                            };
                             _articleService.Add(_article);
-                            MessageBox.Show("Added To Db Article");
+                            Console.WriteLine("Added To Db Article");
                             break;
                         case "Book":
-                            book _book = new book();
-                            _book.author = entry.Author;
-                            _book.title = entry.Title;
-                            _book.address = entry.Address;
-                            _book.bibtexkey = entry.Key;
-                            _book.entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Book);
+                            book _book = new book
+                            {
+                                author = entry.Author,
+                                title = entry.Title,
+                                address = entry.Address,
+                                publisher = entry.Publisher,
+                                year = Convert.ToInt32(entry.Year),
+                                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Book),
+                                //publisher = entry.Editor,
+                                series = Convert.ToInt32(entry.Series),
+                                edition = Convert.ToInt32(entry.Edition),
+                                month = Convert.ToInt32(entry.Mouth),
+                                note = entry.Note,
+                                //bibtexkey = entry.Key,
+                                //url = entry.url,
+                                volume = Convert.ToInt32(entry.Volume),
+                            };
+                            if (entry.Number == null )
+                            {
+                                // !!!!!!!!!!!!!!!!!!!
+                            }
                             _bookService.Add(_book);
-                            MessageBox.Show("Added To Db Book");
+                            Console.WriteLine("Added To Db Book");
+                            break;
+                        case "Booklet":
+                            booklet _booklet = new booklet
+                            {
+                                title = entry.Title,
+                                author = entry.Author,
+                                address = entry.Address,
+                                month = Convert.ToInt32(entry.Mouth),
+                                year = Convert.ToInt32(entry.Year),
+                                note = entry.Note,
+                                bibtexkey = entry.Key,
+                                howpublished = entry.Howpublished,
+                            };
+                            _bookletService.Add(_booklet);
+                            Console.WriteLine("Added To Db Booklet");
+                            break;
+                        case "Conference":
+                            conference _conference = new conference
+                            {
+                                title = entry.Title,
+                                author = entry.Author,
+                                booktitle = entry.Booktitle,
+                                year = Convert.ToInt32(entry.Year),
+                                editor = entry.Editor,
+                                volume = Convert.ToInt32(entry.Volume),
+                                series = Convert.ToInt32(entry.Series),
+                                pages = entry.Pages,
+                                organization = entry.Organization,
+                                address = entry.Address,
+                                month = Convert.ToInt32(entry.Mouth),
+                                publisher = entry.Publisher,
+                                note = entry.Note,
+                                bibtexkey = entry.Key,
+                            };
+                            _conferenceService.Add(_conference);
+                            Console.WriteLine("Added To Db Conference");
+                            break;
+                        case "Inbook":
+                            inbook _inbook = new inbook
+                            {
+                                title = entry.Title,
+                                author = entry.Author,
+                                chapter = Convert.ToInt32(entry.Chapter),
+                                publisher = entry.Publisher,
+                                year = Convert.ToInt32(entry.Year),
+                                volume = Convert.ToInt32(entry.Volume),
+                                series = Convert.ToInt32(entry.Series),
+                                type = entry.Type,
+                                address = entry.Address,
+                                edition = Convert.ToInt32(entry.Edition),
+                                month = Convert.ToInt32(entry.Mouth),
+                                note = entry.Note,
+                                bibtexkey = entry.Key,
+
+                            };
+                            _inbookService.Add(_inbook);
+                            Console.WriteLine("Added To Db Inbook");
+                            break;
+                        case "Incollection":
+                            incollection _incollection = new incollection
+                            {
+                                month = Convert.ToInt32(entry.Mouth),
+                                note = entry.Note,
+                                bibtexkey = entry.Key,
+                                author = entry.Author,
+                                title = entry.Title,
+                                booktitle = entry.Booktitle,
+                                publisher = entry.Publisher,
+                                year = Convert.ToInt32(entry.Year),
+                                volume = Convert.ToInt32(entry.Volume),
+                                series = Convert.ToInt32(entry.Series),
+                                type = entry.Type,
+                                address = entry.Address,
+                                edition = Convert.ToInt32(entry.Edition),
+                                chapter = Convert.ToInt32(entry.Chapter),
+                                pages = entry.Pages,
+                                editor = entry.Editor,
+
+                            };
+                            _incollectionService.Add(_incollection);
+                            Console.WriteLine("Added To Db Incollection");
+                            break;
+                        case "Manual":
+                            manual _manual = new manual
+                            {
+                                title = entry.Title,
+                                author = entry.Author,
+                                organization = entry.Organization,
+                                address = entry.Address,
+                                edition = Convert.ToInt32(entry.Edition),
+                                month = Convert.ToInt32(entry.Mouth),
+                                note = entry.Note,
+                                bibtexkey = entry.Key,
+                                year = Convert.ToInt32(entry.Year),
+
+                            };
+                            _manualService.Add(_manual);
+                            Console.WriteLine("Added To Db Manual");
                             break;
                         default:
                             break;
-                            //if (entry.Type == "Article")
-                            //{
-                            //    article _article = new article();
-                            //    _article.author = entry.Author;
-                            //    _article.title = entry.Title;
-                            //    _article.journal = entry.Journal;
-                            //    _article.year = Convert.ToInt32(entry.Year);
-                            //    _article.pages = entry.Pages;
-                            //    articleService.Add(_article);
-                            //}
-                            //if (entry.Type == "Book")
-                            //{
-                            //    book _book = new book();
-                            //    _book.author = entry.Author;
-                            //    _book.title = entry.Title;
-                            //    _book.journal = entry.Journal;
-                            //    _book.year = Convert.ToInt32(entry.Year);
-                            //    _book.address = entry.Address;
-                            //}
-
+                           
                     }
                     
                     
@@ -139,6 +254,8 @@ namespace BiBuddy.UI
                 }
 
                 DataGridMain.ItemsSource = _articleService.GetAllByAuthorOrTitleIfNotExist();
+                DataGridMain.ItemsSource = _bookService.GetAllByAuthorOrTitleIfNotExist();
+
             }
 
         }
