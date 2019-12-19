@@ -10,11 +10,11 @@ namespace Bibuddy.DataAccess.Core.Utility
 {
     public class ExportOperations
     {
-        public static void GetImportFile(List<object> objects, string FileName)
+        public static string GetImportFile(List<object> objects)
         {
-            string DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string FilePath = FileName + ".bib";
-            string FullPath = Path.Combine(DesktopPath, FilePath);
+            //string DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //string FilePath = FileName + ".bib";
+            //string FullPath = Path.Combine(DesktopPath, FilePath);
             string exportedFile = "";
             Dictionary<string, string> getfieldName;
             foreach (var obj in objects)
@@ -210,7 +210,8 @@ namespace Bibuddy.DataAccess.Core.Utility
                         break;
                 }
             }
-            File.WriteAllText(FullPath, exportedFile);
+            return exportedFile;
+            //File.WriteAllText(FullPath, exportedFile);
         }
     }
 }
