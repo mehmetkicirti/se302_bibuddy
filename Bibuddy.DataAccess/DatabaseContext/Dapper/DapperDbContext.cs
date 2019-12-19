@@ -191,9 +191,9 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
                 {
                     cmd.CommandText = @"CREATE TABLE article(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-	                    author TEXT NOT NULL ,
-	                    title TEXT NOT NULL ,
-	                    journal TEXT NOT NULL ,
+	                    author TEXT,
+	                    title TEXT,
+	                    journal TEXT,
 	                    year INTEGER,
 	                    number INTEGER,
 	                    volume INTEGER,
@@ -208,9 +208,9 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
 
                     cmd.CommandText = @"CREATE TABLE book(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-	                    author TEXT NOT NULL,
-	                    title TEXT NOT NULL,
-	                    publisher TEXT NOT NULL,
+	                    author TEXT,
+	                    title TEXT,
+	                    publisher TEXT,
 	                    year INTEGER,
 	                    volume INTEGER,
                         series INTEGER,
@@ -227,7 +227,7 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
                     cmd.CommandText = @"CREATE TABLE booklet(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	                    author TEXT,
-	                    title TEXT NOT NULL,
+	                    title TEXT,
                         howpublished TEXT,
 	                    year INTEGER,
 	                    note  TEXT,
@@ -240,9 +240,9 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
 
                     cmd.CommandText = @"CREATE TABLE conference(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-	                    author TEXT NOT NULL,
-	                    title TEXT NOT NULL,
-	                    booktitle TEXT NOT NULL,
+	                    author TEXT,
+	                    title TEXT,
+	                    booktitle TEXT,
 	                    year INTEGER,
                         editor TEXT,
 	                    volume INTEGER,
@@ -260,9 +260,9 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
 
                     cmd.CommandText = @"CREATE TABLE inbook(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-	                    author TEXT NOT NULL,
-	                    title TEXT NOT NULL,
-                        chapter INTEGER NOT NULL,
+	                    author TEXT,
+	                    title TEXT,
+                        chapter INTEGER,
 	                    year INTEGER,
 	                    type TEXT,
 	                    edition TEXT,
@@ -280,10 +280,10 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
 
                     cmd.CommandText = @"CREATE TABLE incollection(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-	                    author TEXT NOT NULL,
-	                    title TEXT NOT NULL,
-                        booktitle TEXT NOT NULL,
-                        publisher TEXT NOT NULL,
+	                    author TEXT,
+	                    title TEXT,
+                        booktitle TEXT,
+                        publisher TEXT,
 	                    year INTEGER,
                         editor TEXT,
                         series INTEGER,
@@ -303,7 +303,7 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
                     cmd.CommandText = @"CREATE TABLE manual(
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	                    author TEXT,
-	                    title TEXT NOT NULL,
+	                    title TEXT ,
 	                    year INTEGER,
 	                    note  TEXT,
 	                    month INTEGER,

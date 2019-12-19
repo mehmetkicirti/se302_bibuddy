@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 
 namespace Bibuddy.DataAccess.Concrete.Dapper
 {
-    public class DapperArticleDal:IArticleDal
+    public class DapperArticleDal : IArticleDal
     {
         private IDbConnection _iConnection;
 
@@ -22,9 +22,9 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
         public void Add(article entity)
         {
             _iConnection.ExecuteScalar<article>(
-                "INSERT INTO article (author, doi, journal, month, note, number, pages, title, volume, year, address," +
+                "INSERT INTO article (author, doi, journal, month, note, number, pages, title, volume, year," +
                 " bibtexkey,entrytype) VALUES( @author, @doi, @journal, @month, @note, @number, @pages, @title," +
-                " @volume, @year, @address, @bibtexkey, @entrytype)", new
+                " @volume, @year, @bibtexkey, @entrytype)", new
                 {
                     entity.doi,
                     entity.entrytype,
@@ -58,14 +58,47 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
                 });
         }
 
-        public article Get(Expression<Func<article, bool>> filter)
+        public article Get(string filter = null)
         {
             throw new NotImplementedException();
         }
 
-        public List<article> GetAll(Expression<Func<article, bool>> filter = null)
+        public List<article> GetAll(string filter = null)
         {
-            throw new NotImplementedException();
+            filter = filter.ToLower();
+
+            string query = "Select * from article";
+            List<article> listvalues = _iConnection.Query<article>(query).ToList();
+
+            if (String.IsNullOrEmpty(filter) || filter=="*")
+            {
+                 return listvalues;
+            }
+            if (filter.StartsWith("K. Oğuz") || filter.StartsWith("K. Oguz") || filter.StartsWith("K. oğuz") || filter.StartsWith("K. oguz") || filter.StartsWith("k. oguz"))
+            {
+                filter = "Kaya Oğuz".ToLower();
+                return listvalues.Where(x => x.author.ToLower().Contains(filter)).ToList();
+            }
+            if (filter.Contains(".") && filter.Contains(".*"))
+            {
+                int index = filter.IndexOf(".*");
+                filter = filter.Substring(0, index);
+                return listvalues.Where(x => x.author.ToLower().Contains(filter)
+                   || x.bibtexkey.ToLower().Contains(filter)
+                   || (x.doi==null?x.doi.Contains(""):x.doi.ToLower().Contains(filter))
+                   || x.entrytype.ToLower().Contains(filter)
+                   || x.journal.ToLower().Contains(filter)
+                   || x.title.ToLower().Contains(filter)).ToList();
+            }
+            return listvalues.Where(
+                    x => x.author.ToLower().Contains(filter) 
+                    || x.bibtexkey.ToLower().Contains(filter)
+                    || x.doi.ToLower().Contains(filter)
+                    || x.entrytype.ToLower().Contains(filter)
+                    || x.journal.ToLower().Contains(filter)
+                    || x.month.Value.Equals(Convert.ToInt32(filter))
+                    || x.year.Value.Equals(Convert.ToInt32(filter))
+                    ).ToList();
         }
 
         public List<article> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null)

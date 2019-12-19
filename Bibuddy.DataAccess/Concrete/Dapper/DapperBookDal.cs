@@ -51,12 +51,12 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
             throw new NotImplementedException();
         }
 
-        public book Get(Expression<Func<book, bool>> filter)
+        public book Get(string filter = null)
         {
             throw new NotImplementedException();
         }
 
-        public List<book> GetAll(Expression<Func<book, bool>> filter = null)
+        public List<book> GetAll(string filter = null)
         {
             throw new NotImplementedException();
         }

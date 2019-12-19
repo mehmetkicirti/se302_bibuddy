@@ -19,8 +19,8 @@ namespace BiBuddy.DataAccess.Core.DataAccess
         void Delete(int ID);
         void Update(TEntity entity);
         TEntity GetByID(int ID);
-        TEntity Get(Expression<Func<TEntity,bool>> filter);
-        List<TEntity> GetAll(Expression<Func<TEntity,bool>> filter = null);
+        TEntity Get(string filter = null);
+        List<TEntity> GetAll(string filter = null);
         List<TEntity> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null);
         List<TEntity> GetAllByYear(int? year);
         int Count();

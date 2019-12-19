@@ -67,12 +67,12 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
                 });
         }
 
-        public incollection Get(Expression<Func<incollection, bool>> filter)
+        public incollection Get(string filter = null)
         {
             throw new NotImplementedException();
         }
 
-        public List<incollection> GetAll(Expression<Func<incollection, bool>> filter = null)
+        public List<incollection> GetAll(string filter = null)
         {
             throw new NotImplementedException();
         }

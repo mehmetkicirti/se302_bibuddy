@@ -64,12 +64,13 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
                 });
         }
 
-        public conference Get(Expression<Func<conference, bool>> filter)
+      
+        public conference Get(string filter = null)
         {
             throw new NotImplementedException();
         }
 
-        public List<conference> GetAll(Expression<Func<conference, bool>> filter = null)
+        public List<conference> GetAll(string filter = null)
         {
             throw new NotImplementedException();
         }

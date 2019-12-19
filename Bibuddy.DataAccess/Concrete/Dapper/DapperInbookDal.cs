@@ -63,12 +63,12 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
                 });
         }
 
-        public inbook Get(Expression<Func<inbook, bool>> filter)
+        public inbook Get(string filter = null)
         {
             throw new NotImplementedException();
         }
 
-        public List<inbook> GetAll(Expression<Func<inbook, bool>> filter = null)
+        public List<inbook> GetAll(string filter = null)
         {
             throw new NotImplementedException();
         }

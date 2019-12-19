@@ -57,12 +57,12 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
                 });
         }
 
-        public manual Get(Expression<Func<manual, bool>> filter)
+        public manual Get(string filter = null)
         {
             throw new NotImplementedException();
         }
 
-        public List<manual> GetAll(Expression<Func<manual, bool>> filter = null)
+        public List<manual> GetAll(string filter = null)
         {
             throw new NotImplementedException();
         }
