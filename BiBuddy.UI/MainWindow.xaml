@@ -64,14 +64,11 @@
                     </Button>
 
                 </Grid>
+                <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Foreground="White" Background="#FF49238B">
+                    <StackPanel x:Name="Menu" Margin="10">
+                    </StackPanel>
+                </ScrollViewer>
                 <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="White" Background="#FF49238B">
-                    <ListViewItem  Height="60" PreviewMouseLeftButtonUp="ListViewClickAddMenu">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ViewDashboard" Width="25" Margin="10" Height="25" VerticalAlignment="Center"></materialDesign:PackIcon>
-                            <TextBlock VerticalAlignment="Center" Margin="20 10" Text="Add Menu"></TextBlock>
-                        </StackPanel>
-                    </ListViewItem>
-
                     <ListViewItem Height="60">
                         <StackPanel  Orientation="Horizontal">
                             <materialDesign:PackIcon Margin="10" Kind="Delete" Width="25" Height="25" VerticalAlignment="Center"></materialDesign:PackIcon>
@@ -86,7 +83,7 @@
                         </StackPanel>
                     </ListViewItem>
 
-                    <ListViewItem Height="60">
+                    <ListViewItem PreviewMouseLeftButtonUp="btn_Export_Click" Height="60">
                         <StackPanel  Orientation="Horizontal">
                             <materialDesign:PackIcon Margin="10" Kind="ExportVariant" Width="25" Height="25" VerticalAlignment="Center"></materialDesign:PackIcon>
                             <TextBlock VerticalAlignment="Center" Margin="20 10" Text="Export"></TextBlock>
@@ -117,11 +114,12 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.Header>
                             <CheckBox>
-                                <CheckBox.ToolTip>Select All</CheckBox.ToolTip></CheckBox>
+                                <CheckBox.ToolTip>Select All</CheckBox.ToolTip>
+                            </CheckBox>
                         </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate >
                             <DataTemplate >
-                                <CheckBox ></CheckBox>
+                                <CheckBox Checked="IsCheckedExport"></CheckBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

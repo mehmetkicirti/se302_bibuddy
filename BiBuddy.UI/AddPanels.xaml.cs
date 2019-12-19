@@ -37,6 +37,7 @@ namespace BiBuddy.UI
 
         private void addClickP(object sender, RoutedEventArgs e)
         {
+            
             if (sPanelArticleTBx.Visibility==Visibility.Visible)
             {
                 article _article = new article()
@@ -62,13 +63,21 @@ namespace BiBuddy.UI
                     _iArticleService.Add(_article);
                 }
             }
+            UIElement parent = App.Current.MainWindow;
+            parent.IsEnabled = true;
             this.Close(); 
             
             // This command should be the latest command end of the line! -Asil
         }
-        
-        
-        
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            UIElement parent = App.Current.MainWindow;
+            parent.IsEnabled = true;
+        }
+
+
+
         // when the panels finish i need to collapse all of the panels. - Asil // Please use if conditions cause when the something is already collapsed and u'll try to collapse it again maybe it creates crush for this app.
     }
 }

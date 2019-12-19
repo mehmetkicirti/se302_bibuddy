@@ -20,7 +20,7 @@ using Bibuddy.DataAccess.Abstract;
 using Bibuddy.DataAccess.Core.DI.Ninject;
 using Bibuddy.DataAccess.Concrete.Dapper;
 using Bibuddy.DataAccess.Core.Utility;
-
+using BiBuddy.UI.ViewModel;
 
 namespace BiBuddy.UI
 {
@@ -39,7 +39,21 @@ namespace BiBuddy.UI
             _articleService = InstanceFactory.GetInstance<DapperArticleDal>();
             _bookService = InstanceFactory.GetInstance<DapperBookDal>();
             InitializeComponent();
+            var menuRegister = new List<SubItem>();
+            menuRegister.Add(new SubItem("Article"));
+            menuRegister.Add(new SubItem("Book"));
+            menuRegister.Add(new SubItem("Booklet"));
+            menuRegister.Add(new SubItem("InBook"));
+            menuRegister.Add(new SubItem("Conference"));
+            menuRegister.Add(new SubItem("Manual"));
+            menuRegister.Add(new SubItem("InCollection"));
             
+            var item0 = new ItemMenu("Add Type", menuRegister, MaterialDesignThemes.Wpf.PackIconKind.ViewDashboard);
+           
+
+            Menu.Children.Add(new UserControlMenuItem(item0));
+            DataGridMain.ItemsSource = _articleService.GetAllByAuthorOrTitleIfNotExist();
+
         }
         private void Exit_Btn_Click(object sender, RoutedEventArgs e)
         {
@@ -154,16 +168,6 @@ namespace BiBuddy.UI
             ButtonCloseMenu.Visibility = Visibility.Visible;
             logo_school.Visibility = Visibility.Visible;
         }
-        private void ListViewClickAddMenu(object sender, MouseButtonEventArgs e)
-        {
-            Window parentWindow = Window.GetWindow((DependencyObject)sender);
-            if (parentWindow != null)
-            {
-                parentWindow.IsEnabled = false;
-            }
-            SelectEntry selectEntry = new SelectEntry();
-            selectEntry.Show();
-        }
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
             if (search_textbox.Text.Length > 0)
@@ -182,6 +186,26 @@ namespace BiBuddy.UI
             if (result == MessageBoxResult.Yes)
             {
                 Application.Current.Shutdown();
+            }
+        }
+        private List<object> list = new List<object>();
+        private void IsCheckedExport(object sender, RoutedEventArgs e)
+        {
+
+            list.Add(DataGridMain.SelectedItem);
+        }
+
+        private void btn_Export_Click(object sender, MouseButtonEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "BibTeX files (*.bib) |*.bib | HTML File (*.html) |*.html";
+            saveFileDialog.OverwritePrompt = true;
+            saveFileDialog.CreatePrompt = true;
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                StreamWriter save = new StreamWriter(saveFileDialog.FileName);
+                save.WriteLine(ExportOperations.GetImportFile(list));
+                save.Close();
             }
         }
     }
