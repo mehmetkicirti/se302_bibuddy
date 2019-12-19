@@ -6,7 +6,7 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:BiBuddy.UI"
         mc:Ignorable="d"
-        Height="600" Width="1000" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" Foreground="AliceBlue">
+        Height="600" Width="1050" ResizeMode="NoResize"  WindowStyle="ToolWindow"  WindowStartupLocation="CenterScreen"  Foreground="AliceBlue">
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
@@ -49,7 +49,7 @@
             </StackPanel>
             <Button x:Name="btn_search" Click="btn_search_Click" Foreground="Black" Content="Search" Background="White"  Margin="672,20,238,23"/>
         </Grid>
-        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF49238B">
+        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF49238B" Panel.ZIndex="1">
             <StackPanel>
                 <Grid Height="150" Background="White">
                     <DockPanel>
@@ -109,5 +109,51 @@
                 </ListView>
             </StackPanel>
         </Grid>
+
+        <Grid x:Name="Data" HorizontalAlignment="Center" Margin="65,80,5,5" Width="970">
+            <DataGrid x:Name="DataGridMain" AutoGenerateColumns="False" ItemsSource="{Binding}" IsReadOnly="True">
+                <DataGrid.Columns>
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.Header>
+                            <CheckBox>
+                                <CheckBox.ToolTip>Select All</CheckBox.ToolTip></CheckBox>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate >
+                                <CheckBox ></CheckBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="EntryType" Binding="{Binding entrytype}"/>
+                    <DataGridTextColumn Header="Author" Binding="{Binding author}"/>
+                    <DataGridTextColumn Header="Title" Binding="{Binding title}"/>
+                    <DataGridTextColumn Header="Year" Binding="{Binding year}"/>
+                    <DataGridTextColumn Header="Volume" Binding="{Binding Volume}"/>
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate >
+                    <DataTemplate>
+                        <Border BorderThickness="0" Background="BlanchedAlmond" Padding="10">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="EntryType: " VerticalAlignment="Center" />
+                                    <TextBox FontSize="16" Foreground="MidnightBlue" Text="{Binding entrytype}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="Author: " VerticalAlignment="Center" />
+                                    <TextBox FontSize="16" Foreground="MidnightBlue" Text="{Binding author}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="Title: " VerticalAlignment="Center" />
+                                    <TextBox FontSize="16" Foreground="MidnightBlue" Text="{Binding title, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+
+            </DataGrid>
+        </Grid>
+
     </Grid>
 </Window>
