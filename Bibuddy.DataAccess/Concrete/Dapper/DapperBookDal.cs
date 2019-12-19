@@ -63,7 +63,30 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public List<book> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null)
         {
-            throw new NotImplementedException();
+            string query = @"Select * from book";
+            if (!String.IsNullOrEmpty(author) || !String.IsNullOrEmpty(title))
+            {
+                query += " Where ";
+                if (!String.IsNullOrEmpty(author) && !String.IsNullOrEmpty(title))
+                {
+                    query += "author LIKE @value and title LIKE @value2";
+                    return _iConnection.Query<book>(query, new { value = "%" + author + "%", value2 = "%" + title + "%" }).ToList();
+                }
+                else if (!String.IsNullOrEmpty(author))
+                {
+                    query += "author LIKE @value";
+                    return _iConnection.Query<book>(query, new { value = "%" + author + "%" }).ToList();
+                }
+                else
+                {
+                    query += "title LIKE @value";
+                    return _iConnection.Query<book>(query, new { value = "%" + title + "%" }).ToList();
+                }
+            }
+            else
+            {
+                return _iConnection.Query<book>(query).ToList();
+            }
         }
 
         public List<book> GetAllByYear(int? year)

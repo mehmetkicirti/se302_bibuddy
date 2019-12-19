@@ -91,6 +91,13 @@
     <Compile Include="Core\DataAccess\IRepository.cs" />
     <Compile Include="Core\DI\Ninject\BusinessModule.cs" />
     <Compile Include="Core\DI\Ninject\InstanceFactory.cs" />
+    <Compile Include="Core\Parser\BetterBibtexParser.cs" />
+    <Compile Include="Core\Parser\BibEntry.cs" />
+    <Compile Include="Core\Parser\Config.cs" />
+    <Compile Include="Core\Parser\ParseErrorException.cs" />
+    <Compile Include="Core\Parser\Token.cs" />
+    <Compile Include="Core\Parser\UnexpectedTokenException.cs" />
+    <Compile Include="Core\Parser\UnrecognizableCharacterException.cs" />
     <Compile Include="Core\Utility\ErrorMessages.cs" />
     <Compile Include="Core\Utility\ExportOperations.cs" />
     <Compile Include="Core\Utility\GetEntryType.cs" />
