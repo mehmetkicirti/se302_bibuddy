@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="BiBuddy.UI.UserControlMenuItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BiBuddy.UI"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" 
+             >
+    <Grid SizeChanged="Grid_SizeChanged">
+        <materialDesign:PackIcon Kind="{Binding Path=Icon}" Width="25" Height="25" Margin="9" />
+        <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header}" FontSize="10" Foreground="White"/>
+        <Expander x:Name="ExpanderMenu" VerticalAlignment="Center" Header="{Binding Path=Header}" IsExpanded="False" Width="160" HorizontalAlignment="Right" Background="{x:Null}" Foreground="White">
+            <ListView PreviewMouseLeftButtonUp="OpenAddPanelByType" x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}" Padding="10 5"></TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Expander>
+
+    </Grid>
+</UserControl>
