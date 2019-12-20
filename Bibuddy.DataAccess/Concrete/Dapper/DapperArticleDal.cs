@@ -1,4 +1,6 @@
 ﻿using Bibuddy.DataAccess.Abstract;
+using Bibuddy.DataAccess.Core.AOP.Validations.FluentValidation;
+using Bibuddy.DataAccess.Core.ValidationRules.FluentValidation;
 using Bibuddy.DataAccess.DatabaseContext.Dapper;
 using BiBuddy.Entities.Concrete;
 using Dapper;
@@ -21,6 +23,7 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public void Add(article entity)
         {
+            ToolValidator.FluentValidate(new ArticleValidate(), entity);
             _iConnection.ExecuteScalar<article>(
                 "INSERT INTO article (author, doi, journal, month, note, number, pages, title, volume, year," +
                 " bibtexkey,entrytype) VALUES( @author, @doi, @journal, @month, @note, @number, @pages, @title," +
