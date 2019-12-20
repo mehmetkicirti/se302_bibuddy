@@ -112,17 +112,29 @@ namespace BiBuddy.UI
                             {
                                 author = entry.Author,
                                 title = entry.Title,
+                                year=Convert.ToInt32(entry.Year),
                                 journal = entry.Journal,
-                                year = Convert.ToInt32(entry.Year),
                                 pages = entry.Pages,
                                 bibtexkey = entry.Key,
                                 entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Article),
-                                volume = Convert.ToInt32(entry.Volume),
-                                number = Convert.ToInt32(entry.Number),
-                                month = Convert.ToInt32(entry.Mouth),
                                 note = entry.Note,
-                                
                             };
+                            if (entry.Year== "")
+                            {
+                                _article.year = null;
+                            }
+                            if (entry.Number == "")
+                            {
+                                _article.number = null;
+                            }
+                            if (entry.Mouth == "")
+                            {
+                                _article.month = null;
+                            }
+                            if (entry.Volume == "")
+                            {
+                                _article.volume = null;
+                            }
                             _articleService.Add(_article);
                             Console.WriteLine("Added To Db Article");
                             break;

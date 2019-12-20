@@ -23,7 +23,7 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public void Add(article entity)
         {
-            ToolValidator.FluentValidate(new ArticleValidate(), entity);
+            //ToolValidator.FluentValidate(new ArticleValidate(), entity);
             _iConnection.ExecuteScalar<article>(
                 "INSERT INTO article (author, doi, journal, month, note, number, pages, title, volume, year," +
                 " bibtexkey,entrytype) VALUES( @author, @doi, @journal, @month, @note, @number, @pages, @title," +
