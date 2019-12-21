@@ -130,7 +130,6 @@ namespace BiBuddy.UI
                             book _book = new book
                             {
                                 bibtexkey = entry.Key,
-                                author = entry.Author,
                                 title = entry.Title,
                                 address = entry.Address,
                                 publisher = entry.Publisher,
@@ -143,6 +142,22 @@ namespace BiBuddy.UI
                                 note = entry.Note,
                                 volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?
                             };
+                            if (entry.Author != "" && entry.Editor != "")
+                                _book.author = entry.Author;
+                            else if (entry.Author != "")
+                                _book.author = entry.Author;
+                            else
+                                _book.author = entry.Editor;
+
+                            // ----------------------------------------------------
+
+                            if (entry.Volume != "" && entry.Number != "")
+                                _book.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                            else if (entry.Volume != "")
+                                _book.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                            else
+                                _book.volume = entry.Number != "" ? Convert.ToInt32(entry.Number) : null as int?;
+
                             _bookService.Add(_book);
                             Console.WriteLine("Added To Db Book");
                             break;
@@ -181,6 +196,14 @@ namespace BiBuddy.UI
                                 bibtexkey = entry.Key,
                                 entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Conference)
                             };
+                            // ----------------------------------------------------
+                            if (entry.Volume != "" && entry.Number != "")
+                                _conference.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                            else if (entry.Volume != "")
+                                _conference.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                            else
+                                _conference.volume = entry.Number != "" ? Convert.ToInt32(entry.Number) : null as int?;
+                            // ----------------------------------------------------
                             _conferenceService.Add(_conference);
                             Console.WriteLine("Added To Db Conference");
                             break;
@@ -188,11 +211,9 @@ namespace BiBuddy.UI
                             inbook _inbook = new inbook
                             {
                                 title = entry.Title,
-                                author = entry.Author,
                                 chapter = entry.Chapter != "" ? Convert.ToInt32(entry.Chapter) : null as int?,
                                 publisher = entry.Publisher,
                                 year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?,
-                                volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?,
                                 series = entry.Series != "" ? Convert.ToInt32(entry.Series) : null as int?,
                                 type = entry.Type,
                                 address = entry.Address,
@@ -202,6 +223,21 @@ namespace BiBuddy.UI
                                 bibtexkey = entry.Key,
                                 entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.InBook)
                             };
+                            // -------------------------------------------------------
+                            if (entry.Author != "" && entry.Editor != "")
+                                _inbook.author = entry.Author;
+                            else if (entry.Author != "")
+                                _inbook.author = entry.Author;
+                            else
+                                _inbook.author = entry.Editor;
+                            // -------------------------------------------------------
+                            if (entry.Volume != "" && entry.Number != "")
+                                _inbook.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                            else if (entry.Volume != "")
+                                _inbook.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                            else
+                                _inbook.volume = entry.Number != "" ? Convert.ToInt32(entry.Number) : null as int?;
+                            // -------------------------------------------------------
                             _inbookService.Add(_inbook);
                             Console.WriteLine("Added To Db Inbook");
                             break;
@@ -226,6 +262,14 @@ namespace BiBuddy.UI
                                 editor = entry.Editor,
                                 entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.InCollection)
                             };
+                            // -------------------------------------------------------
+                            if (entry.Volume != "" && entry.Number != "")
+                                _incollection.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                            else if (entry.Volume != "")
+                                _incollection.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                            else
+                                _incollection.volume = entry.Number != "" ? Convert.ToInt32(entry.Number) : null as int?;
+                            // -------------------------------------------------------
                             _incollectionService.Add(_incollection);
                             Console.WriteLine("Added To Db Incollection");
                             break;
@@ -371,12 +415,6 @@ namespace BiBuddy.UI
                 Delete_Btn.IsEnabled = false;
             }
         }
-
-
-        private void CheckUnCheckAll(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void Btn_Delete_Click(object sender, MouseButtonEventArgs e)
         {
             
