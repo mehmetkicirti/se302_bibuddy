@@ -23,7 +23,9 @@ namespace BiBuddy.Entities.ValidationRules.FluentValidation
             RuleFor(a => a.title).MinimumLength(2).WithMessage(errorMessage: ErrorMessages.TitleMinLength);
             RuleFor(a => a.title).MaximumLength(250).WithMessage(errorMessage: ErrorMessages.TitleMaxLength);
             #endregion
-
+            #region Chapter
+            RuleFor(x => x.chapter).NotEmpty().WithMessage("Please enter a value for chapter");
+            #endregion
             #region Address
             //RuleFor(a => a.address).NotEmpty().WithMessage(errorMessage: ErrorMessages.AddresIsRequired);
             RuleFor(a => a.address).MinimumLength(2).WithMessage(errorMessage: ErrorMessages.AddressMinLength);
@@ -31,7 +33,7 @@ namespace BiBuddy.Entities.ValidationRules.FluentValidation
             #endregion
 
             #region Publisher
-            //RuleFor(a => a.address).NotEmpty().WithMessage(errorMessage: ErrorMessages.AddresIsRequired);
+            RuleFor(a => a.publisher).NotEmpty().WithMessage(errorMessage: "Please enter a value for publisher, do not be empty.");
             RuleFor(a => a.publisher).MinimumLength(2).WithMessage(errorMessage: ErrorMessages.PublisherMinLength);
             RuleFor(a => a.publisher).MaximumLength(250).WithMessage(errorMessage: ErrorMessages.PublisherMaxLength);
             #endregion

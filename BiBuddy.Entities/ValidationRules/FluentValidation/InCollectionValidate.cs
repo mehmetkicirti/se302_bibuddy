@@ -31,12 +31,13 @@ namespace BiBuddy.Entities.ValidationRules.FluentValidation
             #endregion
 
             #region Publisher
-            //RuleFor(a => a.address).NotEmpty().WithMessage(errorMessage: ErrorMessages.AddresIsRequired);
+            RuleFor(a => a.publisher).NotEmpty().WithMessage(errorMessage: "Please enter a value for publisher , do not be empty");
             RuleFor(a => a.publisher).MinimumLength(2).WithMessage(errorMessage: ErrorMessages.PublisherMinLength);
             RuleFor(a => a.publisher).MaximumLength(250).WithMessage(errorMessage: ErrorMessages.PublisherMaxLength);
             #endregion
 
             #region BookTitle
+            RuleFor(a => a.booktitle).NotEmpty().WithMessage(errorMessage: "Please enter a value for booktitle, do not be empty");
             RuleFor(a => a.booktitle).MinimumLength(2).WithMessage(errorMessage: ErrorMessages.BookTitleMinLength);
             RuleFor(a => a.booktitle).MaximumLength(250).WithMessage(errorMessage: ErrorMessages.BookTitleMaxLength);
             #endregion

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace BiBuddy.Entities.Concrete
 {
-    public class booklet :BaseEntity,IEntity
+    public class booklet :BaseEntity,IEntity, INotifyPropertyChanged, IDataErrorInfo
     {
         private readonly BookletValidate _bookletValidator;
         private string _author;

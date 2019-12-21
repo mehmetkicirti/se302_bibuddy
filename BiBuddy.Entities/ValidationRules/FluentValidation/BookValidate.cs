@@ -31,6 +31,7 @@ namespace BiBuddy.Entities.ValidationRules.FluentValidation
             #endregion
 
             #region Publisher
+            RuleFor(a => a.publisher).NotEmpty().WithMessage("Please enter a value for publisher");
             RuleFor(a => a.publisher).MinimumLength(2).WithMessage(errorMessage: ErrorMessages.PublisherMinLength);
             RuleFor(a => a.publisher).MaximumLength(250).WithMessage(errorMessage: ErrorMessages.PublisherMaxLength);
             #endregion
@@ -41,10 +42,7 @@ namespace BiBuddy.Entities.ValidationRules.FluentValidation
             #endregion
 
             #region Month
-
             RuleFor(a => a.month).Must(MonthRange).WithMessage(errorMessage: ErrorMessages.MonthRange);
-
-
             #endregion
         }
         private static bool MonthRange(int? arg)

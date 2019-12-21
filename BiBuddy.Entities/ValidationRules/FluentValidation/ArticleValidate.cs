@@ -30,6 +30,16 @@ namespace Bibuddy.Entities.ValidationRules.FluentValidation
             
             #region Year
             RuleFor(a => a.year).Must(YearRange).WithMessage(errorMessage: ErrorMessages.YearRange);
+            //RuleFor(y => y.year.Value.ToString()).Custom((list, context) =>
+            //  {
+            //      foreach (var c in list)
+            //      {
+            //          if (!Char.IsDigit(c))
+            //          {
+            //              context.AddFailure("Please enter only integer value");
+            //          }
+            //      }
+            //  });
             #endregion
 
             #region Month

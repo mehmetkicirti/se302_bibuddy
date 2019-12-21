@@ -37,6 +37,7 @@ namespace BiBuddy.Entities.ValidationRules.FluentValidation
             #endregion
 
             #region BookTitle
+            RuleFor(a => a.booktitle).NotEmpty().WithMessage("Please enter a value for booktitle");
             RuleFor(a => a.booktitle).MinimumLength(2).WithMessage(errorMessage: ErrorMessages.BookTitleMinLength);
             RuleFor(a => a.booktitle).MaximumLength(250).WithMessage(errorMessage: ErrorMessages.BookTitleMaxLength);
             #endregion

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace BiBuddy.Entities.Concrete
 {
-    public class conference:BaseEntity,IEntity
+    public class conference:BaseEntity,IEntity, INotifyPropertyChanged, IDataErrorInfo
     {
         private readonly ConferenceValidate _conferenceValidator;
         private string _author;
