@@ -12,6 +12,8 @@ namespace BiBuddy.Entities.Concrete
         private readonly ManualValidate _manualValidator;
         private string _author;
         private string _title;
+        private int? _year;
+        private int? _month;
         public manual()
         {
             _manualValidator = new ManualValidate();
@@ -44,8 +46,31 @@ namespace BiBuddy.Entities.Concrete
                 OnPropertyChanged("title");
             }
         }
-
-
+        
+        public int? year 
+        {
+            get
+            {
+                return _year;
+            }
+            set
+            {
+                _year = value.HasValue ? value.Value: null as int?;
+                OnPropertyChanged("year");
+            }
+        }
+        public int? month
+        {
+            get
+            {
+                return _month;
+            }
+            set
+            {
+                _month = value.HasValue ? value.Value : null as int?;
+                OnPropertyChanged("month");
+            }
+        }
 
         public string organization { get; set; }
         public string address { get; set; }

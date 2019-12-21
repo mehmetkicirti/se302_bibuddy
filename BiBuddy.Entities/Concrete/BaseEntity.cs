@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace BiBuddy.Entities.Concrete
 {
@@ -7,8 +8,6 @@ namespace BiBuddy.Entities.Concrete
         [Key]
         public int ID { get; set; }
         public string note { get; set; }
-        public int? year { get; set; }
-        public int? month { get; set; }
         public string bibtexkey { get; set; }
         public string entrytype{ get; set; }
     }

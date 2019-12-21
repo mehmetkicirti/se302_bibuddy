@@ -17,7 +17,32 @@ namespace BiBuddy.Entities.Concrete
         {
             _articleValidator = new ArticleValidate();
         }
-
+        private int? _year { get; set; }
+        private int? _month { get; set; }
+        public int? year
+        {
+            get
+            {
+                return _year;
+            }
+            set
+            {
+                _year = value.HasValue ? value.Value : null as int?;
+                OnPropertyChanged("year");
+            }
+        }
+        public int? month
+        {
+            get
+            {
+                return _month;
+            }
+            set
+            {
+                _month = value.HasValue ? value.Value : null as int?;
+                OnPropertyChanged("month");
+            }
+        }
 
         //Why we do not use DataAnnatotions => because it is a contradiction for Solid Principle S
         //[Required]
