@@ -93,7 +93,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Chapter = " Margin="15,10"></Label>
-                    <TextBox x:Name="chapter_Txt" Text="{Binding chapter, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="27,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
+                        <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" x:Name="chapter_Txt" Text="{Binding chapter, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="27,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -110,7 +110,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Volume = " Margin="14,10"></Label>
-                    <TextBox x:Name="volume_Txt" Text="{Binding volume}" Width="283" Margin="29,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
+                        <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" x:Name="volume_Txt" Text="{Binding volume}" Width="283" Margin="29,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -123,7 +123,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Series= " Padding="16,15"></Label>
-                        <TextBox x:Name="series_Txt" BorderBrush="Beige" Text="{Binding series, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="286" Margin="42,10" BorderThickness="2" Foreground="White"/>
+                        <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" x:Name="series_Txt" BorderBrush="Beige" Text="{Binding series, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="286" Margin="42,10" BorderThickness="2" Foreground="White"/>
                         <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -144,7 +144,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Edition = " Padding="16,15"></Label>
-                    <TextBox x:Name="edition_Txt" BorderBrush="Beige" Text="{Binding edition, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="283" Margin="35,10" BorderThickness="2" Foreground="White"></TextBox>
+                        <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" x:Name="edition_Txt" BorderBrush="Beige" Text="{Binding edition, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="283" Margin="35,10" BorderThickness="2" Foreground="White"></TextBox>
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -157,7 +157,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" CanVerticallyScroll="True">
                     <Label Foreground="White" Content="Year = " Margin="19,10"></Label>
-                    <TextBox x:Name="year_Txt" Text="{Binding year, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="284" Margin="35,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
+                        <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" x:Name="year_Txt" Text="{Binding year, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="284" Margin="35,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -170,7 +170,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" CanVerticallyScroll="True">
                     <Label Foreground="White" Content="Month = " Margin="20,10"></Label>
-                    <TextBox x:Name="month_Txt" Text="{Binding month, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="284" Margin="21,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
+                        <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" x:Name="month_Txt" Text="{Binding month, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="284" Margin="21,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel Orientation="Horizontal">

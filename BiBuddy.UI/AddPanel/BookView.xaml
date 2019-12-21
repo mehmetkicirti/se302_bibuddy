@@ -60,7 +60,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="*Volume = " Margin="9,10"></Label>
-                    <TextBox x:Name="volume_Txt" Foreground="White" BorderBrush="Beige" Text="{Binding volume, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="26,10" BorderThickness="2"></TextBox>
+                        <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" x:Name="volume_Txt" Foreground="White" BorderBrush="Beige" Text="{Binding volume, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="26,10" BorderThickness="2"></TextBox>
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -86,7 +86,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Year = " Padding="23,15"></Label>
-                    <TextBox x:Name="year_Txt" BorderBrush="Beige" Text="{Binding year, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="29,10" BorderThickness="2" Foreground="White"></TextBox>
+                        <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" x:Name="year_Txt" BorderBrush="Beige" Text="{Binding year, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="29,10" BorderThickness="2" Foreground="White"></TextBox>
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -99,7 +99,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Month = " Padding="16,15"></Label>
-                    <TextBox x:Name="month_Txt" BorderBrush="Beige" Text="{Binding month, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="29,10" BorderThickness="2" Foreground="White"></TextBox>
+                        <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" x:Name="month_Txt" BorderBrush="Beige" Text="{Binding month, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="29,10" BorderThickness="2" Foreground="White"></TextBox>
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -112,7 +112,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Series = " Margin="20,10"></Label>
-                    <TextBox x:Name="series_Txt" Text="{Binding series}" Width="280" Margin="16,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
+                        <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" x:Name="series_Txt" Text="{Binding series}" Width="280" Margin="16,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Address = " Margin="20,10"></Label>
@@ -120,7 +120,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Edition = " Margin="20,10"></Label>
-                    <TextBox x:Name="edition_Txt" Text="{Binding edition}" Width="280" Margin="10,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
+                        <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" x:Name="edition_Txt" Text="{Binding edition}" Width="280" Margin="10,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="URL = " Margin="20,10"></Label>
