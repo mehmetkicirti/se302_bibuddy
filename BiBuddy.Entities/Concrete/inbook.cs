@@ -13,7 +13,7 @@ namespace BiBuddy.Entities.Concrete
         private string _author;
         private string _title;
         private string _publisher;
-        private int _chapter;
+        private int? _chapter;
         public inbook()
         {
             _inbookValidator = new InBookValidate();
@@ -47,7 +47,7 @@ namespace BiBuddy.Entities.Concrete
             }
         }        
         //[Required]
-        public int chapter
+        public int? chapter
         {
             get
             {
@@ -55,7 +55,7 @@ namespace BiBuddy.Entities.Concrete
             }
             set
             {
-                _chapter = value;
+                _chapter = value.HasValue ? value.Value : null as int?;
                 OnPropertyChanged("chapter");
             }
         }
