@@ -16,6 +16,7 @@ namespace BiBuddy.DataAccess.Core.DataAccess
         where TEntity : class,IEntity,new()
     {
         void Add(TEntity entity);
+        //void AddByImport(TEntity entity);
         void Delete(int ID);
         void Update(TEntity entity);
         TEntity GetByID(int ID);

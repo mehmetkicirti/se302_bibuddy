@@ -98,10 +98,8 @@
     <Compile Include="Core\Parser\Token.cs" />
     <Compile Include="Core\Parser\UnexpectedTokenException.cs" />
     <Compile Include="Core\Parser\UnrecognizableCharacterException.cs" />
-    <Compile Include="Core\Utility\ErrorMessages.cs" />
     <Compile Include="Core\Utility\ExportOperations.cs" />
     <Compile Include="Core\Utility\GetEntryType.cs" />
-    <Compile Include="Core\ValidationRules\FluentValidation\ArticleValidate.cs" />
     <Compile Include="DatabaseContext\Dapper\DapperDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

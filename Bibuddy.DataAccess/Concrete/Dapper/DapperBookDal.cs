@@ -39,6 +39,26 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
                  });
         }
 
+        public void AddByImport(book entity)
+        {
+            _iConnection.ExecuteScalar<book>(
+                "INSERT INTO book (author, entrytype, month, note, address, edition, url, series, title, volume, year, bibtexkey) VALUES( @author, @entrytype, @month, @note, @address, @edition, @url, @series, @title, @volume, @year, @bibtexkey)", new
+                {
+                    entity.author,
+                    entity.entrytype,
+                    entity.month,
+                    entity.note,
+                    entity.address,
+                    entity.edition,
+                    entity.url,
+                    entity.series,
+                    entity.title,
+                    entity.volume,
+                    entity.year,
+                    entity.bibtexkey
+                });
+        }
+
         public int Count()
         {
             string query = @"SELECT COUNT(ID) FROM book";
