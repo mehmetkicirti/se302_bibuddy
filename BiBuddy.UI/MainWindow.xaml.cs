@@ -110,31 +110,19 @@ namespace BiBuddy.UI
                         case "Article":
                             article _article = new article
                             {
+                                //year_Txt.Text != "" ? Convert.ToInt32(year_Txt.Text) : null as int?
                                 author = entry.Author,
                                 title = entry.Title,
-                                year=Convert.ToInt32(entry.Year),
+                                year=entry.Year=="" ? Convert.ToInt32(entry.Year) : null as int?,
+                                number = entry.Number == "" ? Convert.ToInt32(entry.Number):null as int?,
+                                month = entry.Mouth == "" ? Convert.ToInt32(entry.Mouth):null as int?,
+                                volume = entry.Volume=="" ? Convert.ToInt32(entry.Volume):null as int?,
                                 journal = entry.Journal,
                                 pages = entry.Pages,
                                 bibtexkey = entry.Key,
                                 entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Article),
                                 note = entry.Note,
                             };
-                            if (entry.Year== "")
-                            {
-                                _article.year = null;
-                            }
-                            if (entry.Number == "")
-                            {
-                                _article.number = null;
-                            }
-                            if (entry.Mouth == "")
-                            {
-                                _article.month = null;
-                            }
-                            if (entry.Volume == "")
-                            {
-                                _article.volume = null;
-                            }
                             _articleService.Add(_article);
                             Console.WriteLine("Added To Db Article");
                             break;
@@ -265,8 +253,6 @@ namespace BiBuddy.UI
                             break;
                            
                     }
-                    
-                    
                 }
 
                 Console.WriteLine("Articles : " + _articleService.Count());

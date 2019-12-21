@@ -1,4 +1,5 @@
-﻿using BiBuddy.UI.ViewModel;
+﻿using BiBuddy.UI.AddPanel;
+using BiBuddy.UI.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,46 +45,32 @@ namespace BiBuddy.UI
             switch (selectedItem.Name)
             {
                 case "Article":
-                    AddPanels p1 = new AddPanels();
+                    ArticleView p1 = new ArticleView();
                     p1.Show();
-                    p1.sPanelArticleTxB.Visibility = Visibility.Visible;
-                    p1.sPanelArticleTBx.Visibility = Visibility.Visible;
                     break;
                 case "Book":
-                    AddPanels p2 = new AddPanels();
+                    BookView p2 = new BookView();
                     p2.Show();
-                    p2.sPanelBookTxB.Visibility = Visibility.Visible;
-                    p2.sPanelBookTBx.Visibility = Visibility.Visible;
                     break;
                 case "Inbook":
-                    AddPanels p3 = new AddPanels();
+                    InBookView p3 = new InBookView();
                     p3.Show();
-                    p3.sPanelInbookTxB.Visibility = Visibility.Visible;
-                    p3.sPanelInbookTBx.Visibility = Visibility.Visible;
                     break;
                 case "Incollection":
-                    AddPanels p4 = new AddPanels();
+                    InCollectionView p4 = new InCollectionView();
                     p4.Show();
-                    p4.sPanelIncollectionTxB.Visibility = Visibility.Visible;
-                    p4.sPanelIncollectionTBx.Visibility = Visibility.Visible;
                     break;
                 case "Manual":
-                    AddPanels p5 = new AddPanels();
+                    ManualView p5 = new ManualView();
                     p5.Show();
-                    p5.sPanelManualTxB.Visibility = Visibility.Visible;
-                    p5.sPanelManualTBx.Visibility = Visibility.Visible;
                     break;
                 case "Conference":
-                    AddPanels p6 = new AddPanels();
+                    ConferenceView p6 = new ConferenceView();
                     p6.Show();
-                    p6.sPanelConferenceTxB.Visibility = Visibility.Visible;
-                    p6.sPanelConferenceTBx.Visibility = Visibility.Visible;
                     break;
                 case "Booklet":
-                    AddPanels p7 = new AddPanels();
+                    BookletView p7 = new BookletView();
                     p7.Show();
-                    p7.sPanelBookletTxB.Visibility = Visibility.Visible;
-                    p7.sPanelBookletTBx.Visibility = Visibility.Visible;
                     break;
                 default:
                     break;
