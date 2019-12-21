@@ -23,6 +23,7 @@ namespace BiBuddy.Entities.ValidationRules
         public const string JournalIsRequired = "Journal text is a required field";
         #endregion
 
+
         #region Pages
         public const string PagesMinLength = "Pages text length greater than 2";
         public const string PagesMaxLength = "Pages text length less than 50";
@@ -33,7 +34,7 @@ namespace BiBuddy.Entities.ValidationRules
         #endregion
 
         #region Month
-            public static string MonthRange = String.Format("Month is not valid. It should be between {0} and {1}", 1, 12);
+        public static string MonthRange = String.Format("Month is not valid. It should be between {0} and {1}", 1, 12);
         #endregion
 
         #region Note
@@ -53,17 +54,35 @@ namespace BiBuddy.Entities.ValidationRules
         public const string AddressMaxLength = "Address text length less than 250";
         #endregion
 
-        public const string ISBNMaxLength = "ISBN text length less than 50";
-        public const string ISBNMinLength = "ISBN text length greater than 2";
-
-        public const string BookTitleMinLength = "BookTitle text length greater than 2";
-        public const string BookTitleMaxLength = "BookTitle text length less than 90";
-        public const string EditorMaxLength = "Editor text length less than 80";
-        public const string EditorMinLength = "Editor text length greater than 2";
+        #region Organization
         public const string OrganizationMinLength = "Organization text length greater than 2";
         public const string OrganizationMaxLength = "Organization text length less than 150";
+        #endregion
+
+        #region ISBN
+
+        public const string ISBNMaxLength = "ISBN text length less than 50";
+        public const string ISBNMinLength = "ISBN text length greater than 2";
+        #endregion
+
+        #region  BookTitle
+        public const string BookTitleMinLength = "BookTitle text length greater than 2";
+        public const string BookTitleMaxLength = "BookTitle text length less than 90";
+        #endregion
+
+        #region Editor
+        public const string EditorMaxLength = "Editor text length less than 80";
+        public const string EditorMinLength = "Editor text length greater than 2";
+        #endregion
+
+        #region Publisher
         public const string PublisherMinLength = "Publisher text length greater than 2";
-        public const string PublisherMaxLength = "Publisher text length less than 150"; 
+        public const string PublisherMaxLength = "Publisher text length less than 150";
+        #endregion
+
+
+
+
         #endregion
     }
 }
