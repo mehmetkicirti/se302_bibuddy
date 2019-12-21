@@ -346,9 +346,20 @@ namespace BiBuddy.UI
                 saveFileDialog.CreatePrompt = true;
                 if (saveFileDialog.ShowDialog() == true)
                 {
-                    StreamWriter save = new StreamWriter(saveFileDialog.FileName);
-                    save.WriteLine(ExportOperations.GetImportFile(list));
-                    save.Close();
+                    if (saveFileDialog.Filter == ".bib")
+                    {
+                        StreamWriter save = new StreamWriter(saveFileDialog.FileName);
+                        save.WriteLine(ExportOperations.GetImportFile(list));
+                        save.Close();
+                    }
+                    else
+                    {
+                        StreamWriter save = new StreamWriter(saveFileDialog.FileName);
+                        save.WriteLine(ExportOperations.getHTMLexport(list));
+                        save.Close();
+                        Console.WriteLine("html export alında");
+                    }
+
                 }
             }
             else
