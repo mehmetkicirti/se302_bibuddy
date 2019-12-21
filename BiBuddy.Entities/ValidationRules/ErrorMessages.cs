@@ -38,15 +38,24 @@ namespace BiBuddy.Entities.ValidationRules
 
         #region Note
         public const string NoteMinLength = "Note text length greater than 2";
-        public const string NoteMaxLength = "Note text length less than 250"; 
+        public const string NoteMaxLength = "Note text length less than 250";
         #endregion
 
-        public const string AddressMinLength = "Address text length greater than 2";
-        public const string AddressMaxLength = "Address text length less than 250";
-        public const string ISBNMaxLength = "ISBN text length less than 50";
-        public const string ISBNMinLength = "ISBN text length greater than 2";
+        #region HowPublished
+        //public const string HowPublishedIsRequired = "HowPublised is a required field";
         public const string HowPublishedMinLength = "HowPublished text length greater than 2";
         public const string HowPublishedMaxLength = "HowPublished text length less than 50";
+        #endregion
+
+        #region Address
+        //public const string AddressIsRequired = "Address is a required field";
+        public const string AddressMinLength = "Address text length greater than 2";
+        public const string AddressMaxLength = "Address text length less than 250";
+        #endregion
+
+        public const string ISBNMaxLength = "ISBN text length less than 50";
+        public const string ISBNMinLength = "ISBN text length greater than 2";
+
         public const string BookTitleMinLength = "BookTitle text length greater than 2";
         public const string BookTitleMaxLength = "BookTitle text length less than 90";
         public const string EditorMaxLength = "Editor text length less than 80";

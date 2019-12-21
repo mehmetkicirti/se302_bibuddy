@@ -9,4 +9,6 @@ namespace BiBuddy.Entities.ValidationRules.FluentValidation
     public class InBookValidate
     {
     }
+
+
 }
