@@ -55,7 +55,7 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public void Delete(int ID)
         {
-            string q = $"Delete from article where ID = @ID";
+            string q = $"Delete from inbook where ID = @ID";
             _iConnection.Execute(q,
                 new
                 {
@@ -70,7 +70,17 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public List<inbook> GetAll(string filter = null)
         {
-            throw new NotImplementedException();
+            if (filter != null)
+            {
+                filter = filter.ToLower();
+            }
+            string query = "Select * from inbook";
+            List<inbook> listvalues = _iConnection.Query<inbook>(query).ToList();
+
+            //if (String.IsNullOrEmpty(filter) || filter == "*")
+            //{
+                return listvalues;
+            //}
         }
 
         public List<inbook> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null)

@@ -74,7 +74,17 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public List<incollection> GetAll(string filter = null)
         {
-            throw new NotImplementedException();
+            if (filter != null)
+            {
+                filter = filter.ToLower();
+            }
+            string query = "Select * from incollection";
+            List<incollection> listvalues = _iConnection.Query<incollection>(query).ToList();
+
+            //if (String.IsNullOrEmpty(filter) || filter == "*")
+            //{
+                return listvalues;
+            //}
         }
 
         public List<incollection> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null)

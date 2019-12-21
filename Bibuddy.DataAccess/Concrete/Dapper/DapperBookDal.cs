@@ -68,7 +68,12 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public void Delete(int ID)
         {
-            throw new NotImplementedException();
+            string q = $"Delete from book where ID = @ID";
+            _iConnection.Execute(q,
+                new
+                {
+                    ID
+                });
         }
 
         public book Get(string filter = null)
@@ -78,7 +83,40 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public List<book> GetAll(string filter = null)
         {
-            throw new NotImplementedException();
+
+            if (filter != null)
+            {
+                filter = filter.ToLower();
+            }
+            string query = "Select * from book";
+            List<book> listvalues = _iConnection.Query<book>(query).ToList();
+                return listvalues;
+            
+            //if (filter.StartsWith("K. Oğuz") || filter.StartsWith("K. Oguz") || filter.StartsWith("K. oğuz") || filter.StartsWith("K. oguz") || filter.StartsWith("k. oguz"))
+            //{
+            //    filter = "Kaya Oğuz".ToLower();
+            //    return listvalues.Where(x => x.author.ToLower().Contains(filter)).ToList();
+            //}
+            //if (filter.Contains(".") && filter.Contains(".*"))
+            //{
+            //    int index = filter.IndexOf(".*");
+            //    filter = filter.Substring(0, index);
+            //    return listvalues.Where(x => x.author.ToLower().Contains(filter)
+            //       || x.bibtexkey.ToLower().Contains(filter)
+            //       || (x.doi == null ? x.doi.Contains("") : x.doi.ToLower().Contains(filter))
+            //       || x.entrytype.ToLower().Contains(filter)
+            //       || x.journal.ToLower().Contains(filter)
+            //       || x.title.ToLower().Contains(filter)).ToList();
+            //}
+            //return listvalues.Where(
+            //        x => x.author.ToLower().Contains(filter)
+            //        || x.bibtexkey.ToLower().Contains(filter)
+            //        || x.doi.ToLower().Contains(filter)
+            //        || x.entrytype.ToLower().Contains(filter)
+            //        || x.journal.ToLower().Contains(filter)
+            //        || x.month.Value.Equals(Convert.ToInt32(filter))
+            //        || x.year.Value.Equals(Convert.ToInt32(filter))
+            //        ).ToList();
         }
 
         public List<book> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null)
