@@ -113,13 +113,13 @@
 
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.Header>
-                            <CheckBox>
+                            <CheckBox  Click="CheckUnCheckAll">
                                 <CheckBox.ToolTip>Select All</CheckBox.ToolTip>
                             </CheckBox>
                         </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate >
                             <DataTemplate >
-                                <CheckBox Checked="IsCheckedExport"></CheckBox>
+                                <CheckBox Unchecked="UnCheckedExport" Checked="IsCheckedExport"></CheckBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

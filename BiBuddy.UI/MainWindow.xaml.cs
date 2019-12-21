@@ -115,7 +115,7 @@ namespace BiBuddy.UI
                                 title = entry.Title,
                                 year=entry.Year=="" ? Convert.ToInt32(entry.Year) : null as int?,
                                 number = entry.Number == "" ? Convert.ToInt32(entry.Number):null as int?,
-                                month = entry.Mouth == "" ? Convert.ToInt32(entry.Mouth):null as int?,
+                                //month = entry.Mouth == "" ? Convert.ToInt32(entry.Mouth):null as int?,
                                 volume = entry.Volume=="" ? Convert.ToInt32(entry.Volume):null as int?,
                                 journal = entry.Journal,
                                 pages = entry.Pages,
@@ -321,6 +321,31 @@ namespace BiBuddy.UI
                 StreamWriter save = new StreamWriter(saveFileDialog.FileName);
                 save.WriteLine(ExportOperations.GetImportFile(list));
                 save.Close();
+            }
+        }
+
+        private void UnCheckedExport(object sender, RoutedEventArgs e)
+        {
+            list.Remove(DataGridMain.SelectedItem);
+        }
+
+
+        private void CheckUnCheckAll(object sender, RoutedEventArgs e)
+        {
+            var chkSelectAll = sender as CheckBox;
+            var firstCol = DataGridMain.Columns[1];
+            if (chkSelectAll == null || firstCol == null || DataGridMain?.Items == null)
+            {
+                return;
+            }
+            foreach (var item in DataGridMain.Items)
+            {
+                var chBx = firstCol.GetCellContent(item) as CheckBox;
+                if (chBx == null)
+                {
+                    continue;
+                }
+                chBx.IsChecked = chkSelectAll.IsChecked;
             }
         }
     }
