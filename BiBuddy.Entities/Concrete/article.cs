@@ -17,7 +17,10 @@ namespace BiBuddy.Entities.Concrete
         {
             _articleValidator = new ArticleValidate();
         }
+
+
         //Why we do not use DataAnnatotions => because it is a contradiction for Solid Principle S
+        //[Required]
         public string author
         {
             get
@@ -30,6 +33,7 @@ namespace BiBuddy.Entities.Concrete
                 OnPropertyChanged("author");
             }
         }
+        //[Required]
         public string title 
         {
             get
@@ -42,6 +46,7 @@ namespace BiBuddy.Entities.Concrete
                 OnPropertyChanged("title");
             }
         }
+        //[Required]
         public string journal 
         {
             get
@@ -54,6 +59,9 @@ namespace BiBuddy.Entities.Concrete
                 OnPropertyChanged("journal");
             }
         }
+
+
+
         public int? volume { get; set; }
         public int? number { get; set; }
         public string pages { get; set; }
