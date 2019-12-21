@@ -50,8 +50,9 @@ namespace BiBuddy.UI
             _inbookService = InstanceFactory.GetInstance<DapperInbookDal>();
             _incollectionService = InstanceFactory.GetInstance<DapperIncollectionDal>();
             _manualService = InstanceFactory.GetInstance<DapperManualDal>();
-
+            //Export_Btn.IsEnabled = false;
             InitializeComponent();
+            Export_Btn.IsEnabled = false;
             var menuRegister = new List<SubItem>();
             menuRegister.Add(new SubItem("Article"));
             menuRegister.Add(new SubItem("Book"));
@@ -306,47 +307,43 @@ namespace BiBuddy.UI
         private List<object> list = new List<object>();
         private void IsCheckedExport(object sender, RoutedEventArgs e)
         {
-
+            Export_Btn.IsEnabled = true;
             list.Add(DataGridMain.SelectedItem);
         }
 
         private void btn_Export_Click(object sender, MouseButtonEventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "BibTeX files (*.bib) |*.bib | HTML File (*.html) |*.html";
-            saveFileDialog.OverwritePrompt = true;
-            saveFileDialog.CreatePrompt = true;
-            if (saveFileDialog.ShowDialog() == true)
+            if (list.Count>0)
             {
-                StreamWriter save = new StreamWriter(saveFileDialog.FileName);
-                save.WriteLine(ExportOperations.GetImportFile(list));
-                save.Close();
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "BibTeX files (*.bib) |*.bib | HTML File (*.html) |*.html";
+                saveFileDialog.OverwritePrompt = true;
+                saveFileDialog.CreatePrompt = true;
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    StreamWriter save = new StreamWriter(saveFileDialog.FileName);
+                    save.WriteLine(ExportOperations.GetImportFile(list));
+                    save.Close();
+                }
+            }
+            else
+            {
+                Export_Btn.IsEnabled = false;
             }
         }
 
         private void UnCheckedExport(object sender, RoutedEventArgs e)
         {
             list.Remove(DataGridMain.SelectedItem);
+            if (list.Count>0)
+                Export_Btn.IsEnabled = true;
+            else if (list.Count<=0)
+                Export_Btn.IsEnabled = false;
         }
 
 
         private void CheckUnCheckAll(object sender, RoutedEventArgs e)
         {
-            var chkSelectAll = sender as CheckBox;
-            var firstCol = DataGridMain.Columns[1];
-            if (chkSelectAll == null || firstCol == null || DataGridMain?.Items == null)
-            {
-                return;
-            }
-            foreach (var item in DataGridMain.Items)
-            {
-                var chBx = firstCol.GetCellContent(item) as CheckBox;
-                if (chBx == null)
-                {
-                    continue;
-                }
-                chBx.IsChecked = chkSelectAll.IsChecked;
-            }
         }
     }
 }

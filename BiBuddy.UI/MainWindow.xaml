@@ -83,7 +83,8 @@
                         </StackPanel>
                     </ListViewItem>
 
-                    <ListViewItem PreviewMouseLeftButtonUp="btn_Export_Click" Height="60">
+                    <ListViewItem 
+        x:Name="Export_Btn"                        PreviewMouseLeftButtonUp="btn_Export_Click" Height="60">
                         <StackPanel  Orientation="Horizontal">
                             <materialDesign:PackIcon Margin="10" Kind="ExportVariant" Width="25" Height="25" VerticalAlignment="Center"></materialDesign:PackIcon>
                             <TextBlock VerticalAlignment="Center" Margin="20 10" Text="Export"></TextBlock>
