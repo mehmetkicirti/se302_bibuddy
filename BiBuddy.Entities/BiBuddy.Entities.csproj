@@ -68,6 +68,14 @@
     <Compile Include="Concrete\incollection.cs" />
     <Compile Include="Concrete\manual.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationRules\ErrorMessages.cs" />
+    <Compile Include="ValidationRules\FluentValidation\ArticleValidate.cs" />
+    <Compile Include="ValidationRules\FluentValidation\BookletValidate.cs" />
+    <Compile Include="ValidationRules\FluentValidation\BookValidate.cs" />
+    <Compile Include="ValidationRules\FluentValidation\ConferenceValidate.cs" />
+    <Compile Include="ValidationRules\FluentValidation\InBookValidate.cs" />
+    <Compile Include="ValidationRules\FluentValidation\InCollectionValidate.cs" />
+    <Compile Include="ValidationRules\FluentValidation\ManualValidate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
