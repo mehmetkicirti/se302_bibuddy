@@ -52,11 +52,11 @@ namespace BiBuddy.UI
                     BookView p2 = new BookView();
                     p2.Show();
                     break;
-                case "Inbook":
+                case "InBook":
                     InBookView p3 = new InBookView();
                     p3.Show();
                     break;
-                case "Incollection":
+                case "InCollection":
                     InCollectionView p4 = new InCollectionView();
                     p4.Show();
                     break;
