@@ -6,13 +6,14 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:BiBuddy.UI.AddPanel"
         mc:Ignorable="d"
-        Height="760" Width="550" ResizeMode="NoResize" Background="Transparent"
+        Height="600" Width="550" ResizeMode="NoResize" Background="Transparent"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         DataContext="{Binding inbook}">
 
     <Grid>
-        <Grid>
+        <ScrollViewer>
+            <Grid>
             <Border CornerRadius="10" Grid.RowSpan="2">
                 <Border.Background>
                     <LinearGradientBrush>
@@ -166,5 +167,6 @@
                 </DockPanel>
             </StackPanel>
         </Grid>
+            </ScrollViewer>
     </Grid>
 </Window>

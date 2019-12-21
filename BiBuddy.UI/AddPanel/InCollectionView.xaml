@@ -6,18 +6,20 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:BiBuddy.UI.AddPanel"
         mc:Ignorable="d"
-        Height="908" Width="550" ResizeMode="NoResize" Background="Transparent"
+        Height="600" Width="550" ResizeMode="NoResize" Background="Transparent"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         DataContext="{Binding incollection}">
 
-    <Grid>
-        <Grid>
+    <Grid Margin="0,0,0,-45">
+        <ScrollViewer>
+            <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="793*"/>
                 <RowDefinition Height="7*"/>
             </Grid.RowDefinitions>
-            <Border CornerRadius="10" Margin="0,0,0,-20" Grid.RowSpan="2">
+                
+                    <Border CornerRadius="10" Margin="0,0,0,37" Grid.RowSpan="2">
                 <Border.Background>
                     <LinearGradientBrush>
                         <GradientStop Color="#7be9f6" Offset="0.0"></GradientStop>
@@ -25,6 +27,7 @@
                     </LinearGradientBrush>
                 </Border.Background>
             </Border>
+                
             <StackPanel Margin="20,20,20,13">
                 <TextBlock Text="Add Incollection View"
                            FontWeight="DemiBold"
@@ -34,7 +37,8 @@
                            Foreground="White" HorizontalAlignment="Center">
                 </TextBlock>
             </StackPanel>
-            <StackPanel VerticalAlignment="Top" Margin="65,65,65,-74" Height="850" Grid.RowSpan="2">
+                
+            <StackPanel VerticalAlignment="Top" Margin="65,65,65,65" Height="850" Grid.RowSpan="2">
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="*Author = " Margin="15,10"></Label>
                     <TextBox x:Name="author_Txt" Text="{Binding author, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="29,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
@@ -48,7 +52,7 @@
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="15,10">
+                <StackPanel Orientation="Horizontal" Margin="15,10,0,10">
                     <Label Foreground="White" Content="*Title = " Margin="24,10"></Label>
                     <TextBox x:Name="title_Txt" Text="{Binding title, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="10" BorderThickness="2"  Foreground="White" BorderBrush="Beige"></TextBox>
                     <Validation.ErrorTemplate>
@@ -74,7 +78,7 @@
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5">
+                <StackPanel Orientation="Horizontal" Margin="5,5,0,5">
                     <Label Foreground="White" Content="*Publisher =" Margin="15,10"></Label>
                     <TextBox x:Name="publisher_Txt" BorderBrush="Beige" Text="{Binding publisher, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="15,10" BorderThickness="2" Foreground="White"></TextBox>
                     <Validation.ErrorTemplate>
@@ -102,11 +106,11 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Editor = " Margin="15,10"></Label>
-                    <TextBox x:Name="editor_Txt" Text="{Binding editor}" Width="280" Margin="36,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
+                    <TextBox x:Name="editor_Txt" Text="{Binding editor}" Width="282" Margin="36,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Volume = " Margin="14,10"></Label>
-                    <TextBox x:Name="volume_Txt" Text="{Binding volume}" Width="280" Margin="29,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
+                    <TextBox x:Name="volume_Txt" Text="{Binding volume}" Width="283" Margin="29,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -119,8 +123,8 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Series= " Padding="16,15"></Label>
-                    <TextBox x:Name="series_Txt" BorderBrush="Beige" Text="{Binding series, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="42,10" BorderThickness="2" Foreground="White"></TextBox>
-                    <Validation.ErrorTemplate>
+                        <TextBox x:Name="series_Txt" BorderBrush="Beige" Text="{Binding series, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="286" Margin="42,10" BorderThickness="2" Foreground="White"/>
+                        <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <!-- Placeholder for the TextBox itself -->
@@ -132,15 +136,15 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Pages= " Margin="20,10"></Label>
-                    <TextBox x:Name="pages_Txt" Text="{Binding pages}" Width="280" Margin="25,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
+                    <TextBox x:Name="pages_Txt" Text="{Binding pages}" Width="286" Margin="27,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Address = " Margin="16,10"></Label>
-                    <TextBox x:Name="address_Txt" Text="{Binding address}" Width="280" Margin="22,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
+                    <TextBox x:Name="address_Txt" Text="{Binding address}" Width="283" Margin="22,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Edition = " Padding="16,15"></Label>
-                    <TextBox x:Name="edition_Txt" BorderBrush="Beige" Text="{Binding edition, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="35,10" BorderThickness="2" Foreground="White"></TextBox>
+                    <TextBox x:Name="edition_Txt" BorderBrush="Beige" Text="{Binding edition, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="283" Margin="35,10" BorderThickness="2" Foreground="White"></TextBox>
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -153,7 +157,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" CanVerticallyScroll="True">
                     <Label Foreground="White" Content="Year = " Margin="19,10"></Label>
-                    <TextBox x:Name="year_Txt" Text="{Binding year, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="35,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
+                    <TextBox x:Name="year_Txt" Text="{Binding year, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="284" Margin="35,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -166,7 +170,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" CanVerticallyScroll="True">
                     <Label Foreground="White" Content="Month = " Margin="20,10"></Label>
-                    <TextBox x:Name="month_Txt" Text="{Binding month, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="280" Margin="21,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
+                    <TextBox x:Name="month_Txt" Text="{Binding month, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="284" Margin="21,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -179,15 +183,15 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Type= " Margin="21,10"></Label>
-                    <TextBox x:Name="type_Txt" Text="{Binding type}" Width="280" Margin="32,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
+                    <TextBox x:Name="type_Txt" Text="{Binding type}" Width="284" Margin="32,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Foreground="White" Content="Note = " Margin="21,10"></Label>
-                    <TextBox x:Name="note_Txt" Text="{Binding note}" Width="280" Margin="32,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
-                </StackPanel>
+                    <Label Foreground="White" Content="Note = " Margin="18,10"></Label>
+                        <TextBox x:Name="note_Txt" Text="{Binding note}" Width="285" Margin="32,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"/>
+                    </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Foreground="White" Content="Key = " Margin="21,10"></Label>
-                    <TextBox x:Name="bibtexkey_Txt" Text="{Binding bibtexkey}" Width="280" Margin="32,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
+                    <TextBox x:Name="bibtexkey_Txt" Text="{Binding bibtexkey}" Width="286" Margin="32,10" BorderThickness="2" Foreground="White" BorderBrush="Beige"></TextBox>
                 </StackPanel>
                 <DockPanel Margin="0,20,0,0">
                     <TextBlock Height="20" >(*) required fields</TextBlock>
@@ -218,5 +222,6 @@
                 </DockPanel>
             </StackPanel>
         </Grid>
+        </ScrollViewer>
     </Grid>
 </Window>
