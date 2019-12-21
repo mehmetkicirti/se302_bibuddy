@@ -69,7 +69,7 @@
                     </StackPanel>
                 </ScrollViewer>
                 <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="White" Background="#FF49238B">
-                    <ListViewItem  Height="60">
+                    <ListViewItem x:Name="Delete_Btn" PreviewMouseLeftButtonUp="Btn_Delete_Click" Height="60">
                         <StackPanel  Orientation="Horizontal">
                             <materialDesign:PackIcon Margin="10" Kind="Delete" Width="25" Height="25" VerticalAlignment="Center"></materialDesign:PackIcon>
                             <TextBlock VerticalAlignment="Center" Margin="20 10" Text="Delete"></TextBlock>

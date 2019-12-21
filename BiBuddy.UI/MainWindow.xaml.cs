@@ -22,6 +22,7 @@ using Bibuddy.DataAccess.Concrete.Dapper;
 using Bibuddy.DataAccess.Core.Utility;
 using Bibuddy.DataAccess.Core.Parser;
 using BiBuddy.UI.ViewModel;
+using System.Reflection;
 
 namespace BiBuddy.UI
 {
@@ -52,6 +53,7 @@ namespace BiBuddy.UI
             _manualService = InstanceFactory.GetInstance<DapperManualDal>();
             InitializeComponent();
             Export_Btn.IsEnabled = false;
+            Delete_Btn.IsEnabled = false;
             var menuRegister = new List<SubItem>();
             menuRegister.Add(new SubItem("Article"));
             menuRegister.Add(new SubItem("Book"));
@@ -298,6 +300,7 @@ namespace BiBuddy.UI
         private void IsCheckedExport(object sender, RoutedEventArgs e)
         {
             Export_Btn.IsEnabled = true;
+            Delete_Btn.IsEnabled = true;
             list.Add(DataGridMain.SelectedItem);
         }
         private List<object> GetAllByTypes()
@@ -357,15 +360,131 @@ namespace BiBuddy.UI
         private void UnCheckedExport(object sender, RoutedEventArgs e)
         {
             list.Remove(DataGridMain.SelectedItem);
-            if (list.Count>0)
+            if (list.Count > 0)
+            {
                 Export_Btn.IsEnabled = true;
-            else if (list.Count<=0)
+                Delete_Btn.IsEnabled = true;
+            }
+            else if (list.Count <= 0)
+            {
                 Export_Btn.IsEnabled = false;
+                Delete_Btn.IsEnabled = false;
+            }
         }
 
 
         private void CheckUnCheckAll(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void Btn_Delete_Click(object sender, MouseButtonEventArgs e)
+        {
+            
+            if (list.Count>0)
+            {
+                Dictionary<string, int> getfieldName;
+                foreach (object type in list)
+                {
+                    PropertyInfo[] fields = type.GetType().GetProperties();
+                    switch (type.GetType().Name)
+                    {
+                        case "article":
+                            getfieldName = new Dictionary<string, int>();
+                            foreach (var field in fields)
+                            {
+                                if (field.Name == "ID")
+                                {
+                                    getfieldName.Add(field.Name, (int)field.GetValue(type));
+                                    break;
+                                }
+                            }
+                            _articleService.Delete(getfieldName["ID"]);
+                            break;
+                        case "book":
+                            getfieldName = new Dictionary<string, int>();
+                            foreach (var field in fields)
+                            {
+                                if (field.Name == "ID")
+                                {
+                                    getfieldName.Add(field.Name, (int)field.GetValue(type));
+                                    break;
+                                }
+                            }
+                            _bookService.Delete(getfieldName["ID"]);
+                            break;
+                        case "inbook":
+                            getfieldName = new Dictionary<string, int>();
+                            foreach (var field in fields)
+                            {
+                                if (field.Name == "ID")
+                                {
+                                    getfieldName.Add(field.Name, (int)field.GetValue(type));
+                                    break;
+                                }
+                            }
+                            _inbookService.Delete(getfieldName["ID"]);
+                            break;
+                        case "incollection":
+                            getfieldName = new Dictionary<string, int>();
+                            foreach (var field in fields)
+                            {
+                                if (field.Name == "ID")
+                                {
+                                    getfieldName.Add(field.Name, (int)field.GetValue(type));
+                                    break;
+                                }
+                            }
+                            _incollectionService.Delete(getfieldName["ID"]);
+                            break;
+                        case "manual":
+                            getfieldName = new Dictionary<string, int>();
+                            foreach (var field in fields)
+                            {
+                                if (field.Name == "ID")
+                                {
+                                    getfieldName.Add(field.Name, (int)field.GetValue(type));
+                                    break;
+                                }
+                            }
+                            _manualService.Delete(getfieldName["ID"]);
+                            break;
+                        case "booklet":
+                            getfieldName = new Dictionary<string, int>();
+                            foreach (var field in fields)
+                            {
+                                if (field.Name == "ID")
+                                {
+                                    getfieldName.Add(field.Name, (int)field.GetValue(type));
+                                    break;
+                                }
+                            }
+                            _bookletService.Delete(getfieldName["ID"]);
+                            break;
+                        case "conference":
+                            getfieldName = new Dictionary<string, int>();
+                            foreach (var field in fields)
+                            {
+                                if (field.Name == "ID")
+                                {
+                                    getfieldName.Add(field.Name, (int)field.GetValue(type));
+                                    break;
+                                }
+                            }
+                            _conferenceService.Delete(getfieldName["ID"]);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                list.Clear();
+                Export_Btn.IsEnabled = false;
+                Delete_Btn.IsEnabled = false;
+                DataGridMain.ItemsSource=GetAllByTypes();
+            }
+            else if (list.Count <= 0)
+            {
+                Delete_Btn.IsEnabled = false;
+            }
         }
     }
 }
