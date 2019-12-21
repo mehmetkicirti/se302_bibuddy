@@ -28,6 +28,8 @@ namespace Bibuddy.DataAccess.Core.Utility
                         getfieldName = new Dictionary<string, string>();
                         foreach (var field in fields)
                         {
+                            if (field.Name=="Item")
+                                continue;
                             getfieldName.Add(field.Name, field.GetValue(obj) != null ? field.GetValue(obj).ToString() : "");
                         }
                         exportedFile += getfieldName.ContainsKey("entrytype") ? getfieldName["entrytype"] + "{" : "";
