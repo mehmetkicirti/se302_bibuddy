@@ -16,14 +16,10 @@ namespace BiBuddy.DataAccess.Core.DataAccess
         where TEntity : class,IEntity,new()
     {
         void Add(TEntity entity);
-        //void AddByImport(TEntity entity);
         void Delete(int ID);
         void Update(TEntity entity);
         TEntity GetByID(int ID);
-        TEntity Get(string filter = null);
         List<TEntity> GetAll(string filter = null);
-        List<TEntity> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null);
-        List<TEntity> GetAllByYear(int? year);
         int Count();
     }
 }

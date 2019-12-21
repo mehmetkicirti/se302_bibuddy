@@ -125,7 +125,26 @@ namespace Bibuddy.DataAccess.Core.Parser
             get { return this["pages"]; }
             set { this["pages"] = value; }
         }
-
+        public string AmsSubject
+        {
+            get { return this["ams-subject"]; }
+            set { this["ams-subject"] = value; }
+        }
+        public string FromWhere
+        {
+            get { return this["fromwhere"]; }
+            set { this["fromwhere"] = value; }
+        }
+        public string Review
+        {
+            get { return this["review"]; }
+            set { this["review"] = value; }
+        }
+        public string TrueAuthor
+        {
+            get { return this["trueauthor"]; }
+            set { this["trueauthor"] = value; }
+        }
         public string Publisher
         {
             get { return this["publisher"]; }
@@ -251,5 +270,6 @@ namespace Bibuddy.DataAccess.Core.Parser
         Proceedings,
         TechReport,
         Unpublished
+        
     }
 }
