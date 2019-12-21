@@ -26,7 +26,16 @@ namespace Bibuddy.DataAccess.Core.Parser
             get { return this["address"]; }
             set { this["address"] = value; }
         }
-
+        public string Doi
+        {
+            get { return this["doi"]; }
+            set { this["doi"] = value; }
+        }
+        public string URL
+        {
+            get { return this["url"]; }
+            set { this["url"] = value; }
+        }
         public string Annote
         {
             get { return this["annote"]; }
@@ -87,10 +96,10 @@ namespace Bibuddy.DataAccess.Core.Parser
             set { this["journal"] = value; }
         }
 
-        public string Mouth
+        public string Month
         {
-            get { return this["mouth"]; }
-            set { this["mouth"] = value; }
+            get { return this["month"]; }
+            set { this["month"] = value; }
         }
 
         public string Note
