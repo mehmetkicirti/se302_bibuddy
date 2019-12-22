@@ -505,6 +505,13 @@ namespace BiBuddy.UI
             {
                 Delete_Btn.IsEnabled = false;
             }
+            EditGrid_Book.Visibility = Visibility.Collapsed;
+            EditGrid_Article.Visibility = Visibility.Collapsed;
+            EditGrid_Booklet.Visibility = Visibility.Collapsed;
+            EditGrid_Con.Visibility = Visibility.Collapsed;
+            EditGrid_InBook.Visibility = Visibility.Collapsed;
+            EditGrid_InCol.Visibility = Visibility.Collapsed;
+            EditGrid_Manuel.Visibility = Visibility.Collapsed;
         }
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -595,6 +602,7 @@ namespace BiBuddy.UI
             _articleService.Update(_article);
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("Article : " + _article.title + " updated");
+            EditGrid_Article.Visibility = Visibility.Collapsed;
         }
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -830,6 +838,7 @@ namespace BiBuddy.UI
             _bookService.Update(_book);
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("Book : " + _book.title + " updated");
+            EditGrid_Book.Visibility = Visibility.Collapsed;
         }
         private void SaveButtonBlt_Click(object sender, RoutedEventArgs e)
         {
@@ -896,6 +905,8 @@ namespace BiBuddy.UI
             _bookletService.Update(_booklet);
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("Booklet : " + _booklet.title + " updated");
+            EditGrid_Booklet.Visibility = Visibility.Collapsed;
+
         }
         private void SaveButtonCon_Click(object sender, RoutedEventArgs e)
         {
@@ -984,6 +995,7 @@ namespace BiBuddy.UI
             _conferenceService.Update(_conference);
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("Conference : " + _conference.title + " updated");
+            EditGrid_Con.Visibility = Visibility.Collapsed;
 
         }
 
@@ -1088,6 +1100,7 @@ namespace BiBuddy.UI
             _inbookService.Update(_inbook);
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("InBook : " + _inbook.title + " updated");
+            EditGrid_InBook.Visibility = Visibility.Collapsed;
 
         }
 
@@ -1195,6 +1208,7 @@ namespace BiBuddy.UI
             _incollectionService.Update(_incollection);
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("InCollection : " + _incollection.title + " updated");
+            EditGrid_InCol.Visibility = Visibility.Collapsed;
         }
 
         private void SaveButtonManual_Click(object sender, RoutedEventArgs e)
@@ -1271,6 +1285,7 @@ namespace BiBuddy.UI
             _manualService.Update(_manual);
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("Manual : " + _manual.title + " updated");
+            EditGrid_Manuel.Visibility = Visibility.Collapsed;
         }
         private void shomaretextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
