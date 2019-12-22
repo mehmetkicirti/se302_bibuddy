@@ -69,7 +69,7 @@ namespace BiBuddy.UI.AddPanel
                 SetFieldClear();
                 UIElement parent = App.Current.MainWindow;
                 parent.IsEnabled = true;
-                main.DataGridMain.ItemsSource = _iConferenceService.GetAll();
+                main.DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
                 this.Close();
             }
             else
@@ -83,7 +83,7 @@ namespace BiBuddy.UI.AddPanel
                 {
                     _iConferenceService.Add(_conference);
                     SetFieldClear();
-                    main.DataGridMain.ItemsSource = _iConferenceService.GetAll();
+                    main.DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
                     UIElement parent = App.Current.MainWindow;
                     parent.IsEnabled = true;
                     this.Close();

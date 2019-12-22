@@ -67,7 +67,7 @@ namespace BiBuddy.UI
            
 
             Menu.Children.Add(new UserControlMenuItem(item0));
-            DataGridMain.ItemsSource = GetAllByTypes();
+            DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
 
         }
         private void Exit_Btn_Click(object sender, RoutedEventArgs e)
@@ -102,9 +102,6 @@ namespace BiBuddy.UI
                 //var parser = new BibParser(new StreamReader(path, Encoding.Default));
                 var parser = new BetterBibtexParser(new StreamReader(path, Encoding.Default));
                 var entries = parser.GetAllResult();
-
-
-
                 foreach (var entry in entries)
                 {
                     switch (entry.Type)
@@ -295,7 +292,7 @@ namespace BiBuddy.UI
                     }
                 }
 
-                DataGridMain.ItemsSource = GetAllByTypes();
+                DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
                 Console.WriteLine("Articles : " + _articleService.Count());
                 Console.WriteLine("Books :" + _bookService.Count());
                 //Read the contents of the file into a stream
@@ -347,39 +344,7 @@ namespace BiBuddy.UI
             Delete_Btn.IsEnabled = true;
             list.Add(DataGridMain.SelectedItem);
         }
-        private List<object> GetAllByTypes()
-        {
-            List<object> list = new List<object>();
-            foreach (var article in _articleService.GetAll())
-            {
-                list.Add(article);
-            }
-            foreach (var book in _bookService.GetAll())
-            {
-                list.Add(book);
-            }
-            foreach (var booklet in _bookletService.GetAll())
-            {
-                list.Add(booklet);
-            }
-            foreach (var conference  in _conferenceService.GetAll())
-            {
-                list.Add(conference);
-            }
-            foreach (var incollection in _incollectionService.GetAll())
-            {
-                list.Add(incollection);
-            }
-            foreach (var manual in _manualService.GetAll())
-            {
-                list.Add(manual);
-            }
-            foreach (var inbook in _inbookService.GetAll())
-            {
-                list.Add(inbook);
-            }
-            return list;
-        }
+        
         private void btn_Export_Click(object sender, MouseButtonEventArgs e)
         {
             if (list.Count>0)
@@ -528,7 +493,7 @@ namespace BiBuddy.UI
                 list.Clear();
                 Export_Btn.IsEnabled = false;
                 Delete_Btn.IsEnabled = false;
-                DataGridMain.ItemsSource=GetAllByTypes();
+                DataGridMain.ItemsSource=GetEntryType.GetAllByTypes();
             }
             else if (list.Count <= 0)
             {
@@ -580,7 +545,7 @@ namespace BiBuddy.UI
                         }
                     }
                     _articleService.Update(_article);
-                    DataGridMain.ItemsSource = GetAllByTypes();
+                    DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
 
                     break;
             }

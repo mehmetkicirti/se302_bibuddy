@@ -60,7 +60,7 @@ namespace BiBuddy.UI.AddPanel
                 SetFieldClear();
                 UIElement parent = App.Current.MainWindow;
                 parent.IsEnabled = true;
-                main.DataGridMain.ItemsSource = _iArticleService.GetAll();
+                main.DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
                 this.Close();
             }
             else
@@ -74,7 +74,7 @@ namespace BiBuddy.UI.AddPanel
                 {
                     _iArticleService.Add(_article);
                     SetFieldClear();
-                    main.DataGridMain.ItemsSource = _iArticleService.GetAll();
+                    main.DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
                     UIElement parent = App.Current.MainWindow;
                     parent.IsEnabled = true;
                     this.Close();
