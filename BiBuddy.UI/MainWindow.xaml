@@ -36,7 +36,7 @@
                 <TextBlock Text="Fundamentals" VerticalAlignment="Center" FontSize="18"></TextBlock>
                 <materialDesign:PopupBox  Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                     <StackPanel Width="150">
-                        <Button Content="Help"></Button>
+                        <Button Content="Help" Click="Button_Click"></Button>
                         <Button Content="About"></Button>
                         <Separator></Separator>
                         <Button x:Name="BtnPopupExit" Content="Exit" Click="BtnPopupExit_Click"></Button>

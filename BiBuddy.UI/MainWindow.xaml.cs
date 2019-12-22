@@ -1510,5 +1510,11 @@ namespace BiBuddy.UI
             if (!char.IsDigit(e.Text, e.Text.Length - 1))
                 e.Handled = true;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+        
+            System.Diagnostics.Process.Start(@"E:\FormatÖncesi\dersler\BiBuddy\BiBuddy.UI\Responsive HTML5\index.htm");
+        }
     }
 }
