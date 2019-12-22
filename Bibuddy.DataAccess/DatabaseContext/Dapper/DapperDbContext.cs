@@ -200,7 +200,7 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
 	                    pages TEXT,
 	                    note  TEXT,
 	                    month INTEGER,
-                        bibtexKey TEXT,
+                        bibtexkey TEXT,
                         entrytype TEXT,
                         doi TEXT
                         )";
@@ -218,7 +218,7 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
 	                    edition INTEGER,
                         month INTEGER,
                         url TEXT,
-                        bibtexKey TEXT,
+                        bibtexkey TEXT,
                         entrytype TEXT,
                         address TEXT
                         )";
@@ -232,7 +232,7 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
 	                    year INTEGER,
 	                    note  TEXT,
 	                    month INTEGER,
-                        bibtexKey TEXT,
+                        bibtexkey TEXT,
                         address TEXT,
                         entrytype TEXT
                         )";
@@ -253,7 +253,7 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
                         address TEXT,
                         organization TEXT,
                         publisher TEXT,
-                        bibtexKey TEXT,
+                        bibtexkey TEXT,
                         entrytype TEXT
                         )";
                     cmd.ExecuteNonQuery();
@@ -271,7 +271,7 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
 	                    pages TEXT,
 	                    note  TEXT,
 	                    month INTEGER,
-                        bibtexKey TEXT,
+                        bibtexkey TEXT,
                         series INTEGER,
                         publisher TEXT NOT NULL,
                         entrytype TEXT
@@ -292,7 +292,7 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
 	                    pages TEXT,
 	                    note  TEXT,
 	                    month INTEGER,
-                        bibtexKey TEXT,
+                        bibtexkey TEXT,
                         chapter INTEGER,
                         address TEXT,
                         entrytype TEXT,
@@ -309,7 +309,7 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
 	                    month INTEGER,
                         organization TEXT,
                         edition INTEGER,
-                        bibtexKey TEXT,
+                        bibtexkey TEXT,
                         address TEXT,
                         entrytype TEXT
                         )";
