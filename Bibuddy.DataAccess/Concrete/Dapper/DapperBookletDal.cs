@@ -60,11 +60,6 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
                 });
         }
 
-        public booklet Get(string filter = null)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<booklet> GetAll(string filter = null)
         {
             if (filter != null)

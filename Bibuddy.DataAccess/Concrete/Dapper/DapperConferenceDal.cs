@@ -63,13 +63,7 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
                     ID
                 });
         }
-
       
-        public conference Get(string filter = null)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<conference> GetAll(string filter = null)
         {
             if (filter != null)
@@ -132,10 +126,12 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
         public void Update(conference entity)
         {
             _iConnection.ExecuteScalar<conference>(
-              "UPDATE conference SET author=@author, entrytype=@entrytype, bibtexkey=@bibtexkey," +
-              "month=@month, note=@note, pages=@pages, series=@series, address=@address, organization=@organization" +
+              "UPDATE conference SET author=@author, editor=@editor, booktitle=@booktitle, entrytype=@entrytype, bibtexkey=@bibtexkey," +
+              "month=@month, note=@note, pages=@pages, series=@series, address=@address, organization=@organization," +
               "publisher=@publisher, title=@title, volume=@volume, year=@year where ID = @ID", new
               {
+                  entity.editor,
+                  entity.booktitle,
                   entity.entrytype,
                   entity.bibtexkey,
                   entity.author,

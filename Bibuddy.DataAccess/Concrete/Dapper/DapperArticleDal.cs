@@ -80,11 +80,6 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
                 });
         }
 
-        public article Get(string filter = null)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<article> GetAll(string filter = null)
         {
             if (filter != null)
@@ -107,10 +102,11 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
             {
                 int index = filter.IndexOf(".*");
                 filter = filter.Substring(0, index);
-                return listvalues.Where(x => x.author.ToLower().Contains(filter)
+                return listvalues.Where(
+                    x => x.author.ToLower().Contains(filter)
                    || x.bibtexkey.ToLower().Contains(filter)
-                   || (x.doi==null?x.doi.Contains(""):x.doi.ToLower().Contains(filter))
                    || x.entrytype.ToLower().Contains(filter)
+                   || x.year.Value.ToString().Contains(filter)
                    || x.journal.ToLower().Contains(filter)
                    || x.title.ToLower().Contains(filter)).ToList();
             }

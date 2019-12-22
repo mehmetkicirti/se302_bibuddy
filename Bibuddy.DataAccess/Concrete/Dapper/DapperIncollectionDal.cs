@@ -67,11 +67,6 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
                 });
         }
 
-        public incollection Get(string filter = null)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<incollection> GetAll(string filter = null)
         {
             if (filter != null)
@@ -134,8 +129,8 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
         public void Update(incollection entity)
         {
             _iConnection.ExecuteScalar<incollection>(
-                "UPDATE incolllection SET author=@author, entrytype=@entrytype, bibtexkey=@bibtexkey, booktitle= " +
-                " month=@month, note=@note, chapter@chapter, pages=@pages, publisher=@publisher, series=@series, type=@type " +
+                "UPDATE incollection SET author=@author, entrytype=@entrytype, bibtexkey=@bibtexkey, booktitle=@booktitle, " +
+                " month=@month, note=@note, chapter@chapter, pages=@pages, publisher=@publisher, series=@series, type=@type, " +
                 "title=@title, editor=@editor, address=@address, edition=@edition, volume=@volume, year=@year where ID = @ID", new
                 {
                     entity.entrytype,

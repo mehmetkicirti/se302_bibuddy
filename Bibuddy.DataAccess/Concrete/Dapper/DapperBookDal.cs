@@ -22,7 +22,7 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
         public void Add(book entity)
         {
             _iConnection.ExecuteScalar<book>(
-                 "INSERT INTO book (author, entrytype, month, note, address, edition, url, series, title, volume, year, bibtexkey) VALUES( @author, @entrytype, @month, @note, @address, @edition, @url, @series, @title, @volume, @year, @bibtexkey)", new
+                 "INSERT INTO book (author, entrytype, month, note, address, edition, url, series, title, volume, year, bibtexkey, publisher) VALUES( @author, @entrytype, @month, @note, @address, @edition, @url, @series, @title, @volume, @year, @bibtexkey,@publisher)", new
                  {
                      entity.author,
                      entity.entrytype,
@@ -35,30 +35,33 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
                      entity.title,
                      entity.volume,
                      entity.year,
-                     entity.bibtexkey
+                     entity.bibtexkey,
+                     entity.publisher
                  });
         }
-
-        public void AddByImport(book entity)
+        public void Update(book entity)
         {
             _iConnection.ExecuteScalar<book>(
-                "INSERT INTO book (author, entrytype, month, note, address, edition, url, series, title, volume, year, bibtexkey) VALUES( @author, @entrytype, @month, @note, @address, @edition, @url, @series, @title, @volume, @year, @bibtexkey)", new
+                "UPDATE book SET author=@author, publisher=@publisher, url=@url, entrytype=@entrytype, address=@address, edition=@edition ,bibtexkey=@bibtexkey," +
+                "month=@month, note=@note, series=@series," +
+                "title=@title, volume=@volume, year=@year where ID = @ID", new
                 {
-                    entity.author,
+                    entity.series,
                     entity.entrytype,
+                    entity.bibtexkey,
+                    entity.author,
+                    entity.publisher,
+                    entity.edition,
                     entity.month,
                     entity.note,
                     entity.address,
-                    entity.edition,
                     entity.url,
-                    entity.series,
                     entity.title,
                     entity.volume,
                     entity.year,
-                    entity.bibtexkey
+                    entity.ID
                 });
         }
-
         public int Count()
         {
             string query = @"SELECT COUNT(ID) FROM book";
@@ -75,12 +78,6 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
                     ID
                 });
         }
-
-        public book Get(string filter = null)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<book> GetAll(string filter = null)
         {
 
@@ -154,12 +151,10 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public book GetByID(int ID)
         {
-            throw new NotImplementedException();
+            return _iConnection.Query<book>(
+                 $"Select * from book where ID = {ID}").FirstOrDefault();
         }
 
-        public void Update(book entity)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
