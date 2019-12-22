@@ -808,6 +808,7 @@ namespace BiBuddy.UI
             _article.doi = getFieldName["doi"];
             _article.bibtexkey = getFieldName["bibtexkey"];
             _articleService.Update(_article);
+            search_textbox.Clear();
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("Article : " + _article.title + " updated");
             EditGrid_Article.Visibility = Visibility.Collapsed;
@@ -1044,6 +1045,7 @@ namespace BiBuddy.UI
             _book.url = getFieldName["url"];
 
             _bookService.Update(_book);
+            search_textbox.Clear();
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("Book : " + _book.title + " updated");
             EditGrid_Book.Visibility = Visibility.Collapsed;
@@ -1109,9 +1111,11 @@ namespace BiBuddy.UI
             _booklet.note = getFieldName["note"];
             _booklet.title = getFieldName["title"];
             _booklet.howpublished = getFieldName["howpublished"];
-
+            
+            search_textbox.Clear();
             _bookletService.Update(_booklet);
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
+
             MessageBox.Show("Booklet : " + _booklet.title + " updated");
             EditGrid_Booklet.Visibility = Visibility.Collapsed;
 
@@ -1201,6 +1205,7 @@ namespace BiBuddy.UI
             _conference.pages = getFieldName["pages"];
 
             _conferenceService.Update(_conference);
+            search_textbox.Clear();
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("Conference : " + _conference.title + " updated");
             EditGrid_Con.Visibility = Visibility.Collapsed;
@@ -1306,6 +1311,8 @@ namespace BiBuddy.UI
             _inbook.type = getFieldName["type"];
 
             _inbookService.Update(_inbook);
+
+            search_textbox.Clear();
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("InBook : " + _inbook.title + " updated");
             EditGrid_InBook.Visibility = Visibility.Collapsed;
@@ -1414,6 +1421,7 @@ namespace BiBuddy.UI
             _incollection.pages = getFieldName["pages"];
 
             _incollectionService.Update(_incollection);
+            search_textbox.Clear();
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("InCollection : " + _incollection.title + " updated");
             EditGrid_InCol.Visibility = Visibility.Collapsed;
@@ -1491,6 +1499,7 @@ namespace BiBuddy.UI
             _manual.organization = getFieldName["organization"];
 
             _manualService.Update(_manual);
+            search_textbox.Clear();
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("Manual : " + _manual.title + " updated");
             EditGrid_Manuel.Visibility = Visibility.Collapsed;
