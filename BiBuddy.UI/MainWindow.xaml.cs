@@ -580,13 +580,13 @@ namespace BiBuddy.UI
                 getFieldName.Add(field.Name, field.GetValue(SaveRow).ToString());
             }
             _article.ID = Convert.ToInt32(getFieldName["ID"]);
-            _article.year =getFieldName["year"]==null || getFieldName["year"] == "" ? null as int? : Convert.ToInt32(getFieldName["year"]);
+            _article.year = getFieldName["year"] == null || getFieldName["year"] == "" ? null as int? : Convert.ToInt32(getFieldName["year"]);
             _article.month = getFieldName["month"] == null || getFieldName["month"] == "" ? null as int? : Convert.ToInt32(getFieldName["month"]);
             _article.journal = getFieldName["journal"];
             _article.note = getFieldName["note"];
             _article.number = getFieldName["number"] == null || getFieldName["number"] == "" ? null as int? : Convert.ToInt32(getFieldName["number"]);
             _article.pages = getFieldName["pages"];
-            _article.volume= getFieldName["volume"] == null || getFieldName["volume"] == "" ? null as int? : Convert.ToInt32(getFieldName["volume"]);
+            _article.volume = getFieldName["volume"] == null || getFieldName["volume"] == "" ? null as int? : Convert.ToInt32(getFieldName["volume"]);
             _article.title = getFieldName["title"];
             _article.entrytype = getFieldName["entrytype"];
             _article.author = getFieldName["author"];
@@ -739,477 +739,544 @@ namespace BiBuddy.UI
         }
         private void SaveButtonB_Click(object sender, RoutedEventArgs e)
         {
-            object SaveRowB = new object();
-            SaveRowB = BookDetails.DataContext;
-            if (SaveRowB != null)
+            Dictionary<string, string> getFieldName = new Dictionary<string, string>();
+            object SaveRowBook = new object();
+            SaveRowBook = BookDetails.DataContext;
+            PropertyInfo[] newFieldsBook = SaveRowBook.GetType().GetProperties();
+            book _book = new book();
+
+            foreach (var field in newFieldsBook)
             {
-                PropertyInfo[] newFieldsB = SaveRowB.GetType().GetProperties();
-                book _book = new book();
-                foreach (var field in newFieldsB)
+                switch (field.Name)
                 {
-                    if (field.Name == "entrytype")
-                    {
-                        _book.entrytype = (string)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "author")
-                    {
-                        _book.author = (string)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "title")
-                    {
-                        _book.title = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "publisher")
-                    {
-                        _book.publisher = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "year")
-                    {
-                        _book.year = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "volume")
-                    {
-                        _book.volume = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "ID")
-                    {
-                        _book.ID = (int)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "month")
-                    {
-                        _book.month = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "series")
-                    {
-                        _book.series = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "address")
-                    {
-                        _book.address = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "edition")
-                    {
-                        _book.edition = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "url")
-                    {
-                        _book.url = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "bibtexkey")
-                    {
-                        _book.bibtexkey = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "note")
-                    {
-                        _book.note = (string)field.GetValue(SaveRowB);
-                    }
-
+                    case "month":
+                        if (field.GetValue(SaveRowBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "year":
+                        if (field.GetValue(SaveRowBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "volume":
+                        if (field.GetValue(SaveRowBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "series":
+                        if (field.GetValue(SaveRowBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "edition":
+                        if (field.GetValue(SaveRowBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "Item":
+                        break;
+                    case "ID":
+                        if (field.GetValue(SaveRowBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "bibtexkey":
+                        if (field.GetValue(SaveRowBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    default:
+                        getFieldName.Add(field.Name, field.GetValue(SaveRowBook).ToString());
+                        break;
                 }
-                _bookService.Update(_book);
-                DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
-                MessageBox.Show("Book : " + _book.title + " updated");
             }
+            _book.ID = Convert.ToInt32(getFieldName["ID"]);
+            _book.year = getFieldName["year"] == null || getFieldName["year"] == "" ? null as int? : Convert.ToInt32(getFieldName["year"]);
+            _book.month = getFieldName["month"] == null || getFieldName["month"] == "" ? null as int? : Convert.ToInt32(getFieldName["month"]);
+            _book.volume = getFieldName["volume"] == null || getFieldName["volume"] == "" ? null as int? : Convert.ToInt32(getFieldName["volume"]);
+            _book.address = getFieldName["address"];
+            _book.author = getFieldName["author"];
+            _book.bibtexkey = getFieldName["bibtexkey"];
+            _book.edition = getFieldName["edition"] == null || getFieldName["edition"] == "" ? null as int? : Convert.ToInt32(getFieldName["edition"]);
+            _book.entrytype = getFieldName["entrytype"];
+            _book.note = getFieldName["note"];
+            _book.series = getFieldName["series"] == null || getFieldName["series"] == "" ? null as int? : Convert.ToInt32(getFieldName["series"]);
+            _book.publisher = getFieldName["publisher"];
+            _book.title = getFieldName["title"];
+            _book.url = getFieldName["url"];
 
+            _bookService.Update(_book);
+            DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
+            MessageBox.Show("Book : " + _book.title + " updated");
         }
         private void SaveButtonBlt_Click(object sender, RoutedEventArgs e)
         {
-            object SaveRowB = new object();
-            SaveRowB = BookletDetails.DataContext;
-            if (SaveRowB != null)
+            Dictionary<string, string> getFieldName = new Dictionary<string, string>();
+            object SaveRowBooklet = new object();
+            SaveRowBooklet = BookletDetails.DataContext;
+            PropertyInfo[] newFieldsBooklet = SaveRowBooklet.GetType().GetProperties();
+            booklet _booklet = new booklet();
+
+            foreach (var field in newFieldsBooklet)
             {
-                PropertyInfo[] newFieldsB = SaveRowB.GetType().GetProperties();
-                booklet _booklet = new booklet();
-                foreach (var field in newFieldsB)
+                switch (field.Name)
                 {
-                    if (field.Name == "entrytype")
-                    {
-                        _booklet.entrytype = (string)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "author")
-                    {
-                        _booklet.author = (string)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "title")
-                    {
-                        _booklet.title = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "year")
-                    {
-                        _booklet.year = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "ID")
-                    {
-                        _booklet.ID = (int)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "bibtexkey")
-                    {
-                        _booklet.bibtexkey = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "address")
-                    {
-                        _booklet.address = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "note")
-                    {
-                        _booklet.note = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "howpublished")
-                    {
-                        _booklet.howpublished = (string)field.GetValue(SaveRowB);
-                    }
-
-
-
+                    case "month":
+                        if (field.GetValue(SaveRowBooklet) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowBooklet).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "year":
+                        if (field.GetValue(SaveRowBooklet) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowBooklet).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "Item":
+                        break;
+                    case "ID":
+                        if (field.GetValue(SaveRowBooklet) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowBooklet).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "bibtexkey":
+                        if (field.GetValue(SaveRowBooklet) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowBooklet).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    default:
+                        getFieldName.Add(field.Name, field.GetValue(SaveRowBooklet).ToString());
+                        break;
                 }
-                _bookletService.Update(_booklet);
-                DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
-                MessageBox.Show("Booklet : " + _booklet.title + " updated");
-
             }
+            _booklet.ID = Convert.ToInt32(getFieldName["ID"]);
+            _booklet.year = getFieldName["year"] == null || getFieldName["year"] == "" ? null as int? : Convert.ToInt32(getFieldName["year"]);
+            _booklet.month = getFieldName["month"] == null || getFieldName["month"] == "" ? null as int? : Convert.ToInt32(getFieldName["month"]);
+            _booklet.address = getFieldName["address"];
+            _booklet.author = getFieldName["author"];
+            _booklet.bibtexkey = getFieldName["bibtexkey"];
+            _booklet.entrytype = getFieldName["entrytype"];
+            _booklet.note = getFieldName["note"];
+            _booklet.title = getFieldName["title"];
+            _booklet.howpublished = getFieldName["howpublished"];
+
+            _bookletService.Update(_booklet);
+            DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
+            MessageBox.Show("Booklet : " + _booklet.title + " updated");
         }
         private void SaveButtonCon_Click(object sender, RoutedEventArgs e)
         {
-            object SaveRowB = new object();
-            SaveRowB = ConDetails.DataContext;
-            if (SaveRowB != null)
+            Dictionary<string, string> getFieldName = new Dictionary<string, string>();
+            object SaveRowConference = new object();
+            SaveRowConference = ConDetails.DataContext;
+            PropertyInfo[] newFieldsBook = SaveRowConference.GetType().GetProperties();
+            conference _conference = new conference();
+
+            foreach (var field in newFieldsBook)
             {
-                PropertyInfo[] newFieldsB = SaveRowB.GetType().GetProperties();
-                conference _conference = new conference();
-
-                foreach (var field in newFieldsB)
+                switch (field.Name)
                 {
-                    if (field.Name == "entrytype")
-                    {
-                        _conference.entrytype = (string)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "author")
-                    {
-                        _conference.author = (string)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "title")
-                    {
-                        _conference.title = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "booktitle")
-                    {
-                        _conference.booktitle = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "year")
-                    {
-                        _conference.year = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "ID")
-                    {
-                        _conference.ID = (int)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "month")
-                    {
-                        _conference.month = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "series")
-                    {
-                        _conference.series = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "pages")
-                    {
-                        _conference.pages = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "volume")
-                    {
-                        _conference.volume = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "address")
-                    {
-                        _conference.address = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "organization")
-                    {
-                        _conference.organization = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "publisher")
-                    {
-                        _conference.publisher = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "note")
-                    {
-                        _conference.note = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "bibtexkey")
-                    {
-                        _conference.bibtexkey = (string)field.GetValue(SaveRowB);
-                    }
-
-
+                    case "month":
+                        if (field.GetValue(SaveRowConference) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowConference).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "year":
+                        if (field.GetValue(SaveRowConference) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowConference).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "volume":
+                        if (field.GetValue(SaveRowConference) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowConference).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "series":
+                        if (field.GetValue(SaveRowConference) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowConference).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "Item":
+                        break;
+                    case "ID":
+                        if (field.GetValue(SaveRowConference) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowConference).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "bibtexkey":
+                        if (field.GetValue(SaveRowConference) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowConference).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    default:
+                        getFieldName.Add(field.Name, field.GetValue(SaveRowConference).ToString());
+                        break;
                 }
-                _conferenceService.Update(_conference);
-                DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
-                MessageBox.Show("Conference : " + _conference.title + " updated");
-
             }
+            _conference.ID = Convert.ToInt32(getFieldName["ID"]);
+            _conference.year = getFieldName["year"] == null || getFieldName["year"] == "" ? null as int? : Convert.ToInt32(getFieldName["year"]);
+            _conference.month = getFieldName["month"] == null || getFieldName["month"] == "" ? null as int? : Convert.ToInt32(getFieldName["month"]);
+            _conference.volume = getFieldName["volume"] == null || getFieldName["volume"] == "" ? null as int? : Convert.ToInt32(getFieldName["volume"]);
+            _conference.address = getFieldName["address"];
+            _conference.author = getFieldName["author"];
+            _conference.bibtexkey = getFieldName["bibtexkey"];
+            _conference.entrytype = getFieldName["entrytype"];
+            _conference.note = getFieldName["note"];
+            _conference.series = getFieldName["series"] == null || getFieldName["series"] == "" ? null as int? : Convert.ToInt32(getFieldName["series"]);
+            _conference.publisher = getFieldName["publisher"];
+            _conference.title = getFieldName["title"];
+            _conference.organization = getFieldName["organization"];
+            _conference.publisher = getFieldName["publisher"];
+            _conference.editor = getFieldName["editor"];
+            _conference.pages = getFieldName["pages"];
+
+            _conferenceService.Update(_conference);
+            DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
+            MessageBox.Show("Conference : " + _conference.title + " updated");
+
         }
 
         private void SaveButtonInBook_Click(object sender, RoutedEventArgs e)
         {
-            object SaveRowB = new object();
-            SaveRowB = InBookDetails.DataContext;
-            if (SaveRowB != null)
+            Dictionary<string, string> getFieldName = new Dictionary<string, string>();
+            object SaveRowInBook = new object();
+            SaveRowInBook = InBookDetails.DataContext;
+            PropertyInfo[] newFieldsInBook = SaveRowInBook.GetType().GetProperties();
+            inbook _inbook = new inbook();
+            foreach (var field in newFieldsInBook)
             {
-                PropertyInfo[] newFieldsB = SaveRowB.GetType().GetProperties();
-                inbook _inbook = new inbook();
-                foreach (var field in newFieldsB)
+                switch (field.Name)
                 {
-                    if (field.Name == "entrytype")
-                    {
-                        _inbook.entrytype = (string)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "author")
-                    {
-                        _inbook.author = (string)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "title")
-                    {
-                        _inbook.title = (string)field.GetValue(SaveRowB);
-                    }
-                    
-                    if (field.Name == "year")
-                    {
-                        _inbook.year = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "ID")
-                    {
-                        _inbook.ID = (int)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "month")
-                    {
-                        _inbook.month = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "series")
-                    {
-                        _inbook.series = (int)field.GetValue(SaveRowB);
-                    }
-                    
-                    if (field.Name == "volume")
-                    {
-                        _inbook.volume = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "address")
-                    {
-                        _inbook.address = (string)field.GetValue(SaveRowB);
-                    }
-                   
-                    if (field.Name == "publisher")
-                    {
-                        _inbook.publisher = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "note")
-                    {
-                        _inbook.note = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "bibtexkey")
-                    {
-                        _inbook.bibtexkey = (string)field.GetValue(SaveRowB);
-                    }
-                    //ERROR INT32 TO STRING
-                    if (field.Name == "chapter")
-                    {
-                        _inbook.bibtexkey = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "edition")
-                    {
-                        _inbook.bibtexkey = (string)field.GetValue(SaveRowB);
-                    }
-
-
+                    case "month":
+                        if (field.GetValue(SaveRowInBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "year":
+                        if (field.GetValue(SaveRowInBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "volume":
+                        if (field.GetValue(SaveRowInBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "series":
+                        if (field.GetValue(SaveRowInBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "edition":
+                        if (field.GetValue(SaveRowInBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "chapter":
+                        if (field.GetValue(SaveRowInBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "Item":
+                        break;
+                    case "ID":
+                        if (field.GetValue(SaveRowInBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "bibtexkey":
+                        if (field.GetValue(SaveRowInBook) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInBook).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    default:
+                        getFieldName.Add(field.Name, field.GetValue(SaveRowInBook).ToString());
+                        break;
                 }
-                _inbookService.Update(_inbook);
-                DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
-                MessageBox.Show("InBook : " + _inbook.title + " updated");
-
             }
+            _inbook.ID = Convert.ToInt32(getFieldName["ID"]);
+            _inbook.year = getFieldName["year"] == null || getFieldName["year"] == "" ? null as int? : Convert.ToInt32(getFieldName["year"]);
+            _inbook.month = getFieldName["month"] == null || getFieldName["month"] == "" ? null as int? : Convert.ToInt32(getFieldName["month"]);
+            _inbook.volume = getFieldName["volume"] == null || getFieldName["volume"] == "" ? null as int? : Convert.ToInt32(getFieldName["volume"]);
+            _inbook.address = getFieldName["address"];
+            _inbook.author = getFieldName["author"];
+            _inbook.bibtexkey = getFieldName["bibtexkey"];
+            _inbook.edition = getFieldName["edition"] == null || getFieldName["edition"] == "" ? null as int? : Convert.ToInt32(getFieldName["edition"]);
+            _inbook.entrytype = getFieldName["entrytype"];
+            _inbook.note = getFieldName["note"];
+            _inbook.series = getFieldName["series"] == null || getFieldName["series"] == "" ? null as int? : Convert.ToInt32(getFieldName["series"]);
+            _inbook.publisher = getFieldName["publisher"];
+            _inbook.title = getFieldName["title"];
+            _inbook.chapter = getFieldName["chapter"] == null || getFieldName["chapter"] == "" ? null as int? : Convert.ToInt32(getFieldName["chapter"]);
+            _inbook.type = getFieldName["type"];
+
+            _inbookService.Update(_inbook);
+            DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
+            MessageBox.Show("InBook : " + _inbook.title + " updated");
+
         }
 
         private void SaveButtonInCon_Click(object sender, RoutedEventArgs e)
         {
-            object SaveRowB = new object();
-            SaveRowB = InColDetails.DataContext;
-            if (SaveRowB != null)
+            Dictionary<string, string> getFieldName = new Dictionary<string, string>();
+            object SaveRowInCollection = new object();
+            SaveRowInCollection = InColDetails.DataContext;
+            PropertyInfo[] newFieldsInBook = SaveRowInCollection.GetType().GetProperties();
+            incollection _incollection = new incollection();
+            foreach (var field in newFieldsInBook)
             {
-                PropertyInfo[] newFieldsB = SaveRowB.GetType().GetProperties();
-                incollection _incollection = new incollection();
-                foreach (var field in newFieldsB)
+                switch (field.Name)
                 {
-                    if (field.Name == "entrytype")
-                    {
-                        _incollection.entrytype = (string)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "author")
-                    {
-                        _incollection.author = (string)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "title")
-                    {
-                        _incollection.title = (string)field.GetValue(SaveRowB);
-                    }
-
-                    if (field.Name == "year")
-                    {
-                        _incollection.year = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "ID")
-                    {
-                        _incollection.ID = (int)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "month")
-                    {
-                        _incollection.month = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "series")
-                    {
-                        _incollection.series = (int)field.GetValue(SaveRowB);
-                    }
-
-                    if (field.Name == "volume")
-                    {
-                        _incollection.volume = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "address")
-                    {
-                        _incollection.address = (string)field.GetValue(SaveRowB);
-                    }
-
-                    if (field.Name == "publisher")
-                    {
-                        _incollection.publisher = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "note")
-                    {
-                        _incollection.note = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "bibtexkey")
-                    {
-                        _incollection.bibtexkey = (string)field.GetValue(SaveRowB);
-                    }
-                    //ERROR INT32 TO STRING
-                    if (field.Name == "chapter")
-                    {
-                        _incollection.bibtexkey = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "edition")
-                    {
-                        _incollection.bibtexkey = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "booktitle")
-                    {
-                        _incollection.booktitle = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "editor")
-                    {
-                        _incollection.editor = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "pages")
-                    {
-                        _incollection.pages = (string)field.GetValue(SaveRowB);
-                    }
-
+                    case "month":
+                        if (field.GetValue(SaveRowInCollection) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInCollection).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "year":
+                        if (field.GetValue(SaveRowInCollection) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInCollection).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "volume":
+                        if (field.GetValue(SaveRowInCollection) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInCollection).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "series":
+                        if (field.GetValue(SaveRowInCollection) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInCollection).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "edition":
+                        if (field.GetValue(SaveRowInCollection) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInCollection).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "chapter":
+                        if (field.GetValue(SaveRowInCollection) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInCollection).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "Item":
+                        break;
+                    case "ID":
+                        if (field.GetValue(SaveRowInCollection) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInCollection).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "bibtexkey":
+                        if (field.GetValue(SaveRowInCollection) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowInCollection).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    default:
+                        getFieldName.Add(field.Name, field.GetValue(SaveRowInCollection).ToString());
+                        break;
                 }
-                _incollectionService.Update(_incollection);
-                DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
-                MessageBox.Show("InCollection : " + _incollection.title + " updated");
             }
-         }
+            _incollection.ID = Convert.ToInt32(getFieldName["ID"]);
+            _incollection.year = getFieldName["year"] == null || getFieldName["year"] == "" ? null as int? : Convert.ToInt32(getFieldName["year"]);
+            _incollection.month = getFieldName["month"] == null || getFieldName["month"] == "" ? null as int? : Convert.ToInt32(getFieldName["month"]);
+            _incollection.volume = getFieldName["volume"] == null || getFieldName["volume"] == "" ? null as int? : Convert.ToInt32(getFieldName["volume"]);
+            _incollection.address = getFieldName["address"];
+            _incollection.author = getFieldName["author"];
+            _incollection.bibtexkey = getFieldName["bibtexkey"];
+            _incollection.edition = getFieldName["edition"] == null || getFieldName["edition"] == "" ? null as int? : Convert.ToInt32(getFieldName["edition"]);
+            _incollection.entrytype = getFieldName["entrytype"];
+            _incollection.note = getFieldName["note"];
+            _incollection.series = getFieldName["series"] == null || getFieldName["series"] == "" ? null as int? : Convert.ToInt32(getFieldName["series"]);
+            _incollection.publisher = getFieldName["publisher"];
+            _incollection.title = getFieldName["title"];
+            _incollection.chapter = getFieldName["chapter"] == null || getFieldName["chapter"] == "" ? null as int? : Convert.ToInt32(getFieldName["chapter"]);
+            _incollection.type = getFieldName["type"];
+            _incollection.booktitle = getFieldName["booktitle"];
+            _incollection.editor = getFieldName["editor"];
+            _incollection.pages = getFieldName["pages"];
+
+            _incollectionService.Update(_incollection);
+            DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
+            MessageBox.Show("InCollection : " + _incollection.title + " updated");
+        }
 
         private void SaveButtonManual_Click(object sender, RoutedEventArgs e)
         {
-            object SaveRowB = new object();
-            SaveRowB = ManuelDetails.DataContext;
-            if (SaveRowB != null)
+            Dictionary<string, string> getFieldName = new Dictionary<string, string>();
+            object SaveRowManual = new object();
+            SaveRowManual = ManuelDetails.DataContext;
+            PropertyInfo[] newFieldsManual = SaveRowManual.GetType().GetProperties();
+            manual _manual = new manual();
+
+            foreach (var field in newFieldsManual)
             {
-                PropertyInfo[] newFieldsB = SaveRowB.GetType().GetProperties();
-                manual _manual = new manual();
-
-                foreach (var field in newFieldsB)
+                switch (field.Name)
                 {
-                    if (field.Name == "entrytype")
-                    {
-                        _manual.entrytype = (string)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "author")
-                    {
-                        _manual.author = (string)field.GetValue(SaveRowB);
-
-                    }
-                    if (field.Name == "title")
-                    {
-                        _manual.title = (string)field.GetValue(SaveRowB);
-                    }
-
-                    if (field.Name == "year")
-                    {
-                        _manual.year = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "ID")
-                    {
-                        if (field.GetValue(SaveRowB) != null)
+                    case "month":
+                        if (field.GetValue(SaveRowManual) != null)
                         {
-                            _manual.ID = (int)field.GetValue(SaveRowB);
-                            continue;
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowManual).ToString());
+                            break;
                         }
-
-
-                    }
-                    if (field.Name == "edition")
-                    {
-                        _manual.edition = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "month")
-                    {
-                        _manual.month = (int)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "address")
-                    {
-                        _manual.address = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "organization")
-                    {
-                        _manual.organization = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "note")
-                    {
-                        _manual.note = (string)field.GetValue(SaveRowB);
-                    }
-                    if (field.Name == "bibtexkey")
-                    {
-                        if (field.GetValue(SaveRowB) != null)
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "year":
+                        if (field.GetValue(SaveRowManual) != null)
                         {
-                            _manual.bibtexkey = (string)field.GetValue(SaveRowB);
-                            continue;
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowManual).ToString());
+                            break;
                         }
-                        _manual.bibtexkey = "";
-                        continue;
-                    }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "Item":
+                        break;
+                    case "ID":
+                        if (field.GetValue(SaveRowManual) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowManual).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "edition":
+                        if (field.GetValue(SaveRowManual) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowManual).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    case "bibtexkey":
+                        if (field.GetValue(SaveRowManual) != null)
+                        {
+                            getFieldName.Add(field.Name, field.GetValue(SaveRowManual).ToString());
+                            break;
+                        }
+                        getFieldName.Add(field.Name, "");
+                        break;
+                    default:
+                        getFieldName.Add(field.Name, field.GetValue(SaveRowManual).ToString());
+                        break;
                 }
-                _manualService.Update(_manual);
-                DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
-                MessageBox.Show("Manual : " + _manual.title + " updated");
-
             }
+            _manual.ID = Convert.ToInt32(getFieldName["ID"]);
+            _manual.year = getFieldName["year"] == null || getFieldName["year"] == "" ? null as int? : Convert.ToInt32(getFieldName["year"]);
+            _manual.month = getFieldName["month"] == null || getFieldName["month"] == "" ? null as int? : Convert.ToInt32(getFieldName["month"]);
+            _manual.address = getFieldName["address"];
+            _manual.author = getFieldName["author"];
+            _manual.bibtexkey = getFieldName["bibtexkey"];
+            _manual.entrytype = getFieldName["entrytype"];
+            _manual.note = getFieldName["note"];
+            _manual.title = getFieldName["title"];
+            _manual.edition = getFieldName["edition"] == null || getFieldName["edition"] == "" ? null as int? : Convert.ToInt32(getFieldName["edition"]);
+            _manual.organization = getFieldName["organization"];
 
+            _manualService.Update(_manual);
+            DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
+            MessageBox.Show("Manual : " + _manual.title + " updated");
+        }
+        private void shomaretextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // xaml.cs code
+            if (!char.IsDigit(e.Text, e.Text.Length - 1))
+                e.Handled = true;
         }
     }
 }

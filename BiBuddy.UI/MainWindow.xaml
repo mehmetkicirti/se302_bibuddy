@@ -171,19 +171,19 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Journal: " VerticalAlignment="Center" />
-                                <TextBox  MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding journal, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center" />
+                                <TextBox  MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding journal}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Year: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Volume: " VerticalAlignment="Center" />
-                                <TextBox  MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding volume, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput"  MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding volume, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Number: " VerticalAlignment="Center" />
-                                <TextBox  MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding number, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox  TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding number, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Pages: " VerticalAlignment="Center" />
@@ -191,7 +191,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Month: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Doi: " VerticalAlignment="Center" />
@@ -241,7 +241,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Volume: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding volume, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding volume, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Publisher: " VerticalAlignment="Center" />
@@ -249,15 +249,15 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Year: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Month: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Series: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding series, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding series, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Address: " VerticalAlignment="Center" />
@@ -265,7 +265,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Edition: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding edition, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding edition, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="URL: " VerticalAlignment="Center" />
@@ -317,11 +317,11 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="Black" FontSize="14" Text="Year: " VerticalAlignment="Center" />
-                                <TextBox  MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="Black" FontSize="14" Text="Month: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="Black" FontSize="14" Text="Address: " VerticalAlignment="Center" />
@@ -372,11 +372,11 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Year: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Month: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Editor: " VerticalAlignment="Center" />
@@ -384,7 +384,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Series: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding series, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding series, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Title: " VerticalAlignment="Center" />
@@ -450,19 +450,19 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Chapter: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding chapter, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding chapter, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Year: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Volume: " VerticalAlignment="Center" />
-                                <TextBox  MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding volume, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding volume, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Series: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding series, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding series, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="Black" FontSize="14" Text="Address: " VerticalAlignment="Center" />
@@ -470,7 +470,7 @@
                            </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Edition: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding edition, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding edition, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Type: " VerticalAlignment="Center" />
@@ -478,7 +478,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Month: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Note: " VerticalAlignment="Center" />
@@ -531,7 +531,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Chapter: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding chapter, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding chapter, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Editor: " VerticalAlignment="Center" />
@@ -539,11 +539,11 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Volume: " VerticalAlignment="Center" />
-                                <TextBox  MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding volume, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput"  MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding volume, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Series: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding series, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding series, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Title: " VerticalAlignment="Center" />
@@ -551,15 +551,15 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Edition: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding edition, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding edition, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Year: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Month: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Type: " VerticalAlignment="Center" />
@@ -607,11 +607,11 @@
                         </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Year: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Month: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Organization: " VerticalAlignment="Center" />
@@ -623,7 +623,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Edition: " VerticalAlignment="Center" />
-                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding edition, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                                <TextBox TextCompositionManager.PreviewTextInput="shomaretextBox_PreviewTextInput" MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding edition, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Note: " VerticalAlignment="Center" />
