@@ -273,7 +273,7 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
 	                    month INTEGER,
                         bibtexkey TEXT,
                         series INTEGER,
-                        publisher TEXT NOT NULL,
+                        publisher TEXT,
                         entrytype TEXT
                         )";
                     cmd.ExecuteNonQuery();
