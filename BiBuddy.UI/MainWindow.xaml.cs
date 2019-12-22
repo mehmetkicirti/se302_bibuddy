@@ -535,5 +535,94 @@ namespace BiBuddy.UI
                 Delete_Btn.IsEnabled = false;
             }
         }
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            object SaveRow = new object();
+            SaveRow = ArticleDetails.DataContext;
+            PropertyInfo[] newFields = SaveRow.GetType().GetProperties();
+
+            switch (SaveRow.GetType().Name)
+            {
+                case "article":
+                    article _article = new article();
+                    Dictionary<string, int> getFieldName = new Dictionary<string, int>();
+                    foreach (var field in newFields)
+                    {
+                        if(field.Name == "entrytype")
+                        {
+                            _article.entrytype = (string)field.GetValue(SaveRow);
+                        }
+                        if (field.Name == "author")
+                        {
+                            _article.author = (string)field.GetValue(SaveRow);
+
+                        }
+                        if (field.Name == "title")
+                        {
+                            _article.title = (string)field.GetValue(SaveRow);
+                        }
+                        if (field.Name == "pages")
+                        {
+                            _article.pages = (string)field.GetValue(SaveRow);
+                        }
+                        if (field.Name == "journal")
+                        {
+                            _article.journal = (string)field.GetValue(SaveRow);
+                        }
+                        if (field.Name == "volume")
+                        {
+                            _article.volume = (int)field.GetValue(SaveRow);
+                        }
+                        if (field.Name == "ID")
+                        {
+                            _article.ID = (int)field.GetValue(SaveRow);
+                            MessageBox.Show(_article.ID.ToString());
+                        }
+                    }
+                    _articleService.Update(_article);
+                    DataGridMain.ItemsSource = GetAllByTypes();
+
+                    break;
+            }
+
+        }
+
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            object EditRow = new object();
+
+            EditRow = DataGridMain.SelectedItem;
+
+
+            PropertyInfo[] infos = EditRow.GetType().GetProperties();
+
+
+
+            switch (EditRow.GetType().Name)
+            {
+                case "article":
+
+                    Dictionary<string, int> getFieldName = new Dictionary<string, int>();
+                    foreach (var info in infos)
+                    {
+                        if (info.Name == "ID")
+                        {
+                            getFieldName.Add(info.Name, (int)info.GetValue(EditRow));
+
+                            break;
+                        }
+
+                    }
+
+                    ArticleDetails.DataContext = _articleService.GetByID(getFieldName["ID"]);
+
+                    EditGrid_Article.Visibility = Visibility.Visible;
+
+                    break;
+
+            }
+
+
+        }
     }
 }
