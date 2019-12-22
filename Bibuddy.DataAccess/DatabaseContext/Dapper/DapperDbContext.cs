@@ -17,7 +17,8 @@ namespace Bibuddy.DataAccess.DatabaseContext.Dapper
         private static string[] path = con.Split(new string[] { "bin" }, StringSplitOptions.None);
         private static string fullPath = String.Format(@"Data Source={0}BiBuddyDB.db", path[0]);
         private static string oldDbFile = Path.Combine(path[0], relativePath);
-        private static string currentPath = Directory.GetCurrentDirectory();
+
+        private static string currentPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         private static string absolutePath = System.IO.Path.Combine(currentPath, relativePath);
         private static string fileNotExist = absolutePath;
         private static string connectionString = string.Format("Data Source={0}", absolutePath);

@@ -26,6 +26,16 @@ namespace Bibuddy.DataAccess.Core.Parser
             get { return this["address"]; }
             set { this["address"] = value; }
         }
+        public string Owner
+        {
+            get { return this["owner"]; }
+            set { this["owner"] = value; }
+        }
+        public string TimeStamp
+        {
+            get { return this["timestamp"]; }
+            set { this["timestamp"] = value; }
+        }
         public string Doi
         {
             get { return this["doi"]; }
@@ -262,6 +272,8 @@ namespace Bibuddy.DataAccess.Core.Parser
         Conference,
         InBook,
         InCollection,
+        inbook,
+        incollection,
         InProceedings,
         Manual,
         Mastersthesis,
