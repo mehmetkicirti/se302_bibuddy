@@ -25,9 +25,9 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
         public void Add(booklet entity)
         {
             _iConnection.ExecuteScalar<booklet>(
-                "INSERT INTO booklet (author, month, note, title, howpublished" +
-                "year, address, bibtexkey,entrytype) VALUES( @author, @month, @note," +
-                " @pages, @title, @howpublished, @year, @bibtexkey, @entrytype)", new
+                "INSERT INTO booklet (author, month, note, title, howpublished, " +
+                "year, address, bibtexkey, entrytype) VALUES( @author, @month, @note," +
+                " @title, @howpublished, @year, @address, @bibtexkey, @entrytype)", new
                 {
                     entity.title,
                     entity.author,

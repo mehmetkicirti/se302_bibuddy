@@ -24,10 +24,10 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public void Add(inbook entity)
         {
-            _iConnection.ExecuteScalar<article>(
-               "INSERT INTO article (chapter, author, month, note, title, volume, year, address, type" +
+            _iConnection.ExecuteScalar<inbook>(
+               "INSERT INTO inbook (chapter, author, month, note, title, volume, year, address, type," +
                " bibtexkey, entrytype ,publisher, series, edition) VALUES( @chapter, @author, @month, @note, @title," +
-               " @volume, @year, @addess, @type, @bibtexkey, @entrytype, @publisher, @series, @edition)", new
+               " @volume, @year, @address, @type, @bibtexkey, @entrytype, @publisher, @series, @edition)", new
                {
                    entity.entrytype,
                    entity.bibtexkey,

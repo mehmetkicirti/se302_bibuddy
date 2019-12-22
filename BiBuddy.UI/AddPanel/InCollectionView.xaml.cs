@@ -59,7 +59,7 @@ namespace BiBuddy.UI.AddPanel
                 author = author_Txt.Text,
                 pages = pages_Txt.Text,
                 note = note_Txt.Text,
-                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Article)
+                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.InCollection)
             };
 
 

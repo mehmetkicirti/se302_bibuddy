@@ -52,7 +52,7 @@ namespace BiBuddy.UI.AddPanel
                 address=address_Txt.Text,
                 edition=edition_Txt.Text != "" ? Convert.ToInt32(edition_Txt.Text): null as int?,
                 organization=organization_Txt.Text,
-                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Article)
+                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Manual)
             };
 
 

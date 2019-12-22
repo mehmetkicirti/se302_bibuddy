@@ -58,7 +58,7 @@ namespace BiBuddy.UI.AddPanel
                 organization = organization_Txt.Text,
                 publisher = publisher_Txt.Text,
                 editor = editor_Txt.Text,
-                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Article)
+                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Conference)
             };
 
 

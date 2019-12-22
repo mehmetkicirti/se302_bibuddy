@@ -25,7 +25,8 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
         public void Add(manual entity)
         {
             _iConnection.ExecuteScalar<manual>(
-               "INSERT INTO manual (entrytype, bibtexkey, title, author, organization, address, edition, month, year, note) VALUES(@entrytype, @bibtexkey, @title, @author, @organization, @addressi ,@edition, @month, @year, @note)", new
+               "INSERT INTO manual (entrytype, bibtexkey, title, author, organization, address, edition, month, year, note)" +
+               " VALUES(@entrytype, @bibtexkey, @title, @author, @organization, @address ,@edition, @month, @year, @note)", new
                {
                    entity.entrytype,
                    entity.bibtexkey,

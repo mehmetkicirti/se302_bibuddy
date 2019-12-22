@@ -57,7 +57,7 @@ namespace BiBuddy.UI.AddPanel
                 publisher = publisher_Txt.Text,
                 series = series_Txt.Text != "" ? Convert.ToInt32(series_Txt.Text) : null as int?,
                 type = type_Txt.Text,
-                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Article)
+                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.InBook)
             };
 
 
