@@ -1,4 +1,4 @@
-# se302_bibuddy
+# BiBuddy : .bib Management Software
 
 ![App Logo](https://i.ibb.co/5RfNqbW/New-Piskel-4.png)
 BiBuddy is a .bib manager program. It can create, .bib files, edit them, export them to HTML or .bib and import other .bib files onto the program. It started its development in October of 2019 for the SE302 Principles of Software Engineering lecture in IUE, Turkey.
