@@ -125,9 +125,7 @@
 
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.Header>
-                            <CheckBox>
-                                <CheckBox.ToolTip>Select All</CheckBox.ToolTip>
-                            </CheckBox>
+                            <TextBlock>Select</TextBlock>
                         </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate >
                             <DataTemplate >
