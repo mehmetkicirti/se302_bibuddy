@@ -62,17 +62,36 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public List<booklet> GetAll(string filter = null)
         {
+            List<booklet> listvalues;
+            string query = "Select * from booklet";
             if (filter != null)
             {
                 filter = filter.ToLower();
             }
-            string query = "Select * from booklet";
-            List<booklet> listvalues = _iConnection.Query<booklet>(query).ToList();
-
-            //if (String.IsNullOrEmpty(filter) || filter == "*")
-            //{
+            if (String.IsNullOrEmpty(filter) || filter == "*")
+            {
+                listvalues = _iConnection.Query<booklet>(query).ToList();
                 return listvalues;
-            //}
+            }
+
+            if (filter.StartsWith("K. Oğuz") || filter.StartsWith("K. Oguz") || filter.StartsWith("K. oğuz") || filter.StartsWith("K. oguz") || filter.StartsWith("k. oguz") || filter.StartsWith("k. oğuz"))
+            {
+                filter = "Kaya Oğuz".ToLower();
+                query += " Where (year like @value) or (month like @value) or lower(author) || lower(title) || lower(bibtexkey) || lower(entrytype) || lower(howpublished)  LIKE @value";
+                listvalues = _iConnection.Query<booklet>(query, new { value = '%' + filter + '%' }).ToList();
+                return listvalues;
+            }
+            if (filter.Contains(".") && filter.Contains(".*"))
+            {
+                int index = filter.IndexOf(".*");
+                filter = filter.Substring(0, index);
+                query += " Where (year like @value) or (month like @value) or lower(author) || lower(title) || lower(bibtexkey) || lower(entrytype) || lower(howpublished)  LIKE @value";
+                listvalues = _iConnection.Query<booklet>(query, new { value = '%' + filter + '%' }).ToList();
+                return listvalues;
+            }
+            query += " Where (year like @value) or (month like @value) or lower(author) || lower(title) || lower(bibtexkey) || lower(entrytype) || lower(howpublished)  LIKE @value";
+            listvalues = _iConnection.Query<booklet>(query, new { value = '%' + filter + '%' }).ToList();
+            return listvalues;
         }
 
         public List<booklet> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null)

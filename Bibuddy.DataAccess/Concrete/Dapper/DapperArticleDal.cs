@@ -82,43 +82,36 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public List<article> GetAll(string filter = null)
         {
+            List<article> listvalues;
+            string query = "Select * from article";
             if (filter != null)
             {
                 filter = filter.ToLower();
             }
-            string query = "Select * from article";
-            List<article> listvalues = _iConnection.Query<article>(query).ToList();
-
-            if (String.IsNullOrEmpty(filter) || filter=="*")
+            if (String.IsNullOrEmpty(filter) || filter == "*")
             {
-                 return listvalues;
+                listvalues = _iConnection.Query<article>(query).ToList();
+                return listvalues;
             }
-            if (filter.StartsWith("K. Oğuz") || filter.StartsWith("K. Oguz") || filter.StartsWith("K. oğuz") || filter.StartsWith("K. oguz") || filter.StartsWith("k. oguz"))
+            
+            if (filter.StartsWith("K. Oğuz") || filter.StartsWith("K. Oguz") || filter.StartsWith("K. oğuz") || filter.StartsWith("K. oguz") || filter.StartsWith("k. oguz") || filter.StartsWith("k. oğuz"))
             {
                 filter = "Kaya Oğuz".ToLower();
-                return listvalues.Where(x => x.author.ToLower().Contains(filter)).ToList();
+                query += " Where (year like @value) or (month like @value) or (CAST(volume as INTEGER) like @value) or lower(author) || lower(title) || lower(bibtexkey) || lower(entrytype) LIKE @value";
+                listvalues = _iConnection.Query<article>(query, new { value = '%' + filter + '%' }).ToList();
+                return listvalues;
             }
             if (filter.Contains(".") && filter.Contains(".*"))
             {
                 int index = filter.IndexOf(".*");
                 filter = filter.Substring(0, index);
-                return listvalues.Where(
-                    x => x.author.ToLower().Contains(filter)
-                   || x.bibtexkey.ToLower().Contains(filter)
-                   || x.entrytype.ToLower().Contains(filter)
-                   || x.year.Value.ToString().Contains(filter)
-                   || x.journal.ToLower().Contains(filter)
-                   || x.title.ToLower().Contains(filter)).ToList();
+                query += " Where (year like @value) or (month like @value) or (CAST(volume as INTEGER) like @value) or lower(author) || lower(title) || lower(bibtexkey) || lower(entrytype) LIKE @value";
+                listvalues = _iConnection.Query<article>(query, new { value = '%' + filter + '%' }).ToList();
+                return listvalues;
             }
-            return listvalues.Where(
-                    x => x.author.ToLower().Contains(filter) 
-                    || x.bibtexkey.ToLower().Contains(filter)
-                    || x.doi.ToLower().Contains(filter)
-                    || x.entrytype.ToLower().Contains(filter)
-                    || x.journal.ToLower().Contains(filter)
-                    || x.month.Value.Equals(Convert.ToInt32(filter))
-                    || x.year.Value.Equals(Convert.ToInt32(filter))
-                    ).ToList();
+            query += " Where (year like @value) or (month like @value) or (CAST(volume as INTEGER) like @value) or lower(author) || lower(title) || lower(bibtexkey) || lower(entrytype) LIKE @value";
+            listvalues = _iConnection.Query<article>(query, new { value = '%' + filter + '%' }).ToList();
+            return listvalues;
         }
 
         public List<article> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null)

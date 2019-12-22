@@ -69,17 +69,36 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public List<incollection> GetAll(string filter = null)
         {
+            List<incollection> listvalues;
+            string query = "Select * from incollection";
             if (filter != null)
             {
                 filter = filter.ToLower();
             }
-            string query = "Select * from incollection";
-            List<incollection> listvalues = _iConnection.Query<incollection>(query).ToList();
-
-            //if (String.IsNullOrEmpty(filter) || filter == "*")
-            //{
+            if (String.IsNullOrEmpty(filter) || filter == "*")
+            {
+                listvalues = _iConnection.Query<incollection>(query).ToList();
                 return listvalues;
-            //}
+            }
+
+            if (filter.StartsWith("K. Oğuz") || filter.StartsWith("K. Oguz") || filter.StartsWith("K. oğuz") || filter.StartsWith("K. oguz") || filter.StartsWith("k. oguz") || filter.StartsWith("k. oğuz"))
+            {
+                filter = "Kaya Oğuz".ToLower();
+                query += " Where (year like @value) or (month like @value) or (CAST(volume as INTEGER) like @value) or (CAST(chapter as INTEGER) like @value) or lower(author) || lower(title) || lower(booktitle) || lower(bibtexkey) || lower(entrytype) || lower(publisher) || lower(type) LIKE @value";
+                listvalues = _iConnection.Query<incollection>(query, new { value = '%' + filter + '%' }).ToList();
+                return listvalues;
+            }
+            if (filter.Contains(".") && filter.Contains(".*"))
+            {
+                int index = filter.IndexOf(".*");
+                filter = filter.Substring(0, index);
+                query += " Where (year like @value) or (month like @value) or (CAST(volume as INTEGER) like @value) or (CAST(chapter as INTEGER) like @value) or lower(author) || lower(title) || lower(booktitle) || lower(bibtexkey) || lower(entrytype) || lower(publisher) || lower(type) LIKE @value";
+                listvalues = _iConnection.Query<incollection>(query, new { value = '%' + filter + '%' }).ToList();
+                return listvalues;
+            }
+            query += " Where (year like @value) or (month like @value) or (CAST(volume as INTEGER) like @value) or (CAST(chapter as INTEGER) like @value) or lower(author) || lower(title) || lower(booktitle) || lower(bibtexkey) || lower(entrytype) || lower(publisher) || lower(type) LIKE @value";
+            listvalues = _iConnection.Query<incollection>(query, new { value = '%' + filter + '%' }).ToList();
+            return listvalues;
         }
 
         public List<incollection> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null)

@@ -60,17 +60,36 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
 
         public List<manual> GetAll(string filter = null)
         {
+            List<manual> listvalues;
+            string query = "Select * from manual";
             if (filter != null)
             {
                 filter = filter.ToLower();
             }
-            string query = "Select * from manual";
-            List<manual> listvalues = _iConnection.Query<manual>(query).ToList();
-
-            //if (String.IsNullOrEmpty(filter) || filter == "*")
-            //{
+            if (String.IsNullOrEmpty(filter) || filter == "*")
+            {
+                listvalues = _iConnection.Query<manual>(query).ToList();
                 return listvalues;
-            //}
+            }
+
+            if (filter.StartsWith("K. Oğuz") || filter.StartsWith("K. Oguz") || filter.StartsWith("K. oğuz") || filter.StartsWith("K. oguz") || filter.StartsWith("k. oguz") || filter.StartsWith("k. oğuz"))
+            {
+                filter = "Kaya Oğuz".ToLower();
+                query += " Where (year like @value) or (month like @value) or (CAST(edition as INTEGER) like @value) or lower(author) || lower(title) || lower(bibtexkey) || lower(entrytype) || lower(organization) LIKE @value";
+                listvalues = _iConnection.Query<manual>(query, new { value = '%' + filter + '%' }).ToList();
+                return listvalues;
+            }
+            if (filter.Contains(".") && filter.Contains(".*"))
+            {
+                int index = filter.IndexOf(".*");
+                filter = filter.Substring(0, index);
+                query += " Where (year like @value) or (month like @value) or (CAST(edition as INTEGER) like @value) or lower(author) || lower(title) || lower(bibtexkey) || lower(entrytype) || lower(organization) LIKE @value";
+                listvalues = _iConnection.Query<manual>(query, new { value = '%' + filter + '%' }).ToList();
+                return listvalues;
+            }
+            query += " Where (year like @value) or (month like @value) or (CAST(edition as INTEGER) like @value) or lower(author) || lower(title) || lower(bibtexkey) || lower(entrytype) || lower(organization) LIKE @value";
+            listvalues = _iConnection.Query<manual>(query, new { value = '%' + filter + '%' }).ToList();
+            return listvalues;
         }
 
         public List<manual> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null)

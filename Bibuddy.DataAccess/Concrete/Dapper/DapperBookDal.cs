@@ -81,39 +81,35 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
         public List<book> GetAll(string filter = null)
         {
 
+            List<book> listvalues;
+            string query = "Select * from book";
             if (filter != null)
             {
                 filter = filter.ToLower();
             }
-            string query = "Select * from book";
-            List<book> listvalues = _iConnection.Query<book>(query).ToList();
+            if (String.IsNullOrEmpty(filter) || filter == "*")
+            {
+                listvalues = _iConnection.Query<book>(query).ToList();
                 return listvalues;
-            
-            //if (filter.StartsWith("K. Oğuz") || filter.StartsWith("K. Oguz") || filter.StartsWith("K. oğuz") || filter.StartsWith("K. oguz") || filter.StartsWith("k. oguz"))
-            //{
-            //    filter = "Kaya Oğuz".ToLower();
-            //    return listvalues.Where(x => x.author.ToLower().Contains(filter)).ToList();
-            //}
-            //if (filter.Contains(".") && filter.Contains(".*"))
-            //{
-            //    int index = filter.IndexOf(".*");
-            //    filter = filter.Substring(0, index);
-            //    return listvalues.Where(x => x.author.ToLower().Contains(filter)
-            //       || x.bibtexkey.ToLower().Contains(filter)
-            //       || (x.doi == null ? x.doi.Contains("") : x.doi.ToLower().Contains(filter))
-            //       || x.entrytype.ToLower().Contains(filter)
-            //       || x.journal.ToLower().Contains(filter)
-            //       || x.title.ToLower().Contains(filter)).ToList();
-            //}
-            //return listvalues.Where(
-            //        x => x.author.ToLower().Contains(filter)
-            //        || x.bibtexkey.ToLower().Contains(filter)
-            //        || x.doi.ToLower().Contains(filter)
-            //        || x.entrytype.ToLower().Contains(filter)
-            //        || x.journal.ToLower().Contains(filter)
-            //        || x.month.Value.Equals(Convert.ToInt32(filter))
-            //        || x.year.Value.Equals(Convert.ToInt32(filter))
-            //        ).ToList();
+            }
+            if (filter.StartsWith("K. Oğuz") || filter.StartsWith("K. Oguz") || filter.StartsWith("K. oğuz") || filter.StartsWith("K. oguz") || filter.StartsWith("k. oguz"))
+            {
+                filter = "Kaya Oğuz".ToLower();
+                query += " Where (year like @value) or (month like @value) or (CAST(volume as INTEGER) LIKE @value) or lower(author) || lower(title) || lower(bibtexkey) || lower(entrytype) || lower(publisher) LIKE @value";
+                listvalues = _iConnection.Query<book>(query, new { value = '%' + filter + '%' }).ToList();
+                return listvalues;
+            }
+            if (filter.Contains(".") && filter.Contains(".*"))
+            {
+                int index = filter.IndexOf(".*");
+                filter = filter.Substring(0, index);
+                query += " Where (year like @value) or (month like @value) or (CAST(volume as INTEGER) LIKE @value) or lower(author) || lower(title) || lower(bibtexkey) || lower(entrytype) || lower(publisher) LIKE @value";
+                listvalues = _iConnection.Query<book>(query, new { value = '%' + filter + '%' }).ToList();
+                return listvalues;
+            }
+            query += " Where (year like @value) or (month like @value) or (CAST(volume as INTEGER) LIKE @value) or lower(author) || lower(title) || lower(bibtexkey) || lower(entrytype) || lower(publisher) LIKE @value";
+            listvalues = _iConnection.Query<book>(query, new { value = '%' + filter + '%' }).ToList();
+            return listvalues;
         }
 
         public List<book> GetAllByAuthorOrTitleIfNotExist(string author = null, string title = null)

@@ -54,34 +54,34 @@ namespace Bibuddy.DataAccess.Core.Utility
             InProceedings,
             Manual
         }
-        public static List<object> GetAllByTypes()
+        public static List<object> GetAllByTypes(string filter=null)
         {
             List<object> list = new List<object>();
-            foreach (var article in _articleService.GetAll())
+            foreach (var article in _articleService.GetAll(filter))
             {
                 list.Add(article);
             }
-            foreach (var book in _bookService.GetAll())
+            foreach (var book in _bookService.GetAll(filter))
             {
                 list.Add(book);
             }
-            foreach (var booklet in _bookletService.GetAll())
+            foreach (var booklet in _bookletService.GetAll(filter))
             {
                 list.Add(booklet);
             }
-            foreach (var conference in _conferenceService.GetAll())
+            foreach (var conference in _conferenceService.GetAll(filter))
             {
                 list.Add(conference);
             }
-            foreach (var incollection in _incollectionService.GetAll())
+            foreach (var incollection in _incollectionService.GetAll(filter))
             {
                 list.Add(incollection);
             }
-            foreach (var manual in _manualService.GetAll())
+            foreach (var manual in _manualService.GetAll(filter))
             {
                 list.Add(manual);
             }
-            foreach (var inbook in _inbookService.GetAll())
+            foreach (var inbook in _inbookService.GetAll(filter))
             {
                 list.Add(inbook);
             }
