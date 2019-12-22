@@ -349,7 +349,6 @@ namespace BiBuddy.UI
             Delete_Btn.IsEnabled = true;
             list.Add(DataGridMain.SelectedItem);
         }
-
         private void btn_Export_Click(object sender, MouseButtonEventArgs e)
         {
             if (list.Count > 0)
@@ -384,7 +383,6 @@ namespace BiBuddy.UI
                 Export_Btn.IsEnabled = false;
             }
         }
-
         private void UnCheckedExport(object sender, RoutedEventArgs e)
         {
             list.Remove(DataGridMain.SelectedItem);
@@ -598,7 +596,6 @@ namespace BiBuddy.UI
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("Article : " + _article.title + " updated");
         }
-
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             EditGrid_Book.Visibility = Visibility.Collapsed;
@@ -691,7 +688,6 @@ namespace BiBuddy.UI
 
 
         }
-
         private void SaveButtonB_Click(object sender, RoutedEventArgs e)
         {
             object SaveRowB = new object();
@@ -769,8 +765,6 @@ namespace BiBuddy.UI
             }
 
         }
-
-
         private void SaveButtonBlt_Click(object sender, RoutedEventArgs e)
         {
             object SaveRowB = new object();
@@ -830,7 +824,6 @@ namespace BiBuddy.UI
 
             }
         }
-
         private void SaveButtonCon_Click(object sender, RoutedEventArgs e)
         {
             object SaveRowB = new object();
