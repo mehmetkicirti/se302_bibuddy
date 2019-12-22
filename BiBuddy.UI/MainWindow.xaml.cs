@@ -319,11 +319,8 @@ namespace BiBuddy.UI
         }
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
-            if (search_textbox.Text.Length > 0)
-            {
-                MessageBox.Show(search_textbox.Text);
-                search_textbox.Text = "";
-            }
+                var result=GetEntryType.GetAllByTypes(search_textbox.Text);
+                DataGridMain.ItemsSource = result;
         }
         private void github_page_click(object sender, MouseButtonEventArgs e)
         {
