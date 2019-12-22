@@ -233,18 +233,18 @@ namespace Bibuddy.DataAccess.Core.Utility
         {
             String htmlString = "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><meta http-equiv='X-UA-Compatible' content='ie=edge'>" +
                 "<title>BibBuddy Output</title>" +
-                "<style type='text/css'>  body { font-family:Georgia, Garamond, Serif; background-color:#ddd;} " +
-                ".bibtex_entry { border:2px solid black;margin:1em;}" +
-                ".bibtex_header {border-bottom:solid gray 2px;}" +
-                ".bibtex_type {color:#232CEB; font-size:small; display:inline; font-weight:bold}" +
-                ".bibtex_key {font-size:small; color:#555;display:inline;font-weight:bold}" +
-                ".bibtex_content {padding-bottom:1em;} " +
-                ".bibtex_author {font-weight:bold; padding-bottom:1em;}" +
-                ".bibtex_title {font-weight:bold; padding-bottom:1em; }" +
-                ".bibtex_url { display:inline; font-size:small; float:right; padding-left:1em; padding-right:1em; } " +
-                ".bibtex_inline{ display:inline;}" +
+                "<style type='text/css'>  body { font-family:Georgia, Garamond, Serif; background-color:#c5e1eb}  " +
+                " .bibtex_entry { border: 4px solid rgb(0, 0, 0);margin:2em;}" +
+                ".bibtex_header {border-bottom:solid rgb(0, 0, 0) 3px;}" +
+                ".bibtex_type {color:#f02637; font-size:small; display:inline; font-weight:bold; padding-left: 5px;}" +
+                ".bibtex_key {font-size:small; color: rgb(39, 42, 233);display:inline;font-weight:bold; padding-left: 10px;}" +
+                ".bibtex_content {padding-bottom:1em; padding: 10px;} " +
+                ".bibtex_author {font-weight:bold; padding: 10px;}" +
+                ".bibtex_title {font-weight:bold; padding: 10px; }" +
+                ".bibtex_url { display:inline; font-size:small; float:right; padding-left:1em; padding-right:1em; }  " +
+                ".bibtex_inline{ display:inline; padding: 10px;}" +
 
-                " </style></head><body> ";
+                " </style></head><body><h1 style='text-align: center; '>BibBuddy Output</h1> ";
 
 
             Dictionary<string, string> getfieldName;
@@ -262,35 +262,39 @@ namespace Bibuddy.DataAccess.Core.Utility
 
                 }
 
-                htmlString += "<hr><div class='bibtex_entry' < div class='bibtex_header'>";
-                htmlString += (getfieldName.ContainsKey("entrytype") && getfieldName["entrytype"] != "") ? "<div class='bibtex_type'>" + getfieldName["entrytype"] + "    " + "</a></div>" : "";
+                htmlString += "<hr style='border - width: 3px; '><div class='bibtex_entry'> <div class='bibtex_header'> ";
+                htmlString += (getfieldName.ContainsKey("entrytype") && getfieldName["entrytype"] != "") ? "<div class='bibtex_type'>" + getfieldName["entrytype"] + "</a></div>" : "";
                 htmlString += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? "<div class='bibtex_key'><a>" + getfieldName["bibtexkey"] + "</a></div>" : "";
-                htmlString += (getfieldName.ContainsKey("url") && getfieldName["url"] != "") ? "<div class='bibtex_url'><a href='" + getfieldName["url"] + "'>url</a></div>" : "";
-                htmlString += (getfieldName.ContainsKey("doi") && getfieldName["doi"] != "") ? "<div class='bibtex_url'><a href='" + getfieldName["doi"] + "'>url </a></div></div>" : "";
-                htmlString += (getfieldName.ContainsKey("author") && getfieldName["author"] != "") ? "<div class='bibtex_content'><div class='bibtex_title'><p>" + getfieldName["title"] + "</div>" : "";
-                htmlString += (getfieldName.ContainsKey("year") && getfieldName["year"] != "") ? "<div class='bibtex_content'>" + getfieldName["year"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("journal") && getfieldName["journal"] != "") ? "<div class='bibtex_content'>" + getfieldName["journal"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("volume") && getfieldName["volume"] != "") ? "<div class='bibtex_content'>" + getfieldName["volume"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("number") && getfieldName["number"] != "") ? "<div class='bibtex_content'>" + getfieldName["number"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("series") && getfieldName["series"] != "") ? "<div class='bibtex_content'>" + getfieldName["series"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("edition") && getfieldName["edition"] != "") ? "<div class='bibtex_content'>" + getfieldName["edition"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("publisher") && getfieldName["publisher"] != "") ? "<div class='bibtex_content'>" + getfieldName["publisher"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("organization") && getfieldName["organization"] != "") ? "<div class='bibtex_content'>" + getfieldName["organization"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("howpublished") && getfieldName["howpublished"] != "") ? "<div class='bibtex_content'>" + getfieldName["howpublished"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("chapter") && getfieldName["chapter"] != "") ? "<div class='bibtex_content'>" + getfieldName["chapter"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("type") && getfieldName["type"] != "") ? "<div class='bibtex_content'>" + getfieldName["type"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("editor") && getfieldName["editor"] != "") ? "<div class='bibtex_content'>" + getfieldName["editor"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("address") && getfieldName["address"] != "") ? "<div class='bibtex_inline'>" + getfieldName["address"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("note") && getfieldName["note"] != "") ? "<div class='bibtex_inline'>" + getfieldName["note"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("month") && getfieldName["month"] != "") ? "<div class='bibtex_inline'>" + getfieldName["month"] + ", </div>" : "";
-                htmlString += (getfieldName.ContainsKey("pages") && getfieldName["pages"] != "") ? "<div class='bibtex_inline'>" + getfieldName["pages"] + ", </div>" : "";
+                htmlString += (getfieldName.ContainsKey("url") && getfieldName["url"] != "") ? "<div class='bibtex_url'><a href=' " + getfieldName["url"] + " '>URL</a></div>" : "";
+                htmlString += (getfieldName.ContainsKey("doi") && getfieldName["doi"] != "") ? "<div class='bibtex_url'><a href=' " + getfieldName["doi"] +  "'>DOI</a></div>" : "";
+                htmlString += "</div>";
+                htmlString += (getfieldName.ContainsKey("author") && getfieldName["author"] != "") ? "<div class='bibtex_author'>" + getfieldName["author"] + "</div>" : "";
+                htmlString += "<div class='bibtex_content'>";
+                htmlString += (getfieldName.ContainsKey("title") && getfieldName["title"] != "") ? "<div class='bibtex_title'><p>" + getfieldName["title"] + "</p></div>" : "";
+                htmlString += (getfieldName.ContainsKey("year") && getfieldName["year"] != "") ? "<div>" + getfieldName["year"] + "</div>" : "";
+                htmlString += (getfieldName.ContainsKey("journal") && getfieldName["journal"] != "") ? "<div>" + getfieldName["journal"] + "</div>" : "";
+                htmlString += (getfieldName.ContainsKey("volume") && getfieldName["volume"] != "") ? "<div>" + getfieldName["volume"] + "</div>" : "";
+                htmlString += (getfieldName.ContainsKey("number") && getfieldName["number"] != "") ? "<div>" + getfieldName["number"] + "</div>" : "";
+                htmlString += (getfieldName.ContainsKey("series") && getfieldName["series"] != "") ? "<div>" + getfieldName["series"] + ", </div>" : "";
+                htmlString += (getfieldName.ContainsKey("edition") && getfieldName["edition"] != "") ? "<div>" + getfieldName["edition"] + ",</div>" : "";
+                htmlString += (getfieldName.ContainsKey("publisher") && getfieldName["publisher"] != "") ? "<div>" + getfieldName["publisher"] + ", </div>" : "";
+                htmlString += (getfieldName.ContainsKey("organization") && getfieldName["organization"] != "") ? "<div>" + getfieldName["organization"] + "</div>" : "";
+                htmlString += (getfieldName.ContainsKey("howpublished") && getfieldName["howpublished"] != "") ? "<div>" + getfieldName["howpublished"] + "</div>" : "";
+                htmlString += (getfieldName.ContainsKey("chapter") && getfieldName["chapter"] != "") ? "<div>" + getfieldName["chapter"] + "</div>" : "";
+                htmlString += (getfieldName.ContainsKey("type") && getfieldName["type"] != "") ? "<div>" + getfieldName["type"] + "</div>" : "";
+                htmlString += (getfieldName.ContainsKey("editor") && getfieldName["editor"] != "") ? "<div>" + getfieldName["editor"] + "</div>" : "";
+                htmlString += "<div class='bibtex_inline'>";
+                htmlString += (getfieldName.ContainsKey("address") && getfieldName["address"] != "") ? "<div>" + getfieldName["address"] + "</div>" : "";
+                htmlString += (getfieldName.ContainsKey("note") && getfieldName["note"] != "") ? "<div>" + getfieldName["note"] + ", </div>" : "";
+                htmlString += (getfieldName.ContainsKey("month") && getfieldName["month"] != "") ? "<div>" + getfieldName["month"] + ", </div>" : "";
+                htmlString += (getfieldName.ContainsKey("pages") && getfieldName["pages"] != "") ? "<div>" + getfieldName["pages"] + ", </div>" : "";
 
 
-                htmlString += "</div></div>";
+                htmlString += "</div></div></div>";
 
             }
 
-            htmlString += "<hr></body></html>";
+            htmlString += "<hr style='border - width: 3px; '></body></html>";
 
 
             return htmlString;
