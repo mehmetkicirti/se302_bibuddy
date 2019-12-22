@@ -352,11 +352,13 @@ namespace BiBuddy.UI
                 saveFileDialog.CreatePrompt = true;
                 if (saveFileDialog.ShowDialog() == true)
                 {
-                    if (saveFileDialog.Filter == ".bib")
+                    string[] arr = System.IO.Path.GetFileName(saveFileDialog.FileName).Split(new string[] { "//" }, StringSplitOptions.None);
+                    if (arr[0].Contains(".bib"))
                     {
                         StreamWriter save = new StreamWriter(saveFileDialog.FileName);
                         save.WriteLine(ExportOperations.GetImportFile(list));
                         save.Close();
+                        MessageBox.Show(System.IO.Path.GetFileName(saveFileDialog.FileName) + "has been created.");
                     }
                     else
                     {
@@ -364,6 +366,7 @@ namespace BiBuddy.UI
                         save.WriteLine(ExportOperations.getHTMLexport(list));
                         save.Close();
                         Console.WriteLine("html export alında");
+                        MessageBox.Show(System.IO.Path.GetFileName(saveFileDialog.FileName) + "has been created.");
                     }
 
                 }
