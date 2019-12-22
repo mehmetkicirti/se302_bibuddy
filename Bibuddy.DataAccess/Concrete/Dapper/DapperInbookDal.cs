@@ -145,7 +145,7 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
         {
             _iConnection.ExecuteScalar<inbook>(
                "UPDATE inbook SET author=@author, entrytype=@entrytype, bibtexkey=@bibtexkey, " +
-               " month=@month, note=@note, chapter@chapter, publisher=@publisher, series=@series, type=@type," +
+               " month=@month, note=@note, chapter=@chapter, publisher=@publisher, series=@series, type=@type," +
                "title=@title, address=@address, edition=@edition, volume=@volume, year=@year where ID = @ID", new
                {
                    entity.entrytype,
