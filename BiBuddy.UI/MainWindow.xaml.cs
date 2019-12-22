@@ -72,7 +72,17 @@ namespace BiBuddy.UI
         }
         private void Exit_Btn_Click(object sender, RoutedEventArgs e)
         {
+            var currentpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var findDb = System.IO.Path.Combine(currentpath, "BiBuddyDB.db");
+            
+            var result =MessageBox.Show("You are exiting the programme but We have a question for you !!! Do you want to protect the changes?", "Warning", MessageBoxButton.YesNo,MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                File.Delete(findDb);
+            }
+
             System.Windows.Application.Current.Shutdown();
+            
         }
         private void BtnPopupExit_Click(object sender, RoutedEventArgs e)
         {
