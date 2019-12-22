@@ -33,7 +33,7 @@ namespace Bibuddy.DataAccess.Core.Utility
                             getfieldName.Add(field.Name, field.GetValue(obj) != null ? field.GetValue(obj).ToString() : "");
                         }
                         exportedFile += getfieldName.ContainsKey("entrytype") ? getfieldName["entrytype"] + "{" : "";
-                        exportedFile += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? getfieldName["bibtexkey"] + "," : "";
+                        exportedFile += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? getfieldName["bibtexkey"] + "," : ",";
                         exportedFile += (getfieldName.ContainsKey("title") && getfieldName["title"] != "") ? Environment.NewLine + "title={" + getfieldName["title"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("doi") && getfieldName["doi"] != "") ? Environment.NewLine + "doi={" + getfieldName["doi"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("year") && getfieldName["year"] != "") ? Environment.NewLine + "year={" + getfieldName["year"] + "}," : "";
@@ -59,7 +59,7 @@ namespace Bibuddy.DataAccess.Core.Utility
                             getfieldName.Add(field.Name, field.GetValue(obj) != null ? field.GetValue(obj).ToString() : "");
                         }
                         exportedFile += getfieldName.ContainsKey("entrytype") ? getfieldName["entrytype"] + "{" : "";
-                        exportedFile += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? getfieldName["bibtexkey"] + "," : "";
+                        exportedFile += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? getfieldName["bibtexkey"] + "," : ",";
                         exportedFile += (getfieldName.ContainsKey("title") && getfieldName["title"] != "") ? Environment.NewLine + "title={" + getfieldName["title"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("doi") && getfieldName["doi"] != "") ? Environment.NewLine + "doi={" + getfieldName["doi"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("year") && getfieldName["year"] != "") ? Environment.NewLine + "year={" + getfieldName["year"] + "}," : "";
@@ -87,7 +87,7 @@ namespace Bibuddy.DataAccess.Core.Utility
                             getfieldName.Add(field.Name, field.GetValue(obj) != null ? field.GetValue(obj).ToString() : "");
                         }
                         exportedFile += getfieldName.ContainsKey("entrytype") ? getfieldName["entrytype"] + "{" : "";
-                        exportedFile += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? getfieldName["bibtexkey"] + "," : "";
+                        exportedFile += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? getfieldName["bibtexkey"] + "," : ",";
                         exportedFile += (getfieldName.ContainsKey("title") && getfieldName["title"] != "") ? Environment.NewLine + "title={" + getfieldName["title"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("doi") && getfieldName["doi"] != "") ? Environment.NewLine + "doi={" + getfieldName["doi"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("year") && getfieldName["year"] != "") ? Environment.NewLine + "year={" + getfieldName["year"] + "}," : "";
@@ -110,7 +110,7 @@ namespace Bibuddy.DataAccess.Core.Utility
                             getfieldName.Add(field.Name, field.GetValue(obj) != null ? field.GetValue(obj).ToString() : "");
                         }
                         exportedFile += getfieldName.ContainsKey("entrytype") ? getfieldName["entrytype"] + "{" : "";
-                        exportedFile += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? getfieldName["bibtexkey"] + "," : "";
+                        exportedFile += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? getfieldName["bibtexkey"] + "," : ",";
                         exportedFile += (getfieldName.ContainsKey("title") && getfieldName["title"] != "") ? Environment.NewLine + "title={" + getfieldName["title"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("doi") && getfieldName["doi"] != "") ? Environment.NewLine + "doi={" + getfieldName["doi"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("year") && getfieldName["year"] != "") ? Environment.NewLine + "year={" + getfieldName["year"] + "}," : "";
@@ -141,7 +141,7 @@ namespace Bibuddy.DataAccess.Core.Utility
                             getfieldName.Add(field.Name, field.GetValue(obj) != null ? field.GetValue(obj).ToString() : "");
                         }
                         exportedFile += getfieldName.ContainsKey("entrytype") ? getfieldName["entrytype"] + "{" : "";
-                        exportedFile += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? getfieldName["bibtexkey"] + "," : "";
+                        exportedFile += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? getfieldName["bibtexkey"] + "," : ",";
                         exportedFile += (getfieldName.ContainsKey("title") && getfieldName["title"] != "") ? Environment.NewLine + "title={" + getfieldName["title"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("doi") && getfieldName["doi"] != "") ? Environment.NewLine + "doi={" + getfieldName["doi"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("year") && getfieldName["year"] != "") ? Environment.NewLine + "year={" + getfieldName["year"] + "}," : "";
@@ -170,7 +170,7 @@ namespace Bibuddy.DataAccess.Core.Utility
                             getfieldName.Add(field.Name, field.GetValue(obj) != null ? field.GetValue(obj).ToString() : "");
                         }
                         exportedFile += getfieldName.ContainsKey("entrytype") ? getfieldName["entrytype"] + "{" : "";
-                        exportedFile += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? getfieldName["bibtexkey"] + "," : "";
+                        exportedFile += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? getfieldName["bibtexkey"] + "," : ",";
                         exportedFile += (getfieldName.ContainsKey("title") && getfieldName["title"] != "") ? Environment.NewLine + "title={" + getfieldName["title"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("doi") && getfieldName["doi"] != "") ? Environment.NewLine + "doi={" + getfieldName["doi"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("year") && getfieldName["year"] != "") ? Environment.NewLine + "year={" + getfieldName["year"] + "}," : "";
@@ -203,7 +203,7 @@ namespace Bibuddy.DataAccess.Core.Utility
                             getfieldName.Add(field.Name, field.GetValue(obj) != null ? field.GetValue(obj).ToString() : "");
                         }
                         exportedFile += getfieldName.ContainsKey("entrytype") ? getfieldName["entrytype"] + "{" : "";
-                        exportedFile += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? getfieldName["bibtexkey"] + "," : "";
+                        exportedFile += (getfieldName.ContainsKey("bibtexkey") && getfieldName["bibtexkey"] != "") ? getfieldName["bibtexkey"] + "," : ",";
                         exportedFile += (getfieldName.ContainsKey("title") && getfieldName["title"] != "") ? Environment.NewLine + "title={" + getfieldName["title"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("doi") && getfieldName["doi"] != "") ? Environment.NewLine + "doi={" + getfieldName["doi"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("year") && getfieldName["year"] != "") ? Environment.NewLine + "year={" + getfieldName["year"] + "}," : "";
