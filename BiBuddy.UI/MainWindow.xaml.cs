@@ -510,50 +510,93 @@ namespace BiBuddy.UI
         }
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            Dictionary<string, string> getFieldName = new Dictionary<string, string>();
             object SaveRow = new object();
             SaveRow = ArticleDetails.DataContext;
             PropertyInfo[] newFields = SaveRow.GetType().GetProperties();
             article _article = new article();
-            Dictionary<string, int> getFieldName = new Dictionary<string, int>();
             foreach (var field in newFields)
             {
-                if (field.Name == "entrytype")
+                if (field.Name == "month")
                 {
-                    _article.entrytype = (string)field.GetValue(SaveRow);
+                    if (field.GetValue(SaveRow) != null)
+                    {
+                        getFieldName.Add(field.Name, field.GetValue(SaveRow).ToString());
+                        continue;
+                    }
+                    getFieldName.Add(field.Name, "");
+                    continue;
                 }
-                if (field.Name == "author")
+                if (field.Name == "year")
                 {
-                    _article.author = (string)field.GetValue(SaveRow);
-
+                    if (field.GetValue(SaveRow) != null)
+                    {
+                        getFieldName.Add(field.Name, field.GetValue(SaveRow).ToString());
+                        continue;
+                    }
+                    getFieldName.Add(field.Name, "");
+                    continue;
                 }
-                if (field.Name == "title")
+                if (field.Name == "number")
                 {
-                    _article.title = (string)field.GetValue(SaveRow);
-                }
-                if (field.Name == "pages")
-                {
-                    _article.pages = (string)field.GetValue(SaveRow);
-                }
-                if (field.Name == "journal")
-                {
-                    _article.journal = (string)field.GetValue(SaveRow);
+                    if (field.GetValue(SaveRow) != null)
+                    {
+                        getFieldName.Add(field.Name, field.GetValue(SaveRow).ToString());
+                        continue;
+                    }
+                    getFieldName.Add(field.Name, "");
+                    continue;
                 }
                 if (field.Name == "volume")
                 {
-                    _article.volume = (int)field.GetValue(SaveRow);
+                    if (field.GetValue(SaveRow) != null)
+                    {
+                        getFieldName.Add(field.Name, field.GetValue(SaveRow).ToString());
+                        continue;
+                    }
+                    getFieldName.Add(field.Name, "");
+                    continue;
                 }
+                if (field.Name == "Item")
+                    continue;
                 if (field.Name == "ID")
                 {
-                    _article.ID = (int)field.GetValue(SaveRow);
-
+                    if (field.GetValue(SaveRow) != null)
+                    {
+                        getFieldName.Add(field.Name, field.GetValue(SaveRow).ToString());
+                        continue;
+                    }
+                    getFieldName.Add(field.Name, "");
+                    continue;
                 }
+                if (field.Name == "bibtexkey")
+                {
+                    if (field.GetValue(SaveRow) != null)
+                    {
+                        getFieldName.Add(field.Name, field.GetValue(SaveRow).ToString());
+                        continue;
+                    }
+                    getFieldName.Add(field.Name, "");
+                    continue;
+                }
+                getFieldName.Add(field.Name, field.GetValue(SaveRow).ToString());
             }
+            _article.ID = Convert.ToInt32(getFieldName["ID"]);
+            _article.year =getFieldName["year"]==null || getFieldName["year"] == "" ? null as int? : Convert.ToInt32(getFieldName["year"]);
+            _article.month = getFieldName["month"] == null || getFieldName["month"] == "" ? null as int? : Convert.ToInt32(getFieldName["month"]);
+            _article.journal = getFieldName["journal"];
+            _article.note = getFieldName["note"];
+            _article.number = getFieldName["number"] == null || getFieldName["number"] == "" ? null as int? : Convert.ToInt32(getFieldName["number"]);
+            _article.pages = getFieldName["pages"];
+            _article.volume= getFieldName["volume"] == null || getFieldName["volume"] == "" ? null as int? : Convert.ToInt32(getFieldName["volume"]);
+            _article.title = getFieldName["title"];
+            _article.entrytype = getFieldName["entrytype"];
+            _article.author = getFieldName["author"];
+            _article.doi = getFieldName["doi"];
+            _article.bibtexkey = getFieldName["bibtexkey"];
             _articleService.Update(_article);
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             MessageBox.Show("Article : " + _article.title + " updated");
-
-
-
         }
 
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
