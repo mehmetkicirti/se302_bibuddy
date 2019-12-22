@@ -81,15 +81,18 @@ namespace Bibuddy.DataAccess.Test.Dapper
         public void SearchFilesToAllFields()
         {
             IArticleDal _article = InstanceFactory.GetInstance<DapperArticleDal>();
-            _article.Add(new article() {
-                    author="Kaya Oguz",
-                    title="yaka",
-                    bibtexkey="k.oguzcimci",
-                    journal="deneme",
-                    number=1,
-                    entrytype="article"
-            });
-            var result = _article.GetAll("Mehmo.*");
+            //_article.Add(new article()
+            //{
+            //    author = "Kaya Oguz",
+            //    title = "yaka",
+            //    bibtexkey = "k.oguzcimci",
+            //    journal = "deneme",
+            //    number = 1,
+            //    year = 1997,
+            //    month = 1,
+            //    entrytype = "article"
+            //});
+            var result = _article.GetAll("article");
             foreach (var item in result)
             {
                 Console.WriteLine(item);
