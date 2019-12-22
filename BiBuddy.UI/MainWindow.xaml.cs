@@ -502,55 +502,56 @@ namespace BiBuddy.UI
             object SaveRow = new object();
             SaveRow = ArticleDetails.DataContext;
             PropertyInfo[] newFields = SaveRow.GetType().GetProperties();
-
-            switch (SaveRow.GetType().Name)
+            article _article = new article();
+            Dictionary<string, int> getFieldName = new Dictionary<string, int>();
+            foreach (var field in newFields)
             {
-                case "article":
-                    article _article = new article();
-                    Dictionary<string, int> getFieldName = new Dictionary<string, int>();
-                    foreach (var field in newFields)
-                    {
-                        if(field.Name == "entrytype")
-                        {
-                            _article.entrytype = (string)field.GetValue(SaveRow);
-                        }
-                        if (field.Name == "author")
-                        {
-                            _article.author = (string)field.GetValue(SaveRow);
+                if (field.Name == "entrytype")
+                {
+                    _article.entrytype = (string)field.GetValue(SaveRow);
+                }
+                if (field.Name == "author")
+                {
+                    _article.author = (string)field.GetValue(SaveRow);
 
-                        }
-                        if (field.Name == "title")
-                        {
-                            _article.title = (string)field.GetValue(SaveRow);
-                        }
-                        if (field.Name == "pages")
-                        {
-                            _article.pages = (string)field.GetValue(SaveRow);
-                        }
-                        if (field.Name == "journal")
-                        {
-                            _article.journal = (string)field.GetValue(SaveRow);
-                        }
-                        if (field.Name == "volume")
-                        {
-                            _article.volume = (int)field.GetValue(SaveRow);
-                        }
-                        if (field.Name == "ID")
-                        {
-                            _article.ID = (int)field.GetValue(SaveRow);
-                            MessageBox.Show(_article.ID.ToString());
-                        }
-                    }
-                    _articleService.Update(_article);
-                    DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
-
-                    break;
+                }
+                if (field.Name == "title")
+                {
+                    _article.title = (string)field.GetValue(SaveRow);
+                }
+                if (field.Name == "pages")
+                {
+                    _article.pages = (string)field.GetValue(SaveRow);
+                }
+                if (field.Name == "journal")
+                {
+                    _article.journal = (string)field.GetValue(SaveRow);
+                }
+                if (field.Name == "volume")
+                {
+                    _article.volume = (int)field.GetValue(SaveRow);
+                }
+                if (field.Name == "ID")
+                {
+                    _article.ID = (int)field.GetValue(SaveRow);
+                    
+                }
             }
+            _articleService.Update(_article);
+            DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
+            MessageBox.Show("Article : " + _article.title + " updated");
+
+
 
         }
 
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
+            EditGrid_Book.Visibility = Visibility.Collapsed;
+            EditGrid_Article.Visibility = Visibility.Collapsed;
+            EditGrid_Booklet.Visibility = Visibility.Collapsed;
+            EditGrid_Con.Visibility = Visibility.Collapsed;
+            
             object EditRow = new object();
 
             EditRow = DataGridMain.SelectedItem;
@@ -558,13 +559,13 @@ namespace BiBuddy.UI
 
             PropertyInfo[] infos = EditRow.GetType().GetProperties();
 
-
+            Dictionary<string, int> getFieldName = new Dictionary<string, int>();
 
             switch (EditRow.GetType().Name)
             {
                 case "article":
 
-                    Dictionary<string, int> getFieldName = new Dictionary<string, int>();
+                    
                     foreach (var info in infos)
                     {
                         if (info.Name == "ID")
@@ -577,14 +578,287 @@ namespace BiBuddy.UI
                     }
 
                     ArticleDetails.DataContext = _articleService.GetByID(getFieldName["ID"]);
-
                     EditGrid_Article.Visibility = Visibility.Visible;
 
                     break;
+                case "book":
+
+                    foreach(var info in infos)
+                    {
+                        if (info.Name == "ID")
+                        {
+                            getFieldName.Add(info.Name, (int)info.GetValue(EditRow));
+                            Console.WriteLine(getFieldName["ID"]);
+                            break;
+                        }
+                    }
+
+                    BookDetails.DataContext = _bookService.GetByID(getFieldName["ID"]);
+                    EditGrid_Book.Visibility = Visibility.Visible;
+                    break;
+
+
+                case "booklet":
+
+                    foreach (var info in infos)
+                    {
+                        if (info.Name == "ID")
+                        {
+                            getFieldName.Add(info.Name, (int)info.GetValue(EditRow));
+                            Console.WriteLine(getFieldName["ID"]);
+                            break;
+                        }
+                    }
+
+                    BookletDetails.DataContext = _bookletService.GetByID(getFieldName["ID"]);
+                    EditGrid_Booklet.Visibility = Visibility.Visible;
+                    break;
+
+                case "conference":
+
+                    foreach (var info in infos)
+                    {
+                        if (info.Name == "ID")
+                        {
+                            getFieldName.Add(info.Name, (int)info.GetValue(EditRow));
+                            Console.WriteLine(getFieldName["ID"]);
+                            break;
+                        }
+                    }
+
+                    ConDetails.DataContext = _conferenceService.GetByID(getFieldName["ID"]);
+                    EditGrid_Con.Visibility = Visibility.Visible;
+                    break;
+
+
+
 
             }
 
 
+        }
+
+        private void SaveButtonB_Click(object sender, RoutedEventArgs e)
+        {
+            object SaveRowB = new object();
+            SaveRowB = BookDetails.DataContext;
+            if (SaveRowB != null)
+            {
+                PropertyInfo[] newFieldsB = SaveRowB.GetType().GetProperties();
+                book _book = new book();
+                foreach (var field in newFieldsB)
+                {
+                    if (field.Name == "entrytype")
+                    {
+                        _book.entrytype = (string)field.GetValue(SaveRowB);
+                        
+                    }
+                    if (field.Name == "author")
+                    {
+                        _book.author = (string)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "title")
+                    {
+                        _book.title = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "publisher")
+                    {
+                        _book.publisher = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "year")
+                    {
+                        _book.year = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "volume")
+                    {
+                        _book.volume = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "ID")
+                    {
+                        _book.ID = (int)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "month")
+                    {
+                        _book.month = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "series")
+                    {
+                        _book.series = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "address")
+                    {
+                        _book.address = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "edition")
+                    {
+                        _book.edition = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "url")
+                    {
+                        _book.url = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "bibtexkey")
+                    {
+                        _book.bibtexkey = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "note")
+                    {
+                        _book.note = (string)field.GetValue(SaveRowB);
+                    }
+
+                }
+                _bookService.Update(_book);
+                DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
+                MessageBox.Show("Book : " + _book.title + " updated");
+            }
+
+        }
+
+        
+        private void SaveButtonBlt_Click(object sender, RoutedEventArgs e)
+        {
+            object SaveRowB = new object();
+            SaveRowB = BookletDetails.DataContext;
+            if (SaveRowB != null)
+            {
+                PropertyInfo[] newFieldsB = SaveRowB.GetType().GetProperties();
+                booklet _booklet = new booklet();
+                foreach (var field in newFieldsB)
+                {
+                    if (field.Name == "entrytype")
+                    {
+                        _booklet.entrytype = (string)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "author")
+                    {
+                        _booklet.author = (string)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "title")
+                    {
+                        _booklet.title = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "year")
+                    {
+                        _booklet.year = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "ID")
+                    {
+                        _booklet.ID = (int)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "bibtexkey")
+                    {
+                        _booklet.bibtexkey = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "address")
+                    {
+                        _booklet.address = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "note")
+                    {
+                        _booklet.note = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "howpublished")
+                    {
+                        _booklet.howpublished = (string)field.GetValue(SaveRowB);
+                    }
+
+
+
+                }
+                _bookletService.Update(_booklet);
+                DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
+                MessageBox.Show("Booklet : " + _booklet.title + " updated");
+
+            }
+        }
+
+        private void SaveButtonCon_Click(object sender, RoutedEventArgs e)
+        {
+            object SaveRowB = new object();
+            SaveRowB = ConDetails.DataContext;
+            if (SaveRowB != null)
+            {
+                PropertyInfo[] newFieldsB = SaveRowB.GetType().GetProperties();
+                conference _conference = new conference();
+
+                foreach (var field in newFieldsB)
+                {
+                    if (field.Name == "entrytype")
+                    {
+                        _conference.entrytype = (string)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "author")
+                    {
+                        _conference.author = (string)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "title")
+                    {
+                        _conference.title = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "booktitle")
+                    {
+                        _conference.booktitle = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "year")
+                    {
+                        _conference.year = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "ID")
+                    {
+                        _conference.ID = (int)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "month")
+                    {
+                        _conference.month = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "series")
+                    {
+                        _conference.series = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "pages")
+                    {
+                        _conference.pages = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "volume")
+                    {
+                        _conference.volume = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "address")
+                    {
+                        _conference.address = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "organization")
+                    {
+                        _conference.organization = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "publisher")
+                    {
+                        _conference.publisher = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "note")
+                    {
+                        _conference.note = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "bibtexkey")
+                    {
+                        _conference.bibtexkey = (string)field.GetValue(SaveRowB);
+                    }
+
+
+                }
+                _conferenceService.Update(_conference);
+                DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
+                MessageBox.Show("Conference : " + _conference.title + " updated");
+
+            }
         }
     }
 }

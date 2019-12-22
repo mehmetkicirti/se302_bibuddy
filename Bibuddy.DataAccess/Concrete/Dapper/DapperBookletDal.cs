@@ -152,7 +152,8 @@ namespace Bibuddy.DataAccess.Concrete.Dapper
                   entity.note,
                   entity.year,
                   entity.bibtexkey,
-                  entity.entrytype
+                  entity.entrytype,
+                  entity.ID
               });
         }
     }
