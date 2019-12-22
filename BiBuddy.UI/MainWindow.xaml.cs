@@ -605,6 +605,9 @@ namespace BiBuddy.UI
             EditGrid_Article.Visibility = Visibility.Collapsed;
             EditGrid_Booklet.Visibility = Visibility.Collapsed;
             EditGrid_Con.Visibility = Visibility.Collapsed;
+            EditGrid_InBook.Visibility = Visibility.Collapsed;
+            EditGrid_InCol.Visibility = Visibility.Collapsed;
+            EditGrid_Manuel.Visibility = Visibility.Collapsed;
 
             object EditRow = new object();
 
@@ -682,6 +685,52 @@ namespace BiBuddy.UI
 
                     ConDetails.DataContext = _conferenceService.GetByID(getFieldName["ID"]);
                     EditGrid_Con.Visibility = Visibility.Visible;
+                    break;
+
+                case "inbook":
+
+                    foreach (var info in infos)
+                    {
+                        if (info.Name == "ID")
+                        {
+                            getFieldName.Add(info.Name, (int)info.GetValue(EditRow));
+                            Console.WriteLine(getFieldName["ID"]);
+                            break;
+                        }
+                    }
+
+                    InBookDetails.DataContext = _inbookService.GetByID(getFieldName["ID"]);
+                    EditGrid_InBook.Visibility = Visibility.Visible;
+                    break;
+                case "incollection":
+
+                    foreach (var info in infos)
+                    {
+                        if (info.Name == "ID")
+                        {
+                            getFieldName.Add(info.Name, (int)info.GetValue(EditRow));
+                            Console.WriteLine(getFieldName["ID"]);
+                            break;
+                        }
+                    }
+
+                    InColDetails.DataContext = _incollectionService.GetByID(getFieldName["ID"]);
+                    EditGrid_InCol.Visibility = Visibility.Visible;
+                    break;
+                case "manual":
+
+                    foreach (var info in infos)
+                    {
+                        if (info.Name == "ID")
+                        {
+                            getFieldName.Add(info.Name, (int)info.GetValue(EditRow));
+                            Console.WriteLine(getFieldName["ID"]);
+                            break;
+                        }
+                    }
+
+                    ManuelDetails.DataContext = _manualService.GetByID(getFieldName["ID"]);
+                    EditGrid_Manuel.Visibility = Visibility.Visible;
                     break;
 
 
@@ -913,6 +962,261 @@ namespace BiBuddy.UI
                 MessageBox.Show("Conference : " + _conference.title + " updated");
 
             }
+        }
+
+        private void SaveButtonInBook_Click(object sender, RoutedEventArgs e)
+        {
+            object SaveRowB = new object();
+            SaveRowB = InBookDetails.DataContext;
+            if (SaveRowB != null)
+            {
+                PropertyInfo[] newFieldsB = SaveRowB.GetType().GetProperties();
+                inbook _inbook = new inbook();
+                foreach (var field in newFieldsB)
+                {
+                    if (field.Name == "entrytype")
+                    {
+                        _inbook.entrytype = (string)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "author")
+                    {
+                        _inbook.author = (string)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "title")
+                    {
+                        _inbook.title = (string)field.GetValue(SaveRowB);
+                    }
+                    
+                    if (field.Name == "year")
+                    {
+                        _inbook.year = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "ID")
+                    {
+                        _inbook.ID = (int)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "month")
+                    {
+                        _inbook.month = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "series")
+                    {
+                        _inbook.series = (int)field.GetValue(SaveRowB);
+                    }
+                    
+                    if (field.Name == "volume")
+                    {
+                        _inbook.volume = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "address")
+                    {
+                        _inbook.address = (string)field.GetValue(SaveRowB);
+                    }
+                   
+                    if (field.Name == "publisher")
+                    {
+                        _inbook.publisher = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "note")
+                    {
+                        _inbook.note = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "bibtexkey")
+                    {
+                        _inbook.bibtexkey = (string)field.GetValue(SaveRowB);
+                    }
+                    //ERROR INT32 TO STRING
+                    if (field.Name == "chapter")
+                    {
+                        _inbook.bibtexkey = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "edition")
+                    {
+                        _inbook.bibtexkey = (string)field.GetValue(SaveRowB);
+                    }
+
+
+                }
+                _inbookService.Update(_inbook);
+                DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
+                MessageBox.Show("InBook : " + _inbook.title + " updated");
+
+            }
+        }
+
+        private void SaveButtonInCon_Click(object sender, RoutedEventArgs e)
+        {
+            object SaveRowB = new object();
+            SaveRowB = InColDetails.DataContext;
+            if (SaveRowB != null)
+            {
+                PropertyInfo[] newFieldsB = SaveRowB.GetType().GetProperties();
+                incollection _incollection = new incollection();
+                foreach (var field in newFieldsB)
+                {
+                    if (field.Name == "entrytype")
+                    {
+                        _incollection.entrytype = (string)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "author")
+                    {
+                        _incollection.author = (string)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "title")
+                    {
+                        _incollection.title = (string)field.GetValue(SaveRowB);
+                    }
+
+                    if (field.Name == "year")
+                    {
+                        _incollection.year = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "ID")
+                    {
+                        _incollection.ID = (int)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "month")
+                    {
+                        _incollection.month = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "series")
+                    {
+                        _incollection.series = (int)field.GetValue(SaveRowB);
+                    }
+
+                    if (field.Name == "volume")
+                    {
+                        _incollection.volume = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "address")
+                    {
+                        _incollection.address = (string)field.GetValue(SaveRowB);
+                    }
+
+                    if (field.Name == "publisher")
+                    {
+                        _incollection.publisher = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "note")
+                    {
+                        _incollection.note = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "bibtexkey")
+                    {
+                        _incollection.bibtexkey = (string)field.GetValue(SaveRowB);
+                    }
+                    //ERROR INT32 TO STRING
+                    if (field.Name == "chapter")
+                    {
+                        _incollection.bibtexkey = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "edition")
+                    {
+                        _incollection.bibtexkey = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "booktitle")
+                    {
+                        _incollection.booktitle = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "editor")
+                    {
+                        _incollection.editor = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "pages")
+                    {
+                        _incollection.pages = (string)field.GetValue(SaveRowB);
+                    }
+
+                }
+                _incollectionService.Update(_incollection);
+                DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
+                MessageBox.Show("InCollection : " + _incollection.title + " updated");
+            }
+         }
+
+        private void SaveButtonManual_Click(object sender, RoutedEventArgs e)
+        {
+            object SaveRowB = new object();
+            SaveRowB = ManuelDetails.DataContext;
+            if (SaveRowB != null)
+            {
+                PropertyInfo[] newFieldsB = SaveRowB.GetType().GetProperties();
+                manual _manual = new manual();
+
+                foreach (var field in newFieldsB)
+                {
+                    if (field.Name == "entrytype")
+                    {
+                        _manual.entrytype = (string)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "author")
+                    {
+                        _manual.author = (string)field.GetValue(SaveRowB);
+
+                    }
+                    if (field.Name == "title")
+                    {
+                        _manual.title = (string)field.GetValue(SaveRowB);
+                    }
+
+                    if (field.Name == "year")
+                    {
+                        _manual.year = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "ID")
+                    {
+                        if (field.GetValue(SaveRowB) != null)
+                        {
+                            _manual.ID = (int)field.GetValue(SaveRowB);
+                            continue;
+                        }
+
+
+                    }
+                    if (field.Name == "edition")
+                    {
+                        _manual.edition = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "month")
+                    {
+                        _manual.month = (int)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "address")
+                    {
+                        _manual.address = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "organization")
+                    {
+                        _manual.organization = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "note")
+                    {
+                        _manual.note = (string)field.GetValue(SaveRowB);
+                    }
+                    if (field.Name == "bibtexkey")
+                    {
+                        if (field.GetValue(SaveRowB) != null)
+                        {
+                            _manual.bibtexkey = (string)field.GetValue(SaveRowB);
+                            continue;
+                        }
+                        _manual.bibtexkey = "";
+                        continue;
+                    }
+                }
+                _manualService.Update(_manual);
+                DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
+                MessageBox.Show("Manual : " + _manual.title + " updated");
+
+            }
+
         }
     }
 }
