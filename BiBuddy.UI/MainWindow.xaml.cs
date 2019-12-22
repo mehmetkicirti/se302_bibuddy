@@ -31,7 +31,7 @@ namespace BiBuddy.UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+
 
 
         private readonly IArticleDal _articleService;
@@ -62,9 +62,9 @@ namespace BiBuddy.UI
             menuRegister.Add(new SubItem("Conference"));
             menuRegister.Add(new SubItem("Manual"));
             menuRegister.Add(new SubItem("InCollection"));
-            
+
             var item0 = new ItemMenu("Add Type", menuRegister, MaterialDesignThemes.Wpf.PackIconKind.ViewDashboard);
-           
+
 
             Menu.Children.Add(new UserControlMenuItem(item0));
             DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
@@ -72,7 +72,7 @@ namespace BiBuddy.UI
         }
         private void Exit_Btn_Click(object sender, RoutedEventArgs e)
         {
-                System.Windows.Application.Current.Shutdown();
+            System.Windows.Application.Current.Shutdown();
         }
         private void BtnPopupExit_Click(object sender, RoutedEventArgs e)
         {
@@ -98,198 +98,206 @@ namespace BiBuddy.UI
 
             if (openFileDialog.ShowDialog() == true)
             {
-                string path = openFileDialog.FileName;
-                //var parser = new BibParser(new StreamReader(path, Encoding.Default));
-                var parser = new BetterBibtexParser(new StreamReader(path, Encoding.Default));
-                var entries = parser.GetAllResult();
-                foreach (var entry in entries)
+                try
                 {
-                    switch (entry.Type)
+                    string path = openFileDialog.FileName;
+                    //var parser = new BibParser(new StreamReader(path, Encoding.Default));
+                    var parser = new BetterBibtexParser(new StreamReader(path, Encoding.Default));
+                    var entries = parser.GetAllResult();
+
+                    foreach (var entry in entries)
                     {
-                        case "Article":
-                            article _article = new article();
-                            _article.doi = entry.Doi;
-                            _article.author = entry.Author;
-                            _article.title = entry.Title;
-                            _article.pages = entry.Pages;
-                            _article.bibtexkey = entry.Key;
-                            _article.entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Article);
-                            _article.note = entry.Note;
-                            _article.year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?;
-                            _article.number = entry.Number != "" ? Convert.ToInt32(entry.Number) : null as int?;
-                            _article.month = entry.Month != "" ? Convert.ToInt32(entry.Month) : null as int?;
-                            _article.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
-                            _article.journal = entry.Journal;
-                            _articleService.Add(_article);
-                            Console.WriteLine("Added To Db Article");
-                            break;
-                        case "Book":
-                            book _book = new book
-                            {
-                                bibtexkey = entry.Key,
-                                title = entry.Title,
-                                address = entry.Address,
-                                publisher = entry.Publisher,
-                                year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?,
-                                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Book),
-                                url=entry.URL,
-                                series = entry.Series != "" ? Convert.ToInt32(entry.Series):null as int?,
-                                edition =entry.Edition != "" ? Convert.ToInt32(entry.Edition):null as int?,
-                                month = entry.Month != "" ? Convert.ToInt32(entry.Month) : null as int?,
-                                note = entry.Note,
-                                volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?
-                            };
-                            if (entry.Author != "" && entry.Editor != "")
-                                _book.author = entry.Author;
-                            else if (entry.Author != "")
-                                _book.author = entry.Author;
-                            else
-                                _book.author = entry.Editor;
+                        switch (entry.Type.ToLower())
+                        {
+                            case "article":
+                                article _article = new article();
+                                _article.doi = entry.Doi;
+                                _article.author = entry.Author;
+                                _article.title = entry.Title;
+                                _article.pages = entry.Pages;
+                                _article.bibtexkey = entry.Key;
+                                _article.entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Article);
+                                _article.note = entry.Note;
+                                _article.year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?;
+                                _article.number = entry.Number != "" ? Convert.ToInt32(entry.Number) : null as int?;
+                                _article.month = entry.Month != "" ? Convert.ToInt32(entry.Month) : null as int?;
+                                _article.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                                _article.journal = entry.Journal;
+                                _articleService.Add(_article);
+                                Console.WriteLine("Added To Db Article");
+                                break;
+                            case "book":
+                                book _book = new book
+                                {
+                                    bibtexkey = entry.Key,
+                                    title = entry.Title,
+                                    address = entry.Address,
+                                    publisher = entry.Publisher,
+                                    year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?,
+                                    entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Book),
+                                    url = entry.URL,
+                                    series = entry.Series != "" ? Convert.ToInt32(entry.Series) : null as int?,
+                                    edition = entry.Edition != "" ? Convert.ToInt32(entry.Edition) : null as int?,
+                                    month = entry.Month != "" ? Convert.ToInt32(entry.Month) : null as int?,
+                                    note = entry.Note,
+                                    volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?
+                                };
+                                if (entry.Author != "" && entry.Editor != "")
+                                    _book.author = entry.Author;
+                                else if (entry.Author != "")
+                                    _book.author = entry.Author;
+                                else
+                                    _book.author = entry.Editor;
 
-                            // ----------------------------------------------------
+                                // ----------------------------------------------------
 
-                            if (entry.Volume != "" && entry.Number != "")
-                                _book.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
-                            else if (entry.Volume != "")
-                                _book.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
-                            else
-                                _book.volume = entry.Number != "" ? Convert.ToInt32(entry.Number) : null as int?;
+                                if (entry.Volume != "" && entry.Number != "")
+                                    _book.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                                else if (entry.Volume != "")
+                                    _book.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                                else
+                                    _book.volume = entry.Number != "" ? Convert.ToInt32(entry.Number) : null as int?;
 
-                            _bookService.Add(_book);
-                            Console.WriteLine("Added To Db Book");
-                            break;
-                        case "Booklet":
-                            booklet _booklet = new booklet
-                            {
-                                title = entry.Title,
-                                author = entry.Author,
-                                address = entry.Address,
-                                month = entry.Month != "" ? Convert.ToInt32(entry.Month) : null as int?,
-                                year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?,
-                                note = entry.Note,
-                                bibtexkey = entry.Key,
-                                howpublished = entry.Howpublished,
-                                entrytype=GetEntryType.GetValueByEnum(GetEntryType.EntryType.Booklet)
-                            };
-                            _bookletService.Add(_booklet);
-                            Console.WriteLine("Added To Db Booklet");
-                            break;
-                        case "Conference":
-                            conference _conference = new conference
-                            {
-                                title = entry.Title,
-                                author = entry.Author,
-                                booktitle = entry.Booktitle,
-                                year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?,
-                                editor = entry.Editor,
-                                volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?,
-                                series = entry.Series != "" ? Convert.ToInt32(entry.Series) : null as int?,
-                                pages = entry.Pages,
-                                organization = entry.Organization,
-                                address = entry.Address,
-                                month = entry.Month != "" ? Convert.ToInt32(entry.Month) : null as int?,
-                                publisher = entry.Publisher,
-                                note = entry.Note,
-                                bibtexkey = entry.Key,
-                                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Conference)
-                            };
-                            // ----------------------------------------------------
-                            if (entry.Volume != "" && entry.Number != "")
-                                _conference.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
-                            else if (entry.Volume != "")
-                                _conference.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
-                            else
-                                _conference.volume = entry.Number != "" ? Convert.ToInt32(entry.Number) : null as int?;
-                            // ----------------------------------------------------
-                            _conferenceService.Add(_conference);
-                            Console.WriteLine("Added To Db Conference");
-                            break;
-                        case "Inbook":
-                            inbook _inbook = new inbook
-                            {
-                                title = entry.Title,
-                                chapter = entry.Chapter != "" ? Convert.ToInt32(entry.Chapter) : null as int?,
-                                publisher = entry.Publisher,
-                                year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?,
-                                series = entry.Series != "" ? Convert.ToInt32(entry.Series) : null as int?,
-                                type = entry.Type,
-                                address = entry.Address,
-                                edition = entry.Edition != "" ? Convert.ToInt32(entry.Edition) : null as int?,
-                                month = entry.Month != "" ? Convert.ToInt32(entry.Month) : null as int?,
-                                note = entry.Note,
-                                bibtexkey = entry.Key,
-                                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.InBook)
-                            };
-                            // -------------------------------------------------------
-                            if (entry.Author != "" && entry.Editor != "")
-                                _inbook.author = entry.Author;
-                            else if (entry.Author != "")
-                                _inbook.author = entry.Author;
-                            else
-                                _inbook.author = entry.Editor;
-                            // -------------------------------------------------------
-                            if (entry.Volume != "" && entry.Number != "")
-                                _inbook.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
-                            else if (entry.Volume != "")
-                                _inbook.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
-                            else
-                                _inbook.volume = entry.Number != "" ? Convert.ToInt32(entry.Number) : null as int?;
-                            // -------------------------------------------------------
-                            _inbookService.Add(_inbook);
-                            Console.WriteLine("Added To Db Inbook");
-                            break;
-                        case "Incollection":
-                            incollection _incollection = new incollection
-                            {
-                                month = entry.Month != "" ? Convert.ToInt32(entry.Month) : null as int?,
-                                note = entry.Note,
-                                bibtexkey = entry.Key,
-                                author = entry.Author,
-                                title = entry.Title,
-                                booktitle = entry.Booktitle,
-                                publisher = entry.Publisher,
-                                year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?,
-                                volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?,
-                                series = entry.Series != "" ? Convert.ToInt32(entry.Series) : null as int?,
-                                type = entry.Type,
-                                address = entry.Address,
-                                edition = entry.Edition != "" ? Convert.ToInt32(entry.Edition) : null as int?,
-                                chapter = entry.Chapter != "" ? Convert.ToInt32(entry.Chapter) : null as int?,
-                                pages = entry.Pages,
-                                editor = entry.Editor,
-                                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.InCollection)
-                            };
-                            // -------------------------------------------------------
-                            if (entry.Volume != "" && entry.Number != "")
-                                _incollection.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
-                            else if (entry.Volume != "")
-                                _incollection.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
-                            else
-                                _incollection.volume = entry.Number != "" ? Convert.ToInt32(entry.Number) : null as int?;
-                            // -------------------------------------------------------
-                            _incollectionService.Add(_incollection);
-                            Console.WriteLine("Added To Db Incollection");
-                            break;
-                        case "Manual":
-                            manual _manual = new manual
-                            {
-                                title = entry.Title,
-                                author = entry.Author,
-                                organization = entry.Organization,
-                                address = entry.Address,
-                                edition = entry.Edition != "" ? Convert.ToInt32(entry.Edition) : null as int?,
-                                month = entry.Month != "" ? Convert.ToInt32(entry.Month) : null as int?,
-                                note = entry.Note,
-                                bibtexkey = entry.Key,
-                                year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?,
-                                entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Manual)
-                            };
-                            _manualService.Add(_manual);
-                            Console.WriteLine("Added To Db Manual");
-                            break;
-                        default:
-                            break;
+                                _bookService.Add(_book);
+                                Console.WriteLine("Added To Db Book");
+                                break;
+                            case "booklet":
+                                booklet _booklet = new booklet
+                                {
+                                    title = entry.Title,
+                                    author = entry.Author,
+                                    address = entry.Address,
+                                    month = entry.Month != "" ? Convert.ToInt32(entry.Month) : null as int?,
+                                    year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?,
+                                    note = entry.Note,
+                                    bibtexkey = entry.Key,
+                                    howpublished = entry.Howpublished,
+                                    entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Booklet)
+                                };
+                                _bookletService.Add(_booklet);
+                                Console.WriteLine("Added To Db Booklet");
+                                break;
+                            case "conference":
+                                conference _conference = new conference
+                                {
+                                    title = entry.Title,
+                                    author = entry.Author,
+                                    booktitle = entry.Booktitle,
+                                    year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?,
+                                    editor = entry.Editor,
+                                    volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?,
+                                    series = entry.Series != "" ? Convert.ToInt32(entry.Series) : null as int?,
+                                    pages = entry.Pages,
+                                    organization = entry.Organization,
+                                    address = entry.Address,
+                                    month = entry.Month != "" ? Convert.ToInt32(entry.Month) : null as int?,
+                                    publisher = entry.Publisher,
+                                    note = entry.Note,
+                                    bibtexkey = entry.Key,
+                                    entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Conference)
+                                };
+                                // ----------------------------------------------------
+                                if (entry.Volume != "" && entry.Number != "")
+                                    _conference.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                                else if (entry.Volume != "")
+                                    _conference.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                                else
+                                    _conference.volume = entry.Number != "" ? Convert.ToInt32(entry.Number) : null as int?;
+                                // ----------------------------------------------------
+                                _conferenceService.Add(_conference);
+                                Console.WriteLine("Added To Db Conference");
+                                break;
+                            case "inbook":
+                                inbook _inbook = new inbook
+                                {
+                                    title = entry.Title,
+                                    chapter = entry.Chapter != "" ? Convert.ToInt32(entry.Chapter) : null as int?,
+                                    publisher = entry.Publisher,
+                                    year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?,
+                                    series = entry.Series != "" ? Convert.ToInt32(entry.Series) : null as int?,
+                                    type = entry.Type,
+                                    address = entry.Address,
+                                    edition = entry.Edition != "" ? Convert.ToInt32(entry.Edition) : null as int?,
+                                    month = entry.Month != "" ? Convert.ToInt32(entry.Month) : null as int?,
+                                    note = entry.Note,
+                                    bibtexkey = entry.Key,
+                                    entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.InBook)
+                                };
+                                // -------------------------------------------------------
+                                if (entry.Author != "" && entry.Editor != "")
+                                    _inbook.author = entry.Author;
+                                else if (entry.Author != "")
+                                    _inbook.author = entry.Author;
+                                else
+                                    _inbook.author = entry.Editor;
+                                // -------------------------------------------------------
+                                if (entry.Volume != "" && entry.Number != "")
+                                    _inbook.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                                else if (entry.Volume != "")
+                                    _inbook.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                                else
+                                    _inbook.volume = entry.Number != "" ? Convert.ToInt32(entry.Number) : null as int?;
+                                // -------------------------------------------------------
+                                _inbookService.Add(_inbook);
+                                Console.WriteLine("Added To Db Inbook");
+                                break;
+                            case "incollection":
+                                incollection _incollection = new incollection
+                                {
+                                    month = entry.Month != "" ? Convert.ToInt32(entry.Month) : null as int?,
+                                    note = entry.Note,
+                                    bibtexkey = entry.Key,
+                                    author = entry.Author,
+                                    title = entry.Title,
+                                    booktitle = entry.Booktitle,
+                                    publisher = entry.Publisher,
+                                    year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?,
+                                    volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?,
+                                    series = entry.Series != "" ? Convert.ToInt32(entry.Series) : null as int?,
+                                    type = entry.Type,
+                                    address = entry.Address,
+                                    edition = entry.Edition != "" ? Convert.ToInt32(entry.Edition) : null as int?,
+                                    chapter = entry.Chapter != "" ? Convert.ToInt32(entry.Chapter) : null as int?,
+                                    pages = entry.Pages,
+                                    editor = entry.Editor,
+                                    entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.InCollection)
+                                };
+                                // -------------------------------------------------------
+                                if (entry.Volume != "" && entry.Number != "")
+                                    _incollection.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                                else if (entry.Volume != "")
+                                    _incollection.volume = entry.Volume != "" ? Convert.ToInt32(entry.Volume) : null as int?;
+                                else
+                                    _incollection.volume = entry.Number != "" ? Convert.ToInt32(entry.Number) : null as int?;
+                                // -------------------------------------------------------
+                                _incollectionService.Add(_incollection);
+                                Console.WriteLine("Added To Db Incollection");
+                                break;
+                            case "manual":
+                                manual _manual = new manual
+                                {
+                                    title = entry.Title,
+                                    author = entry.Author,
+                                    organization = entry.Organization,
+                                    address = entry.Address,
+                                    edition = entry.Edition != "" ? Convert.ToInt32(entry.Edition) : null as int?,
+                                    month = entry.Month != "" ? Convert.ToInt32(entry.Month) : null as int?,
+                                    note = entry.Note,
+                                    bibtexkey = entry.Key,
+                                    year = entry.Year != "" ? Convert.ToInt32(entry.Year) : null as int?,
+                                    entrytype = GetEntryType.GetValueByEnum(GetEntryType.EntryType.Manual)
+                                };
+                                _manualService.Add(_manual);
+                                Console.WriteLine("Added To Db Manual");
+                                break;
+                            default:
+                                break;
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
 
                 DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
@@ -319,8 +327,8 @@ namespace BiBuddy.UI
         }
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
-                var result=GetEntryType.GetAllByTypes(search_textbox.Text);
-                DataGridMain.ItemsSource = result;
+            var result = GetEntryType.GetAllByTypes(search_textbox.Text);
+            DataGridMain.ItemsSource = result;
         }
         private void github_page_click(object sender, MouseButtonEventArgs e)
         {
@@ -341,10 +349,10 @@ namespace BiBuddy.UI
             Delete_Btn.IsEnabled = true;
             list.Add(DataGridMain.SelectedItem);
         }
-        
+
         private void btn_Export_Click(object sender, MouseButtonEventArgs e)
         {
-            if (list.Count>0)
+            if (list.Count > 0)
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "BibTeX files (*.bib) |*.bib | HTML File (*.html) |*.html";
@@ -393,8 +401,8 @@ namespace BiBuddy.UI
         }
         private void Btn_Delete_Click(object sender, MouseButtonEventArgs e)
         {
-            
-            if (list.Count>0)
+
+            if (list.Count > 0)
             {
                 Dictionary<string, int> getfieldName;
                 foreach (object type in list)
@@ -493,7 +501,7 @@ namespace BiBuddy.UI
                 list.Clear();
                 Export_Btn.IsEnabled = false;
                 Delete_Btn.IsEnabled = false;
-                DataGridMain.ItemsSource=GetEntryType.GetAllByTypes();
+                DataGridMain.ItemsSource = GetEntryType.GetAllByTypes();
             }
             else if (list.Count <= 0)
             {
@@ -537,7 +545,7 @@ namespace BiBuddy.UI
                 if (field.Name == "ID")
                 {
                     _article.ID = (int)field.GetValue(SaveRow);
-                    
+
                 }
             }
             _articleService.Update(_article);
@@ -554,7 +562,7 @@ namespace BiBuddy.UI
             EditGrid_Article.Visibility = Visibility.Collapsed;
             EditGrid_Booklet.Visibility = Visibility.Collapsed;
             EditGrid_Con.Visibility = Visibility.Collapsed;
-            
+
             object EditRow = new object();
 
             EditRow = DataGridMain.SelectedItem;
@@ -568,7 +576,7 @@ namespace BiBuddy.UI
             {
                 case "article":
 
-                    
+
                     foreach (var info in infos)
                     {
                         if (info.Name == "ID")
@@ -586,7 +594,7 @@ namespace BiBuddy.UI
                     break;
                 case "book":
 
-                    foreach(var info in infos)
+                    foreach (var info in infos)
                     {
                         if (info.Name == "ID")
                         {
@@ -654,7 +662,7 @@ namespace BiBuddy.UI
                     if (field.Name == "entrytype")
                     {
                         _book.entrytype = (string)field.GetValue(SaveRowB);
-                        
+
                     }
                     if (field.Name == "author")
                     {
@@ -719,7 +727,7 @@ namespace BiBuddy.UI
 
         }
 
-        
+
         private void SaveButtonBlt_Click(object sender, RoutedEventArgs e)
         {
             object SaveRowB = new object();
