@@ -1514,7 +1514,7 @@ namespace BiBuddy.UI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
         
-            System.Diagnostics.Process.Start(@"E:\FormatÖncesi\dersler\BiBuddy\BiBuddy.UI\Responsive HTML5\index.htm");
+            System.Diagnostics.Process.Start(AppDomain.CurrentDomain.BaseDirectory + @"\Default.chm");
         }
     }
 }
