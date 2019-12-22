@@ -39,7 +39,7 @@
                         <Button Content="Help"></Button>
                         <Button Content="About"></Button>
                         <Separator></Separator>
-                        <Button x:Name="BtnPopupExit" Content="Exit" Click="Exit_Btn_Click"></Button>
+                        <Button x:Name="BtnPopupExit" Content="Exit" Click="BtnPopupExit_Click"></Button>
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
