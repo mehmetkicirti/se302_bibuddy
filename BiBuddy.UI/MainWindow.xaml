@@ -139,7 +139,7 @@
                     <DataGridTextColumn Header="Author" Binding="{Binding author}"/>
                     <DataGridTextColumn Header="Title" Binding="{Binding title}"/>
                     <DataGridTextColumn Header="Year" Binding="{Binding year}"/>
-                    <DataGridTextColumn Header="Volume" Binding="{Binding Volume}"/>
+                    <DataGridTextColumn Header="Volume" Binding="{Binding volume}"/>
                 </DataGrid.Columns>
                 
             </DataGrid>
@@ -158,7 +158,7 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="EntryType: " VerticalAlignment="Center" />
-                                <TextBox  MinWidth="30" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding entrytype}" VerticalAlignment="Center" />
+                                <TextBlock  MinWidth="30" MaxWidth="600" TextWrapping="Wrap"  FontSize="16" Foreground="MidnightBlue" Text="{Binding entrytype}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Black" FontSize="14" Text="Author: " VerticalAlignment="Center" />
@@ -224,28 +224,207 @@
                     <ColumnDefinition Width="70"/>
                 </Grid.ColumnDefinitions>
                 <Border BorderThickness="0" Background="GhostWhite" Padding="10" >
-                    <StackPanel Grid.Column="0" x:Name="BookDetails" Orientation="Vertical">
+                    <ScrollViewer>
+                        <StackPanel Grid.Column="0" x:Name="BookDetails" Orientation="Vertical">
 
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Foreground="Black" FontSize="14" Text="EntryType: " VerticalAlignment="Center" />
-                            <TextBox TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding entrytype}" VerticalAlignment="Center" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Foreground="Black" FontSize="14" Text="Author: " VerticalAlignment="Center" />
-                            <TextBox TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding author}" VerticalAlignment="Center" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Foreground="Black" FontSize="14" Text="Title: " VerticalAlignment="Center" />
-                            <TextBox TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding title, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="EntryType: " VerticalAlignment="Center" />
+                                <TextBlock MinWidth="60" MaxWidth="600" TextWrapping="Wrap"  FontSize="16" Foreground="MidnightBlue" Text="{Binding entrytype}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Author: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding author}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Title: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding title, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Volume: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding volume, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Publisher: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding publisher, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Year: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Month: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Series: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding series, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Address: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding address, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Edition: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding edition, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="URL: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding url, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="BibtexKey: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding bibtexkey, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Note: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding note, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
 
-                    </StackPanel>
+
+                        </StackPanel>
+                    </ScrollViewer>
                 </Border>
                 <StackPanel Grid.Column="1">
-                    <Button Content="Save" Margin="5,15,5,5" Click="SaveButton_Click"></Button>
+                    <Button Content="Save" Margin="3,15,5,3" Click="SaveButtonB_Click"></Button>
                 </StackPanel>
 
             </Grid>
+
+            <Grid x:Name="EditGrid_Booklet"  Grid.Row="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="900"/>
+                    <ColumnDefinition Width="70"/>
+                </Grid.ColumnDefinitions>
+                <Border BorderThickness="0" Background="GhostWhite" Padding="10" >
+                    <ScrollViewer>
+                        <StackPanel Grid.Column="0" x:Name="BookletDetails" Orientation="Vertical">
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" FontSize="14" Text="EntryType: " VerticalAlignment="Center" />
+                                <TextBlock MinWidth="60" MaxWidth="600" TextWrapping="Wrap"  FontSize="16" Foreground="MidnightBlue" Text="{Binding entrytype}" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" FontSize="14" Text="Author: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding author}" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" FontSize="14" Text="Title: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding title, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" FontSize="14" Text="Howpublished: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding howpublished, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" FontSize="14" Text="Year: " VerticalAlignment="Center" />
+                                <TextBox  MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" FontSize="14" Text="Month: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" FontSize="14" Text="Address: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding address, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" FontSize="14" Text="Note: " VerticalAlignment="Center" />
+                            <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding note, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" FontSize="14" Text="BibtexKey: " VerticalAlignment="Center" />
+                            <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding bibtexkey, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                    </StackPanel>
+                    </ScrollViewer>
+                </Border>
+                <StackPanel Grid.Column="1">
+                    <Button Content="Save" Margin="3,15,5,3" Click="SaveButtonBlt_Click"></Button>
+                </StackPanel>
+
+            </Grid>
+
+            <Grid x:Name="EditGrid_Con"  Grid.Row="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="900"/>
+                    <ColumnDefinition Width="70"/>
+                </Grid.ColumnDefinitions>
+                <Border BorderThickness="0" Background="GhostWhite" Padding="10" >
+                    <ScrollViewer>
+                        <StackPanel Grid.Column="0" x:Name="ConDetails" Orientation="Vertical">
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="EntryType: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding entrytype}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Author: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding author}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Title: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding title, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Book Title: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding booktitle, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Year: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding year, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Month: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding month, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Editor: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding editor, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Series: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding series, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Title: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding pages, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Address: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding address, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Organization: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding organization, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Publisher: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding publisher, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="Note: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding note, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Black" FontSize="14" Text="BibtexKey: " VerticalAlignment="Center" />
+                                <TextBox MinWidth="60" MaxWidth="600" TextWrapping="Wrap" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" FontSize="16" Foreground="MidnightBlue" Text="{Binding bibtexkey, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            
+
+
+
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+                <StackPanel Grid.Column="1">
+                    <Button Content="Save" Margin="3,15,5,3" Click="SaveButtonCon_Click"></Button>
+                </StackPanel>
+
+            </Grid>
+
+
+
 
 
         </Grid>
