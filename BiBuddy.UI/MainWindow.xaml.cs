@@ -76,7 +76,7 @@ namespace BiBuddy.UI
             var findDb = System.IO.Path.Combine(currentpath, "BiBuddyDB.db");
             
             var result =MessageBox.Show("You are exiting the programme but We have a question for you !!! Do you want to protect the changes?", "Warning", MessageBoxButton.YesNo,MessageBoxImage.Warning);
-            if (result == MessageBoxResult.Yes)
+            if (result == MessageBoxResult.No)
             {
                 File.Delete(findDb);
             }
