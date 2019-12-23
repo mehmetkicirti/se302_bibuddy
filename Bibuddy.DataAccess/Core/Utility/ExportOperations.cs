@@ -148,7 +148,7 @@ namespace Bibuddy.DataAccess.Core.Utility
                         exportedFile += (getfieldName.ContainsKey("month") && getfieldName["month"] != "") ? Environment.NewLine + "month={" + getfieldName["month"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("note") && getfieldName["note"] != "") ? Environment.NewLine + "note={" + getfieldName["note"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("author") && getfieldName["author"] != "") ? Environment.NewLine + "author={" + getfieldName["author"] + "}," : "";
-                        exportedFile += (getfieldName.ContainsKey("chapter") && getfieldName["number"] != "") ? Environment.NewLine + "number={" + getfieldName["number"] + "}," : "";
+                        exportedFile += (getfieldName.ContainsKey("chapter") && getfieldName["chapter"] != "") ? Environment.NewLine + "chapter={" + getfieldName["chapter"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("volume") && getfieldName["volume"] != "") ? Environment.NewLine + "volume={" + getfieldName["volume"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("series") && getfieldName["series"] != "") ? Environment.NewLine + "series={" + getfieldName["series"] + "}," : "";
                         exportedFile += (getfieldName.ContainsKey("publisher") && getfieldName["publisher"] != "") ? Environment.NewLine + "publisher={" + getfieldName["publisher"] + "}," : "";
